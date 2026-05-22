@@ -16,6 +16,12 @@ import {
   Zap,
 } from 'lucide-react';
 
+const proofPoints = [
+  ['Signal recovery', 'Browser loss, ad blockers, consent gaps, and missing transport URLs checked before scaling.'],
+  ['First-party setup', 'Server-side GTM, CAPI, enhanced conversions, and CRM/offline signals planned cleanly.'],
+  ['Operator handoff', 'You get a readable tracking map, QA checklist, and launch notes instead of mystery tags.'],
+];
+
 const services = [
   ['GA4 + GTM audit', 'Clean event names, conversion rules, and dataLayer checks before scaling spend.', BarChart3],
   ['Meta Pixel + CAPI', 'Browser and server-side events matched with reliable deduplication.', Target],
@@ -26,6 +32,8 @@ const services = [
 ];
 
 const stack = ['GA4', 'GTM', 'Meta', 'Google Ads', 'Looker', 'Stape', 'Shopify', 'WordPress'];
+
+const audits = ['Duplicate purchase events', 'Missing lead values', 'Bad consent signals', 'Wrong attribution source', 'Broken CAPI dedupe', 'Weak ecommerce payloads'];
 
 const testimonials = [
   ['Founder, DTC brand', 'Tracking finally matched our CRM and ad platforms. Decisions got cleaner within the first week.'],
@@ -88,6 +96,36 @@ function HeroVisual() {
   );
 }
 
+function AuditPanel() {
+  return (
+    <section className="bg-white text-ink">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[.9fr_1.1fr]">
+        <div>
+          <p className="text-sm font-semibold text-cobalt">FREE TRACKING DIAGNOSTIC</p>
+          <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-6xl">Before fixing tags, find the real leak.</h2>
+          <p className="mt-6 text-lg leading-8 text-slate-600">The best tracking teams do not sell server-side tracking as magic. They audit the current data path first, then fix the exact points where signal quality is breaking.</p>
+        </div>
+        <div className="rounded-[2rem] border border-slate-200 bg-paper p-5 shadow-soft">
+          <div className="rounded-[1.5rem] bg-ink p-5 text-white">
+            <div className="mb-5 flex items-center justify-between">
+              <span className="text-sm font-bold">Signal Leak Scan</span>
+              <span className="rounded-full bg-mint px-3 py-1 text-xs font-black text-ink">LIVE QA</span>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {audits.map((item) => (
+                <div className="flex items-center gap-2 rounded-2xl bg-white/8 px-3 py-3 text-sm" key={item}>
+                  <CheckCircle2 size={16} className="text-mint" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function App() {
   return (
     <main className="min-h-screen bg-ink text-white">
@@ -110,7 +148,17 @@ export default function App() {
           </div>
           <HeroVisual />
         </div>
+        <div className="mx-auto grid max-w-7xl gap-4 px-5 pb-20 md:grid-cols-3">
+          {proofPoints.map(([title, body]) => (
+            <article className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm" key={title}>
+              <h3 className="font-black">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{body}</p>
+            </article>
+          ))}
+        </div>
       </section>
+
+      <AuditPanel />
 
       <section id="services" className="mx-auto max-w-7xl px-5 py-24">
         <div className="mb-12 max-w-2xl"><p className="text-sm font-semibold text-mint">WHAT GETS FIXED</p><h2 className="mt-3 text-4xl font-black tracking-tight sm:text-6xl">Tracking made simple, verified, and ready to scale.</h2></div>

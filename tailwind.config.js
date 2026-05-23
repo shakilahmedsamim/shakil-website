@@ -8,6 +8,8 @@ export default {
       },
       colors: {
         ink: '#070707',
+        obsidian: '#050506',
+        linen: '#f3f6fa',
         paper: '#f7fbff',
         mint: '#2ee58f',
         gold: '#f7c948',

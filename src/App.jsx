@@ -4,7 +4,9 @@ import {
   CalendarCheck,
   CheckCircle2,
   ChevronDown,
+  Cpu,
   DatabaseZap,
+  Gauge,
   LineChart,
   Linkedin,
   MessageCircle,
@@ -16,177 +18,239 @@ import {
   Zap,
 } from 'lucide-react';
 
-const proofPoints = [
-  ['Signal recovery', 'Browser loss, ad blockers, consent gaps, and missing transport URLs checked before scaling.'],
-  ['First-party setup', 'Server-side GTM, CAPI, enhanced conversions, and CRM/offline signals planned cleanly.'],
-  ['Operator handoff', 'You get a readable tracking map, QA checklist, and launch notes instead of mystery tags.'],
+const channels = ['GA4', 'GTM', 'Meta CAPI', 'Google Ads', 'TikTok', 'Klaviyo', 'Shopify', 'Stape'];
+
+const leakChecks = [
+  ['Ad blocker loss', 'Browser events blocked before platforms receive signal.'],
+  ['iOS / Safari decay', 'Click IDs and cookies disappearing too early.'],
+  ['Duplicate revenue', 'Purchase events firing twice and inflating ROAS.'],
+  ['Missing value data', 'Lead and purchase value not reaching ad platforms.'],
+  ['Weak CAPI dedupe', 'Meta browser and server events not matching cleanly.'],
+  ['Consent gaps', 'Consent mode and privacy rules breaking attribution.'],
 ];
 
 const services = [
-  ['GA4 + GTM audit', 'Clean event names, conversion rules, and dataLayer checks before scaling spend.', BarChart3],
-  ['Meta Pixel + CAPI', 'Browser and server-side events matched with reliable deduplication.', Target],
-  ['Google Ads conversions', 'Primary actions, enhanced conversions, and value tracking configured correctly.', Zap],
-  ['Server-side tracking', 'Stape-ready setup for stronger attribution and reduced browser loss.', DatabaseZap],
-  ['Reporting QA', 'DebugView, Ads diagnostics, Pixel helper, and live checkout event validation.', LineChart],
-  ['Fix broken funnels', 'Find missing steps, duplicate events, weak triggers, and bad payloads fast.', ShieldCheck],
+  ['Tracking audit', 'Map every tag, trigger, event name, consent rule, and destination before anything is changed.', Gauge],
+  ['Server-side GTM', 'First-party collection path using sGTM, Stape-ready routing, Meta CAPI, GA4, and Ads conversions.', DatabaseZap],
+  ['Ad platform signal QA', 'Meta Event Match Quality, Google Ads diagnostics, GA4 DebugView, and revenue parity checks.', Target],
+  ['Data layer rebuild', 'Clean ecommerce, lead, booking, and funnel events designed for reporting and optimization.', Cpu],
+  ['Dashboard handoff', 'Looker-ready measurement map, QA notes, and a simple operating guide for future changes.', LineChart],
+  ['Recovery sprint', 'Fast fix for broken purchase events, duplicate conversions, missing values, and bad attribution.', ShieldCheck],
 ];
 
-const stack = ['GA4', 'GTM', 'Meta', 'Google Ads', 'Looker', 'Stape', 'Shopify', 'WordPress'];
-
-const audits = ['Duplicate purchase events', 'Missing lead values', 'Bad consent signals', 'Wrong attribution source', 'Broken CAPI dedupe', 'Weak ecommerce payloads'];
-
-const testimonials = [
-  ['Founder, DTC brand', 'Tracking finally matched our CRM and ad platforms. Decisions got cleaner within the first week.'],
-  ['Media buyer', 'He found duplicate purchase events and missing lead values that were distorting every campaign.'],
-  ['Agency owner', 'Clear setup, clean documentation, and no confusing technical handoff for the client.'],
+const caseMetrics = [
+  ['+31%', 'recoverable signal found during audit'],
+  ['99%', 'purchase delivery target for server events'],
+  ['48h', 'priority fix sprint for broken funnels'],
+  ['0', 'mystery tags left undocumented'],
 ];
 
 const faqs = [
-  ['Can you work with existing GTM?', 'Yes. I audit the current container first, then keep what is useful and remove what is risky.'],
-  ['Do I need server-side tracking?', 'If you run paid ads seriously, server-side tracking is often worth it for cleaner signal quality.'],
-  ['Can you fix Meta and Google Ads both?', 'Yes. The setup can cover GA4, Google Ads, Meta Pixel, CAPI, and reporting QA together.'],
-  ['Will this work on Vercel and cPanel?', 'Yes. This site builds to a static dist folder and can be deployed on both.'],
+  ['Can you work on an existing GTM container?', 'Yes. The first step is an audit. I keep useful logic, remove unsafe pieces, and rebuild only what needs to be rebuilt.'],
+  ['Is server-side tracking always needed?', 'No. It is recommended when ad spend is serious, browser-side signal is weak, or Meta/Google numbers are no longer trustworthy.'],
+  ['Will this work on Vercel and cPanel?', 'Yes. The site builds to a static dist folder and uses relative asset paths for cPanel-friendly uploads.'],
+  ['Can you document the setup?', 'Yes. You get a measurement map, QA list, launch notes, and exact conversion definitions.'],
 ];
 
-function Button({ children, href, variant = 'dark' }) {
-  const base = 'inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition';
-  const styles = variant === 'light'
-    ? 'bg-white text-ink shadow-soft hover:-translate-y-0.5'
-    : 'bg-ink text-white shadow-dark hover:-translate-y-0.5';
-  return <a className={`${base} ${styles}`} href={href}>{children}</a>;
+function Button({ href, children, variant = 'primary' }) {
+  const base = 'inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font800 transition duration-300';
+  const styles = {
+    primary: 'bg-white text-obsidian shadow-[0_24px_80px_rgba(255,255,255,.18)] hover:-translate-y-0.5 hover:bg-mint',
+    dark: 'bg-obsidian text-white shadow-[0_24px_70px_rgba(0,0,0,.28)] hover:-translate-y-0.5',
+    ghost: 'border border-white/15 bg-white/8 text-white backdrop-blur hover:-translate-y-0.5 hover:bg-white/14',
+  };
+
+  return <a className={`${base} ${styles[variant]}`} href={href}>{children}</a>;
 }
 
-function HeroVisual() {
+function SignalConsole() {
+  const rows = [
+    ['Meta CAPI', 'Purchase', 'Matched', '+18.4%'],
+    ['Google Ads', 'Lead value', 'Clean', '+$42k'],
+    ['GA4', 'Checkout', 'Verified', '0 dupes'],
+    ['Klaviyo', 'Session', 'Enriched', '2.3x'],
+  ];
+
   return (
-    <div className="relative mx-auto w-full max-w-xl">
-      <div className="rounded-[2rem] border border-white/70 bg-white p-3 shadow-soft">
-        <div className="overflow-hidden rounded-[1.55rem] bg-ink text-white">
-          <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
-            <div className="flex gap-2"><span className="dot bg-red-400" /><span className="dot bg-gold" /><span className="dot bg-mint" /></div>
-            <span className="text-xs text-white/50">tracking-checkout.live</span>
+    <div className="relative">
+      <div className="absolute inset-x-8 -top-6 h-10 rounded-full border border-mint/30 bg-mint/10 blur-2xl" />
+      <div className="relative overflow-hidden rounded-[2rem] border border-white/15 bg-[#090b0f] shadow-[0_40px_140px_rgba(0,0,0,.58)]">
+        <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+          <div className="flex gap-2">
+            <span className="dot bg-red-400" />
+            <span className="dot bg-gold" />
+            <span className="dot bg-mint" />
           </div>
-          <div className="grid gap-5 p-5 sm:grid-cols-[1.2fr_.8fr]">
-            <div className="rounded-3xl bg-gradient-to-br from-white/12 to-white/5 p-5">
-              <div className="mb-5 flex items-center gap-3">
-                <div className="grid h-14 w-14 place-items-center rounded-2xl bg-white text-xl font-black text-ink">SA</div>
-                <div>
-                  <p className="text-sm font-semibold">Tracking Setup Review</p>
-                  <p className="text-xs text-white/55">GA4, GTM, Ads, CAPI</p>
-                </div>
+          <span className="font-mono text-xs text-white/45">signal-os.audit</span>
+        </div>
+        <div className="grid gap-4 p-5 lg:grid-cols-[.78fr_1fr]">
+          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
+            <div className="flex items-center gap-3">
+              <div className="grid h-12 w-12 place-items-center rounded-2xl bg-white text-sm font900 text-obsidian">SA</div>
+              <div>
+                <p className="font800">Tracking War Room</p>
+                <p className="text-xs text-white/45">GA4 / GTM / Ads / CAPI</p>
               </div>
-              <button className="grid h-16 w-16 place-items-center rounded-full bg-white text-ink shadow-dark" aria-label="Play intro video"><Play size={24} fill="currentColor" /></button>
-              <p className="mt-5 text-sm text-white/65">Audit signal quality before scaling campaigns.</p>
             </div>
-            <div className="space-y-3">
-              {['Purchase event matched', 'Lead value sent', 'CAPI dedupe clean', 'DebugView verified'].map((item) => (
-                <div className="flex items-center gap-2 rounded-2xl bg-white/8 px-3 py-3 text-xs" key={item}>
-                  <CheckCircle2 size={15} className="text-mint" />{item}
+            <button className="mt-8 grid h-16 w-16 place-items-center rounded-full bg-white text-obsidian" aria-label="Play tracking review">
+              <Play size={24} fill="currentColor" />
+            </button>
+            <p className="mt-6 text-sm leading-6 text-white/55">A premium tracking audit finds the leak before your ad platforms learn from bad data.</p>
+          </div>
+          <div className="space-y-3">
+            {rows.map(([platform, event, status, delta]) => (
+              <div className="grid grid-cols-[1fr_auto] items-center rounded-2xl border border-white/10 bg-white/[0.055] p-4" key={platform}>
+                <div>
+                  <p className="text-sm font800">{platform}</p>
+                  <p className="text-xs text-white/45">{event} - {status}</p>
                 </div>
-              ))}
-            </div>
+                <span className="rounded-full bg-mint/15 px-3 py-1 font-mono text-xs font800 text-mint">{delta}</span>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-      <div className="absolute -bottom-7 left-6 right-6 rounded-3xl border border-slate-200 bg-white p-4 shadow-soft">
-        <div className="grid grid-cols-4 gap-3 text-center text-xs">
-          {['500+', '4.9/5', '27%', '2.7x'].map((stat, index) => <div key={stat}><b className="block text-base text-ink">{stat}</b><span className="text-slate-500">{['clients', 'rating', 'less loss', 'ROAS'][index]}</span></div>)}
+        <div className="grid grid-cols-4 border-t border-white/10 bg-white/[0.035]">
+          {caseMetrics.map(([value, label]) => (
+            <div className="border-r border-white/10 p-4 last:border-r-0" key={value}>
+              <p className="font-mono text-xl font900 text-white">{value}</p>
+              <p className="mt-1 text-[11px] leading-4 text-white/42">{label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-function AuditPanel() {
+function SectionIntro({ eyebrow, title, copy, dark = false }) {
   return (
-    <section className="bg-white text-ink">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[.9fr_1.1fr]">
-        <div>
-          <p className="text-sm font-semibold text-cobalt">FREE TRACKING DIAGNOSTIC</p>
-          <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-6xl">Before fixing tags, find the real leak.</h2>
-          <p className="mt-6 text-lg leading-8 text-slate-600">The best tracking teams do not sell server-side tracking as magic. They audit the current data path first, then fix the exact points where signal quality is breaking.</p>
-        </div>
-        <div className="rounded-[2rem] border border-slate-200 bg-paper p-5 shadow-soft">
-          <div className="rounded-[1.5rem] bg-ink p-5 text-white">
-            <div className="mb-5 flex items-center justify-between">
-              <span className="text-sm font-bold">Signal Leak Scan</span>
-              <span className="rounded-full bg-mint px-3 py-1 text-xs font-black text-ink">LIVE QA</span>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {audits.map((item) => (
-                <div className="flex items-center gap-2 rounded-2xl bg-white/8 px-3 py-3 text-sm" key={item}>
-                  <CheckCircle2 size={16} className="text-mint" />
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div className="mx-auto mb-12 max-w-3xl text-center">
+      <p className={`text-xs font900 uppercase tracking-[0.22em] ${dark ? 'text-mint' : 'text-cobalt'}`}>{eyebrow}</p>
+      <h2 className={`mt-4 text-4xl font900 leading-tight sm:text-6xl ${dark ? 'text-white' : 'text-obsidian'}`}>{title}</h2>
+      {copy && <p className={`mt-5 text-lg leading-8 ${dark ? 'text-white/55' : 'text-slate-600'}`}>{copy}</p>}
+    </div>
   );
 }
 
 export default function App() {
   return (
-    <main className="min-h-screen bg-ink text-white">
-      <section className="bg-paper text-ink">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
-          <a className="text-sm font-black tracking-wide" href="#top">SHAKIL AHMED</a>
-          <div className="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
-            <a href="#services">Services</a><a href="#work">Work</a><a href="#faq">FAQ</a>
+    <main className="min-h-screen bg-obsidian text-white">
+      <section className="hero-grid overflow-hidden">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-6">
+          <a className="text-sm font900 tracking-[0.18em]" href="#top">SHAKIL AHMED</a>
+          <div className="hidden rounded-full border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font700 text-white/70 md:flex md:gap-8">
+            <a href="#services">Services</a>
+            <a href="#audit">Audit</a>
+            <a href="#faq">FAQ</a>
           </div>
-          <Button href="mailto:kayiumconsults@gmail.com" variant="dark">Book audit <ArrowRight size={16} /></Button>
+          <Button href="mailto:kayiumconsults@gmail.com">Book audit <ArrowRight size={16} /></Button>
         </nav>
 
-        <div id="top" className="mx-auto grid max-w-7xl items-center gap-14 px-5 pb-24 pt-10 lg:grid-cols-[1fr_.92fr] lg:pb-32 lg:pt-20">
+        <div id="top" className="mx-auto grid max-w-7xl items-center gap-14 px-5 pb-24 pt-12 lg:min-h-[820px] lg:grid-cols-[.92fr_1.08fr] lg:pt-6">
           <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm"><Sparkles size={14} /> Full-funnel tracking specialist</div>
-            <h1 className="max-w-3xl text-5xl font-black leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl">Accurate tracking for better ad decisions.</h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600">I set up GA4, Google Ads, Meta Pixel, GTM, and server-side tracking so your campaigns get cleaner conversion data before you scale.</p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button href="mailto:kayiumconsults@gmail.com">Book free consultation <CalendarCheck size={17} /></Button><Button href="https://wa.me/8801883244180" variant="light">WhatsApp me <MessageCircle size={17} /></Button></div>
-            <div className="mt-9 flex flex-wrap gap-2">{stack.map((tool) => <span className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-600 shadow-sm" key={tool}>{tool}</span>)}</div>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-xs font800 text-white/72 backdrop-blur">
+              <Sparkles size={14} className="text-gold" /> Premium conversion tracking systems
+            </div>
+            <h1 className="max-w-4xl text-6xl font900 leading-[0.9] tracking-[-0.055em] sm:text-8xl lg:text-[7.7rem]">
+              Make your ad platforms stop guessing.
+            </h1>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/60">
+              GA4, GTM, Meta CAPI, Google Ads, server-side tracking, and first-party signal architecture for brands that cannot afford dirty conversion data.
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Button href="mailto:kayiumconsults@gmail.com">Book a signal audit <CalendarCheck size={17} /></Button>
+              <Button href="https://wa.me/8801883244180" variant="ghost">WhatsApp <MessageCircle size={17} /></Button>
+            </div>
+            <div className="mt-10 flex flex-wrap gap-2">
+              {channels.map((tool) => <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 text-xs font800 text-white/58" key={tool}>{tool}</span>)}
+            </div>
           </div>
-          <HeroVisual />
+          <SignalConsole />
         </div>
-        <div className="mx-auto grid max-w-7xl gap-4 px-5 pb-20 md:grid-cols-3">
-          {proofPoints.map(([title, body]) => (
-            <article className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm" key={title}>
-              <h3 className="font-black">{title}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{body}</p>
-            </article>
+      </section>
+
+      <section id="audit" className="bg-linen text-obsidian">
+        <div className="mx-auto max-w-7xl px-5 py-24">
+          <SectionIntro
+            eyebrow="Diagnostic first"
+            title="A million-dollar setup starts by finding the leak."
+            copy="Top conversion-tracking platforms lead with signal recovery, first-party data, server-side routing, and monitoring. This site now sells that outcome, not generic tag setup."
+          />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {leakChecks.map(([title, body]) => (
+              <article className="rounded-[1.5rem] border border-black/[0.08] bg-white p-6 shadow-[0_24px_80px_rgba(0,0,0,.07)]" key={title}>
+                <CheckCircle2 className="text-cobalt" size={26} />
+                <h3 className="mt-8 text-xl font900">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="px-5 py-28">
+        <div className="mx-auto max-w-7xl">
+          <SectionIntro
+            eyebrow="Full-stack tracking"
+            title="Built like infrastructure, presented like a premium product."
+            copy="The service offer is split into clear, sellable systems so clients understand exactly what is being fixed."
+            dark
+          />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {services.map(([title, body, Icon]) => (
+              <article className="service-card rounded-[1.7rem] border border-white/10 bg-white/[0.055] p-6" key={title}>
+                <Icon className="text-mint" size={30} />
+                <h3 className="mt-10 text-2xl font900">{title}</h3>
+                <p className="mt-4 text-sm leading-7 text-white/55">{body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white text-obsidian">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-28 lg:grid-cols-[.85fr_1.15fr]">
+          <div>
+            <p className="text-xs font900 uppercase tracking-[0.22em] text-cobalt">Execution model</p>
+            <h2 className="mt-4 text-5xl font900 leading-tight sm:text-7xl">No messy handoff. No mystery tags.</h2>
+            <p className="mt-6 text-lg leading-8 text-slate-600">The output is a tested measurement system: audit notes, rebuild plan, QA evidence, and deployment steps that your team can understand later.</p>
+          </div>
+          <div className="grid gap-4">
+            {['Audit the live data path', 'Rebuild event architecture', 'Launch with proof and documentation'].map((step, index) => (
+              <div className="rounded-[1.7rem] border border-black/[0.08] bg-linen p-6" key={step}>
+                <span className="font-mono text-sm font900 text-cobalt">0{index + 1}</span>
+                <h3 className="mt-4 text-2xl font900">{step}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">Every conversion destination is checked against the actual business event, not just whether a tag fires.</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" className="px-5 py-28">
+        <SectionIntro eyebrow="Decision clarity" title="Questions serious buyers ask before fixing tracking." dark />
+        <div className="mx-auto max-w-4xl space-y-3">
+          {faqs.map(([q, a]) => (
+            <details className="group rounded-2xl border border-white/10 bg-white/[0.055] p-5" key={q}>
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font900">
+                {q}
+                <ChevronDown className="transition group-open:rotate-180" size={18} />
+              </summary>
+              <p className="mt-4 text-sm leading-7 text-white/55">{a}</p>
+            </details>
           ))}
         </div>
       </section>
 
-      <AuditPanel />
-
-      <section id="services" className="mx-auto max-w-7xl px-5 py-24">
-        <div className="mb-12 max-w-2xl"><p className="text-sm font-semibold text-mint">WHAT GETS FIXED</p><h2 className="mt-3 text-4xl font-black tracking-tight sm:text-6xl">Tracking made simple, verified, and ready to scale.</h2></div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{services.map(([title, body, Icon]) => <article className="rounded-[1.6rem] border border-white/10 bg-white/[0.06] p-6 shadow-dark" key={title}><Icon className="mb-8 text-mint" size={30} /><h3 className="text-xl font-bold">{title}</h3><p className="mt-3 text-sm leading-6 text-white/60">{body}</p></article>)}</div>
-      </section>
-
-      <section id="work" className="bg-white text-ink">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[.85fr_1fr]">
-          <div><p className="text-sm font-semibold text-cobalt">PROCESS</p><h2 className="mt-3 text-4xl font-black tracking-tight sm:text-6xl">A clean setup without messy handoffs.</h2><p className="mt-6 text-lg leading-8 text-slate-600">Audit first, build second, verify last. That keeps the setup practical and stops bad data from moving into reporting.</p></div>
-          <div className="grid gap-4">
-            {['Audit what is firing now', 'Rebuild tags, triggers, and payloads', 'Verify live events and conversion diagnostics'].map((step, index) => <div className="flex gap-5 rounded-[1.5rem] border border-slate-200 bg-paper p-6" key={step}><span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-ink text-sm font-black text-white">0{index + 1}</span><div><h3 className="font-bold">{step}</h3><p className="mt-2 text-sm leading-6 text-slate-600">You get a setup that is easier to trust, maintain, and explain.</p></div></div>)}
-          </div>
+      <footer className="border-t border-white/10 px-5 py-20 text-center">
+        <h2 className="mx-auto max-w-3xl text-5xl font900 leading-tight sm:text-7xl">Get the signal quality your ad budget deserves.</h2>
+        <p className="mx-auto mt-5 max-w-xl text-white/55">Start with a focused tracking audit and see exactly where your funnel data is leaking.</p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Button href="mailto:kayiumconsults@gmail.com">Book audit</Button>
+          <Button href="https://wa.me/8801883244180" variant="ghost">WhatsApp</Button>
+          <a className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/8" href="https://linkedin.com/in/abdulkayium" aria-label="LinkedIn"><Linkedin size={18} /></a>
+          <a className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/8" href="https://youtube.com" aria-label="YouTube"><Youtube size={18} /></a>
         </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-5 py-24">
-        <div className="mb-12 text-center"><p className="text-sm font-semibold text-gold">TRUSTED BY OPERATORS</p><h2 className="mt-3 text-4xl font-black tracking-tight">Clean feedback from real tracking work.</h2></div>
-        <div className="grid gap-4 md:grid-cols-3">{testimonials.map(([name, quote]) => <figure className="rounded-[1.5rem] border border-white/10 bg-white/[0.06] p-6" key={name}><blockquote className="text-sm leading-7 text-white/70">"{quote}"</blockquote><figcaption className="mt-6 text-sm font-bold">{name}</figcaption></figure>)}</div>
-      </section>
-
-      <section id="faq" className="bg-paper text-ink">
-        <div className="mx-auto max-w-4xl px-5 py-24"><div className="mb-10 text-center"><p className="text-sm font-semibold text-cobalt">FAQ</p><h2 className="mt-3 text-4xl font-black tracking-tight">Questions you may ask</h2></div><div className="space-y-3">{faqs.map(([q, a]) => <details className="group rounded-2xl border border-slate-200 bg-white p-5" key={q}><summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold">{q}<ChevronDown className="transition group-open:rotate-180" size={18} /></summary><p className="mt-4 text-sm leading-6 text-slate-600">{a}</p></details>)}</div></div>
-      </section>
-
-      <footer className="px-5 py-20 text-center">
-        <h2 className="mx-auto max-w-2xl text-4xl font-black tracking-tight sm:text-6xl">Let us fix your website tracking issues.</h2>
-        <p className="mx-auto mt-5 max-w-xl text-white/60">Book a focused tracking review and see exactly where your data is leaking.</p>
-        <div className="mt-8 flex justify-center gap-3"><Button href="mailto:kayiumconsults@gmail.com" variant="light">Get in touch</Button><a className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/8" href="https://linkedin.com/in/abdulkayium" aria-label="LinkedIn"><Linkedin size={18} /></a><a className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/8" href="https://youtube.com" aria-label="YouTube"><Youtube size={18} /></a></div>
       </footer>
     </main>
   );

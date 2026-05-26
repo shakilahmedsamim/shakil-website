@@ -164,23 +164,39 @@ a {
   position: relative;
   overflow: hidden;
   transform: translate3d(0,0,0);
-  animation: logo-rise .72s cubic-bezier(.2,.8,.2,1) both, logo-drift 6.2s ease-in-out infinite;
+  animation: logo-rise .62s cubic-bezier(.2,.8,.2,1) both, logo-drift 6.8s ease-in-out infinite;
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+
+.partner-logo-card-square {
+  width: 48px;
+}
+
+.partner-logo-card-wide {
+  width: 56px;
+}
+
+.partner-logo-card-brand {
+  width: 92px;
+}
+
+.partner-logo-card-adrock {
+  width: 96px;
 }
 
 .partner-logo-card::before {
   content: "";
   position: absolute;
   inset: 1px;
-  border-radius: 11px;
+  border-radius: 7px;
   background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(247,251,255,.7));
   pointer-events: none;
 }
 
 .partner-logo-card:hover {
-  transform: translateY(-7px) scale(1.035);
+  transform: translateY(-5px) scale(1.025);
   border-color: rgba(22,137,249,.26);
-  box-shadow: 0 20px 52px rgba(74,91,115,.18);
+  box-shadow: 0 16px 36px rgba(74,91,115,.15);
 }
 
 .partner-logo-card img {
@@ -192,6 +208,40 @@ a {
 .partner-logo-card:hover img {
   transform: scale(1.04);
   filter: saturate(1.08) contrast(1.03);
+}
+
+.partner-wordmark {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.partner-wordmark-brand {
+  color: #4a2a63;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.partner-wordmark-adrock {
+  color: #ef3340;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.partner-adrock-mark {
+  display: inline-grid;
+  height: 22px;
+  width: 18px;
+  place-items: center;
+  color: #ef3340;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 900;
+  transform: skew(-10deg);
 }
 
 .vidalytics-shell,

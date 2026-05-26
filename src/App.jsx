@@ -107,7 +107,7 @@ function VidalyticsEmbed() {
 
 function HeroVideoFrame() {
   return (
-    <div className="video-stage mx-auto mt-10 w-full max-w-[760px] px-2 sm:px-0">
+    <div className="video-stage mx-auto mt-10 w-full max-w-[705px] px-2 sm:px-0">
       <div className="video-frame relative overflow-hidden rounded-[28px] bg-white p-2.5">
         <div className="video-side-glow video-side-glow-left" />
         <div className="video-side-glow video-side-glow-right" />
@@ -179,7 +179,7 @@ function ReferenceHero() {
 
         <div className="mx-auto mt-24 grid max-w-[1030px] items-center gap-14 lg:grid-cols-[1fr_.9fr]">
           <div>
-            <h2 className="premium-heading max-w-xl text-4xl font900 leading-[.98] sm:text-5xl">Full-Funnel Tracking to Scale Profitably</h2>
+            <h2 className="premium-heading max-w-xl text-4xl font800 leading-[1.08] sm:text-5xl">Full-Funnel Tracking to Scale Profitably</h2>
             <div className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-4">
               <div className="flex items-center gap-3">
                 <img alt="Shakil Ahmed Samim" className="h-10 w-10 rounded-full object-cover ring-2 ring-white" src={profileImage} />
@@ -193,16 +193,16 @@ function ReferenceHero() {
                 <p className="text-xs text-slate-500 underline">500+ Tracking</p>
               </div>
             </div>
-            <div className="stat-card mt-9 grid grid-cols-2 rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm sm:grid-cols-4">
+            <div className="stat-card mt-10 grid w-full max-w-[448px] grid-cols-4 rounded-xl border border-slate-200 bg-white/95 px-5 py-4 shadow-sm sm:px-7">
               {[
                 ['300%', 'Ad revenue'],
                 ['35%', 'Lower cost'],
                 ['4:1', 'Average ROAS'],
                 ['2.7X', 'ROI'],
               ].map(([value, label], index) => (
-                <div className="stat-item px-3 py-2 text-center" key={value} style={{ animationDelay: `${index * 120}ms` }}>
-                  <p className="stat-value text-2xl font900 text-[#1689f9]">{value}<span className="text-lg">↑</span></p>
-                  <p className="text-[11px] text-slate-500">{label}</p>
+                <div className="stat-item min-w-0 px-2 text-center" key={value} style={{ animationDelay: `${index * 120}ms` }}>
+                  <p className="stat-value text-[20px] font800 leading-none text-[#1689f9] sm:text-[22px]">{value}<span className="text-base">↑</span></p>
+                  <p className="mt-1 text-[9px] leading-tight text-slate-500 sm:text-[10px]">{label}</p>
                 </div>
               ))}
             </div>

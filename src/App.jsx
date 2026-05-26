@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import {
   ArrowRight,
-  CalendarCheck,
   CheckCircle2,
   ChevronDown,
   Cpu,
@@ -16,8 +15,18 @@ import {
   Youtube,
 } from 'lucide-react';
 
+const whatsappLink = 'http://wa.me/08801843752280';
+const linkedinLink = 'https://www.linkedin.com/in/mdshakilahmedsamim';
+const profileImage = './images/shakil-avatar.svg';
+
 const proofPoints = ['Tracking in 3 Hours', 'I Manage Everything', '24/7 Expert Support'];
-const avatars = ['AK', 'MS', 'JR', 'TN', 'RB'];
+const avatars = [
+  'https://i.pravatar.cc/80?img=12',
+  'https://i.pravatar.cc/80?img=32',
+  'https://i.pravatar.cc/80?img=15',
+  'https://i.pravatar.cc/80?img=47',
+  'https://i.pravatar.cc/80?img=59',
+];
 const partnerTools = [
   ['SCALIXAI', 'text-[#4b2b69]'],
   ['Shopify', 'text-[#65a843]'],
@@ -56,11 +65,12 @@ const faqs = [
 ];
 
 function Button({ href, children, variant = 'primary' }) {
-  const base = 'inline-flex items-center justify-center gap-2 rounded-full text-sm font800 transition duration-300';
+  const base = 'inline-flex items-center justify-center gap-2 rounded-full text-sm font900 transition duration-300';
   const styles = {
-    primary: 'bg-[#7547ff] px-7 py-3.5 text-white shadow-[0_18px_45px_rgba(117,71,255,.36)] hover:-translate-y-0.5 hover:bg-[#5f35df]',
-    dark: 'bg-obsidian px-5 py-3 text-white shadow-[0_24px_70px_rgba(0,0,0,.28)] hover:-translate-y-0.5',
+    primary: 'bg-[linear-gradient(135deg,#8b5cf6_0%,#6738f6_54%,#4f25d8_100%)] px-7 py-3.5 text-white shadow-[0_18px_45px_rgba(117,71,255,.38)] ring-1 ring-white/35 hover:-translate-y-0.5 hover:shadow-[0_24px_58px_rgba(117,71,255,.45)]',
+    dark: 'bg-obsidian px-5 py-3 text-white shadow-[0_24px_70px_rgba(0,0,0,.28)] ring-1 ring-white/10 hover:-translate-y-0.5',
     ghost: 'border border-white/15 bg-white/8 px-5 py-3 text-white backdrop-blur hover:-translate-y-0.5 hover:bg-white/14',
+    whatsapp: 'bg-[linear-gradient(135deg,#21d86a,#12b957)] px-6 py-4 text-white shadow-[0_16px_42px_rgba(18,185,87,.3)] ring-1 ring-white/40 hover:-translate-y-0.5',
   };
 
   return <a className={`${base} ${styles[variant]}`} href={href}>{children}</a>;
@@ -98,13 +108,8 @@ function VidalyticsEmbed() {
 
 function HeroVideoFrame() {
   return (
-    <div className="mx-auto mt-10 w-full max-w-[720px] px-2 sm:px-0">
-      <div className="relative rounded-[22px] bg-white p-2 shadow-[0_26px_80px_rgba(76,90,116,.16)] ring-1 ring-slate-200/80">
-        <div className="absolute -left-8 top-10 hidden h-56 w-28 rounded-l-[24px] border border-slate-200 bg-white/85 shadow-xl lg:block" />
-        <div className="absolute -left-2 top-5 hidden h-24 w-20 rounded-2xl border border-slate-200 bg-white p-2 shadow-xl md:block">
-          <div className="h-12 rounded-xl bg-gradient-to-br from-[#cfdce9] to-[#f6d2b0]" />
-          <div className="mx-auto mt-2 h-3 w-10 rounded-full bg-[#7547ff]/20" />
-        </div>
+    <div className="mx-auto mt-10 w-full max-w-[760px] px-2 sm:px-0">
+      <div className="relative rounded-[24px] bg-white p-2 shadow-[0_28px_90px_rgba(76,90,116,.18)] ring-1 ring-slate-200/90">
         <div className="relative overflow-hidden rounded-[18px] bg-[#0b0e14]">
           <VidalyticsEmbed />
         </div>
@@ -162,7 +167,13 @@ function ReferenceHero() {
           <div className="mt-10 inline-flex items-center rounded-full bg-[#dbe4ee] px-5 py-3 shadow-sm">
             <div className="flex -space-x-2">
               {avatars.map((avatar, index) => (
-                <span className="grid h-8 w-8 place-items-center rounded-full border-2 border-[#dbe4ee] bg-white text-[10px] font900 text-slate-700" key={avatar} style={{ zIndex: avatars.length - index }}>{avatar}</span>
+                <img
+                  alt="client avatar"
+                  className="h-8 w-8 rounded-full border-2 border-[#dbe4ee] object-cover"
+                  key={avatar}
+                  src={avatar}
+                  style={{ zIndex: avatars.length - index }}
+                />
               ))}
             </div>
             <div className="ml-3 text-left leading-tight">
@@ -183,9 +194,9 @@ function ReferenceHero() {
             <h2 className="max-w-xl text-4xl font900 leading-tight sm:text-5xl">Full-Funnel Tracking to Scale Profitably</h2>
             <div className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-4">
               <div className="flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-[#cde9f4] text-xs font900">AK</span>
+                <img alt="Shakil Ahmed" className="h-10 w-10 rounded-full object-cover ring-2 ring-white" src={profileImage} />
                 <div>
-                  <p className="text-sm font800">Abdul Kayium</p>
+                  <p className="text-sm font800">Shakil Ahmed</p>
                   <p className="text-xs text-slate-500">5,763 Followers</p>
                 </div>
               </div>
@@ -233,7 +244,7 @@ function ReferenceHero() {
               </span>
             ))}
           </div>
-          <a className="mt-12 inline-flex items-center gap-2 rounded-lg bg-[#1fd45f] px-6 py-4 text-base font900 text-white shadow-[0_14px_40px_rgba(31,212,95,.26)]" href="https://wa.me/8801883244180">
+          <a className="mt-12 inline-flex items-center gap-2 rounded-xl bg-[linear-gradient(135deg,#22df70,#13be5d)] px-7 py-4 text-base font900 text-white shadow-[0_16px_42px_rgba(18,185,87,.32)] ring-1 ring-white/50 transition duration-300 hover:-translate-y-0.5" href={whatsappLink}>
             <MessageCircle size={20} /> Chat on WhatsApp
           </a>
         </div>
@@ -335,8 +346,8 @@ export default function App() {
         <p className="mx-auto mt-5 max-w-xl text-white/55">Start with a focused tracking audit and see exactly where your funnel data is leaking.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Button href="mailto:kayiumconsults@gmail.com">Book audit</Button>
-          <Button href="https://wa.me/8801883244180" variant="ghost">WhatsApp</Button>
-          <a className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/8" href="https://linkedin.com/in/abdulkayium" aria-label="LinkedIn"><Linkedin size={18} /></a>
+          <Button href={whatsappLink} variant="ghost">WhatsApp</Button>
+          <a className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/8" href={linkedinLink} aria-label="LinkedIn"><Linkedin size={18} /></a>
           <a className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/8" href="https://youtube.com" aria-label="YouTube"><Youtube size={18} /></a>
         </div>
       </footer>

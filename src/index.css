@@ -64,6 +64,19 @@ a {
   box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 24px 100px rgba(0,0,0,.24);
 }
 
+.vidalytics-shell,
+.vidalytics-shell > div {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.vidalytics-shell iframe,
+.vidalytics-shell video {
+  border: 0;
+  border-radius: 18px;
+}
+
 ::selection {
   background: #2ee58f;
   color: #070707;

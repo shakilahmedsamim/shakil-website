@@ -29,13 +29,15 @@ const avatars = [
   'https://i.pravatar.cc/80?img=59',
 ];
 const partnerTools = [
-  { name: 'GA4', src: './images/GA4.png', size: 'wide', delay: '0s' },
-  { name: 'Google Ads', src: './images/Google Ads.webp', size: 'wide', delay: '.08s' },
-  { name: 'Google Tag Manager', src: './images/Google Tag Manager.png', size: 'square', delay: '.16s' },
-  { name: 'Meta', src: './images/Meta.png', size: 'wide', delay: '.24s' },
-  { name: 'Microsoft Ads', src: './images/Microsoft ads.png', size: 'square', delay: '.32s' },
-  { name: 'Shopify', src: './images/Shopify.png', size: 'wide', delay: '.4s' },
-  { name: 'Stape', src: './images/stape.png', size: 'square', delay: '.48s' },
+  { name: 'SCALIXAI', text: 'SCALIXAI', size: 'brand', delay: '0s' },
+  { name: 'Shopify', src: './images/Shopify.png', size: 'square', delay: '.06s' },
+  { name: 'Stape', src: './images/stape.png', size: 'square', delay: '.12s' },
+  { name: 'Meta', src: './images/Meta.png', size: 'wide', delay: '.18s' },
+  { name: 'Google Tag Manager', src: './images/Google Tag Manager.png', size: 'square', delay: '.24s' },
+  { name: 'Google Ads', src: './images/Google Ads.webp', size: 'square', delay: '.3s' },
+  { name: 'GA4', src: './images/GA4.png', size: 'square', delay: '.36s' },
+  { name: 'Microsoft Ads', src: './images/Microsoft ads.png', size: 'square', delay: '.42s' },
+  { name: 'AdRock', text: 'AdRock', size: 'adrock', delay: '.48s' },
 ];
 
 const leakChecks = [
@@ -119,10 +121,19 @@ function HeroVideoFrame() {
   );
 }
 
-function PartnerLogo({ name, src, size }) {
+function PartnerLogo({ name, src, size, text }) {
+  if (text) {
+    return (
+      <span className={`partner-wordmark partner-wordmark-${size}`}>
+        {size === 'adrock' && <span className="partner-adrock-mark">A</span>}
+        {text}
+      </span>
+    );
+  }
+
   const className = size === 'square'
-    ? 'h-[42px] w-[42px] object-contain'
-    : 'h-[38px] w-[86px] object-contain';
+    ? 'h-[31px] w-[31px] object-contain'
+    : 'h-[31px] w-[48px] object-contain';
 
   return <img alt={`${name} logo`} className={className} loading="lazy" src={src} />;
 }
@@ -222,18 +233,18 @@ function ReferenceHero() {
         </div>
 
         <div className="mt-28 text-center">
-          <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font700 text-slate-700 shadow-sm">
+          <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font500 text-slate-700 shadow-sm">
             <ShieldCheck size={16} /> Trusted partners and tools
           </div>
-          <div className="mx-auto mt-10 flex max-w-5xl flex-wrap items-center justify-center gap-4">
+          <div className="mx-auto mt-9 flex max-w-[720px] flex-wrap items-center justify-center gap-3">
             {partnerTools.map((tool) => (
-              <span className="partner-logo-card grid h-[70px] w-[98px] place-items-center rounded-xl border border-white/80 bg-white shadow-[0_12px_34px_rgba(74,91,115,.10)]" key={tool.name} style={{ animationDelay: tool.delay }}>
+              <span className={`partner-logo-card partner-logo-card-${tool.size} grid h-[42px] place-items-center rounded-lg border border-white/80 bg-white shadow-[0_8px_20px_rgba(74,91,115,.08)]`} key={tool.name} style={{ animationDelay: tool.delay }}>
                 <PartnerLogo {...tool} />
               </span>
             ))}
           </div>
-          <a className="mt-12 inline-flex items-center gap-2 rounded-xl bg-[linear-gradient(135deg,#22df70,#13be5d)] px-7 py-4 text-base font900 text-white shadow-[0_16px_42px_rgba(18,185,87,.32)] ring-1 ring-white/50 transition duration-300 hover:-translate-y-0.5" href={whatsappLink}>
-            <MessageCircle size={20} /> Chat on WhatsApp
+          <a className="mt-10 inline-flex h-11 items-center gap-2 rounded-lg bg-[linear-gradient(135deg,#22df70,#13be5d)] px-6 text-base font800 text-white shadow-[0_14px_34px_rgba(18,185,87,.28)] ring-1 ring-white/50 transition duration-300 hover:-translate-y-0.5" href={whatsappLink}>
+            <MessageCircle size={19} /> Chat on WhatsApp
           </a>
         </div>
       </div>

@@ -29,13 +29,13 @@ const avatars = [
   'https://i.pravatar.cc/80?img=59',
 ];
 const partnerTools = [
-  { name: 'GA4', src: './images/GA4.png', delay: '0s' },
-  { name: 'Google Ads', src: './images/Google Ads.webp', delay: '.12s' },
-  { name: 'Google Tag Manager', src: './images/Google Tag Manager.png', delay: '.24s' },
-  { name: 'Meta', src: './images/Meta.png', delay: '.36s' },
-  { name: 'Microsoft Ads', src: './images/Microsoft ads.png', delay: '.48s' },
-  { name: 'Shopify', src: './images/Shopify.png', delay: '.6s' },
-  { name: 'Stape', src: './images/stape.png', delay: '.72s' },
+  { name: 'GA4', src: './images/GA4.png', size: 'wide', delay: '0s' },
+  { name: 'Google Ads', src: './images/Google Ads.webp', size: 'wide', delay: '.08s' },
+  { name: 'Google Tag Manager', src: './images/Google Tag Manager.png', size: 'square', delay: '.16s' },
+  { name: 'Meta', src: './images/Meta.png', size: 'wide', delay: '.24s' },
+  { name: 'Microsoft Ads', src: './images/Microsoft ads.png', size: 'square', delay: '.32s' },
+  { name: 'Shopify', src: './images/Shopify.png', size: 'wide', delay: '.4s' },
+  { name: 'Stape', src: './images/stape.png', size: 'square', delay: '.48s' },
 ];
 
 const leakChecks = [
@@ -107,29 +107,24 @@ function VidalyticsEmbed() {
 
 function HeroVideoFrame() {
   return (
-    <div className="mx-auto mt-10 w-full max-w-[820px] px-2 sm:px-0">
-      <div className="relative rounded-[34px] bg-[linear-gradient(135deg,#ffffff_0%,#f6fbff_46%,#dcecff_100%)] p-3 shadow-[0_34px_110px_rgba(61,83,114,.22)] ring-1 ring-white/80">
-        <div className="absolute inset-x-16 -bottom-8 h-10 rounded-full bg-[#6f63ff]/20 blur-3xl" />
-        <div className="relative overflow-hidden rounded-[25px] bg-[#080b12] shadow-inner ring-1 ring-black/10">
-          <div className="flex h-11 items-center justify-between border-b border-white/10 bg-[#0b0e14] px-4">
-            <div className="flex items-center gap-2">
-              <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-              <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-              <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-            </div>
-            <span className="hidden text-xs font700 text-white/50 sm:block">tracking-audit.video</span>
-          </div>
-          <div className="overflow-hidden rounded-b-[25px]">
-            <VidalyticsEmbed />
-          </div>
+    <div className="video-stage mx-auto mt-10 w-full max-w-[760px] px-2 sm:px-0">
+      <div className="video-frame relative overflow-hidden rounded-[28px] bg-white p-2.5">
+        <div className="video-side-glow video-side-glow-left" />
+        <div className="video-side-glow video-side-glow-right" />
+        <div className="relative overflow-hidden rounded-[21px] bg-[#070a0f] ring-1 ring-black/10">
+          <VidalyticsEmbed />
         </div>
       </div>
     </div>
   );
 }
 
-function PartnerLogo({ name, src }) {
-  return <img alt={`${name} logo`} className="max-h-9 max-w-[118px] object-contain" loading="lazy" src={src} />;
+function PartnerLogo({ name, src, size }) {
+  const className = size === 'square'
+    ? 'h-[42px] w-[42px] object-contain'
+    : 'h-[38px] w-[86px] object-contain';
+
+  return <img alt={`${name} logo`} className={className} loading="lazy" src={src} />;
 }
 
 function ReferenceHero() {
@@ -232,7 +227,7 @@ function ReferenceHero() {
           </div>
           <div className="mx-auto mt-10 flex max-w-5xl flex-wrap items-center justify-center gap-4">
             {partnerTools.map((tool) => (
-              <span className="partner-logo-card grid h-16 min-w-[92px] place-items-center rounded-xl border border-slate-200/80 bg-white px-4 shadow-[0_10px_28px_rgba(74,91,115,.08)]" key={tool.name} style={{ animationDelay: tool.delay }}>
+              <span className="partner-logo-card grid h-[70px] w-[98px] place-items-center rounded-xl border border-white/80 bg-white shadow-[0_12px_34px_rgba(74,91,115,.10)]" key={tool.name} style={{ animationDelay: tool.delay }}>
                 <PartnerLogo {...tool} />
               </span>
             ))}

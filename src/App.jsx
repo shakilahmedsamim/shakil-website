@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  BarChart3,
   CalendarCheck,
   CheckCircle2,
   ChevronDown,
@@ -15,10 +14,13 @@ import {
   Sparkles,
   Target,
   Youtube,
-  Zap,
 } from 'lucide-react';
 
-const channels = ['GA4', 'GTM', 'Meta CAPI', 'Google Ads', 'TikTok', 'Klaviyo', 'Shopify', 'Stape'];
+const heroVideoSrc = '';
+
+const proofPoints = ['Tracking in 3 Hours', 'I Manage Everything', '24/7 Expert Support'];
+const partnerTools = ['SCALIXAI', 'Shopify', 'Stape', 'Meta', 'GTM', 'Google Ads', 'GA4', 'Microsoft', 'AdRock'];
+const avatars = ['AK', 'MS', 'JR', 'TN', 'RB'];
 
 const leakChecks = [
   ['Ad blocker loss', 'Browser events blocked before platforms receive signal.'],
@@ -38,13 +40,6 @@ const services = [
   ['Recovery sprint', 'Fast fix for broken purchase events, duplicate conversions, missing values, and bad attribution.', ShieldCheck],
 ];
 
-const caseMetrics = [
-  ['+31%', 'recoverable signal found during audit'],
-  ['99%', 'purchase delivery target for server events'],
-  ['48h', 'priority fix sprint for broken funnels'],
-  ['0', 'mystery tags left undocumented'],
-];
-
 const faqs = [
   ['Can you work on an existing GTM container?', 'Yes. The first step is an audit. I keep useful logic, remove unsafe pieces, and rebuild only what needs to be rebuilt.'],
   ['Is server-side tracking always needed?', 'No. It is recommended when ad spend is serious, browser-side signal is weak, or Meta/Google numbers are no longer trustworthy.'],
@@ -55,7 +50,7 @@ const faqs = [
 function Button({ href, children, variant = 'primary' }) {
   const base = 'inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font800 transition duration-300';
   const styles = {
-    primary: 'bg-white text-obsidian shadow-[0_24px_80px_rgba(255,255,255,.18)] hover:-translate-y-0.5 hover:bg-mint',
+    primary: 'bg-[#7547ff] text-white shadow-[0_18px_45px_rgba(117,71,255,.38)] hover:-translate-y-0.5 hover:bg-[#5f35df]',
     dark: 'bg-obsidian text-white shadow-[0_24px_70px_rgba(0,0,0,.28)] hover:-translate-y-0.5',
     ghost: 'border border-white/15 bg-white/8 text-white backdrop-blur hover:-translate-y-0.5 hover:bg-white/14',
   };
@@ -63,62 +58,148 @@ function Button({ href, children, variant = 'primary' }) {
   return <a className={`${base} ${styles[variant]}`} href={href}>{children}</a>;
 }
 
-function SignalConsole() {
-  const rows = [
-    ['Meta CAPI', 'Purchase', 'Matched', '+18.4%'],
-    ['Google Ads', 'Lead value', 'Clean', '+$42k'],
-    ['GA4', 'Checkout', 'Verified', '0 dupes'],
-    ['Klaviyo', 'Session', 'Enriched', '2.3x'],
-  ];
-
+function HeroVideo() {
   return (
-    <div className="relative">
-      <div className="absolute inset-x-8 -top-6 h-10 rounded-full border border-mint/30 bg-mint/10 blur-2xl" />
-      <div className="relative overflow-hidden rounded-[2rem] border border-white/15 bg-[#090b0f] shadow-[0_40px_140px_rgba(0,0,0,.58)]">
-        <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
-          <div className="flex gap-2">
-            <span className="dot bg-red-400" />
-            <span className="dot bg-gold" />
-            <span className="dot bg-mint" />
-          </div>
-          <span className="font-mono text-xs text-white/45">signal-os.audit</span>
-        </div>
-        <div className="grid gap-4 p-5 lg:grid-cols-[.78fr_1fr]">
-          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
-            <div className="flex items-center gap-3">
-              <div className="grid h-12 w-12 place-items-center rounded-2xl bg-white text-sm font900 text-obsidian">SA</div>
-              <div>
-                <p className="font800">Tracking War Room</p>
-                <p className="text-xs text-white/45">GA4 / GTM / Ads / CAPI</p>
-              </div>
+    <div className="relative mx-auto mt-9 w-full max-w-[710px]">
+      <div className="absolute -left-4 top-5 hidden h-[310px] w-44 rounded-l-2xl bg-white md:block" />
+      <div className="absolute left-12 top-3 hidden h-24 w-20 rounded-xl bg-white shadow-xl md:block">
+        <div className="m-2 h-12 rounded-lg bg-[#dbe8f5]" />
+        <div className="mx-auto mt-2 h-3 w-10 rounded-full bg-[#7547ff]/20" />
+      </div>
+      <div className="relative overflow-hidden rounded-none bg-white shadow-[0_30px_80px_rgba(74,89,110,.18)] md:h-[315px]">
+        <div className="grid min-h-[300px] md:grid-cols-[.52fr_.48fr]">
+          <div className="relative overflow-hidden bg-[radial-gradient(circle_at_20px_20px,#ccd7e4_1.3px,transparent_1.3px)] [background-size:20px_20px]">
+            <div className="absolute left-[28%] top-[34%] text-[86px] font900 leading-none text-[#1689f9] opacity-80">M</div>
+            <div className="absolute bottom-6 left-24 flex gap-2 rounded-lg bg-white p-2 shadow-xl">
+              <span className="h-5 w-5 rounded-full bg-black" />
+              <span className="h-5 w-5 rounded-full bg-[#d9903b]" />
+              <span className="h-5 w-5 rounded-full bg-[#c92121]" />
             </div>
-            <button className="mt-8 grid h-16 w-16 place-items-center rounded-full bg-white text-obsidian" aria-label="Play tracking review">
-              <Play size={24} fill="currentColor" />
-            </button>
-            <p className="mt-6 text-sm leading-6 text-white/55">A premium tracking audit finds the leak before your ad platforms learn from bad data.</p>
           </div>
-          <div className="space-y-3">
-            {rows.map(([platform, event, status, delta]) => (
-              <div className="grid grid-cols-[1fr_auto] items-center rounded-2xl border border-white/10 bg-white/[0.055] p-4" key={platform}>
-                <div>
-                  <p className="text-sm font800">{platform}</p>
-                  <p className="text-xs text-white/45">{event} - {status}</p>
-                </div>
-                <span className="rounded-full bg-mint/15 px-3 py-1 font-mono text-xs font800 text-mint">{delta}</span>
+          <div className="relative min-h-[300px] bg-gradient-to-br from-[#ced8df] via-[#aebbc1] to-[#f3c08a]">
+            {heroVideoSrc ? (
+              <video className="h-full w-full object-cover" src={heroVideoSrc} controls playsInline poster="" />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-[linear-gradient(90deg,rgba(255,255,255,.35),rgba(255,255,255,0)_38%),radial-gradient(circle_at_72%_42%,#1c2329_0_8%,transparent_9%)]">
+                <div className="h-56 w-40 rounded-t-full bg-[#111820] shadow-2xl" />
+                <div className="absolute bottom-0 h-28 w-64 rounded-t-[60px] bg-[#101010]" />
               </div>
-            ))}
+            )}
           </div>
         </div>
-        <div className="grid grid-cols-4 border-t border-white/10 bg-white/[0.035]">
-          {caseMetrics.map(([value, label]) => (
-            <div className="border-r border-white/10 p-4 last:border-r-0" key={value}>
-              <p className="font-mono text-xl font900 text-white">{value}</p>
-              <p className="mt-1 text-[11px] leading-4 text-white/42">{label}</p>
-            </div>
-          ))}
+        <div className="absolute left-1/2 top-1/2 flex h-56 w-[420px] max-w-[78%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-xl border border-white/80 bg-white/35 text-center text-white shadow-[0_20px_80px_rgba(0,0,0,.18)] backdrop-blur-[2px]">
+          <Play size={42} fill="currentColor" />
+          <p className="mt-4 text-2xl font900 leading-tight drop-shadow">Meta Your Video Is Playing</p>
+          <p className="text-xl font900 drop-shadow">Click To Unmute</p>
         </div>
       </div>
     </div>
+  );
+}
+
+function ReferenceHero() {
+  const checklist = [
+    'Google Ads Conversion Tracking',
+    'Facebook Pixel & Conversion API',
+    'First-Party Server-Side Tracking',
+    'Google Analytics 4 Funnel Track',
+    'Offline Conversion Setup for Ads',
+  ];
+
+  return (
+    <section id="top" className="overflow-hidden bg-[#eaf3fd] text-[#070a0f]">
+      <div className="bg-[#ffdf67] px-4 py-2 text-center text-sm font800">I help marketers & agencies scale campaigns with accurate tracking...</div>
+      <div className="mx-auto max-w-7xl px-5 pb-20 pt-12">
+        <div className="mx-auto max-w-5xl text-center">
+          <h1 className="text-4xl font500 leading-tight tracking-[-0.04em] sm:text-5xl lg:text-[3.45rem]">
+            Wasting ad spend due to inaccurate tracking?
+            <span className="mt-5 block">I fix it so your ads get the right data to scale</span>
+          </h1>
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-base font700">
+            {proofPoints.map((point) => (
+              <span className="inline-flex items-center gap-2" key={point}>
+                <CheckCircle2 size={18} className="text-[#1689f9]" /> {point}
+              </span>
+            ))}
+          </div>
+          <div className="mt-10 inline-flex items-center rounded-full bg-[#dbe4ee] px-5 py-3 shadow-sm">
+            <div className="flex -space-x-2">
+              {avatars.map((avatar, index) => (
+                <span className="grid h-8 w-8 place-items-center rounded-full border-2 border-[#dbe4ee] bg-white text-[10px] font900 text-slate-700" key={avatar} style={{ zIndex: avatars.length - index }}>{avatar}</span>
+              ))}
+            </div>
+            <div className="ml-3 text-left leading-tight">
+              <p className="text-xs text-[#f2a900]">★★★★★</p>
+              <p className="text-sm font800 underline decoration-black/30">500+ Tracking</p>
+            </div>
+          </div>
+        </div>
+
+        <HeroVideo />
+
+        <div className="mt-11 text-center">
+          <Button href="mailto:kayiumconsults@gmail.com">Claim Your Tracking Audit! <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#7547ff]"><ArrowRight size={18} /></span></Button>
+        </div>
+
+        <div className="mx-auto mt-24 grid max-w-[980px] items-center gap-12 lg:grid-cols-[1fr_.9fr]">
+          <div>
+            <h2 className="max-w-xl text-4xl font900 leading-tight tracking-[-0.04em] sm:text-5xl">Full-Funnel Tracking to Scale Profitably</h2>
+            <div className="mt-8 flex items-center gap-10">
+              <div className="flex items-center gap-3">
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-[#cde9f4] text-xs font900">AK</span>
+                <div>
+                  <p className="text-sm font800">Abdul Kayium</p>
+                  <p className="text-xs text-slate-500">5,763 Followers</p>
+                </div>
+              </div>
+              <div>
+                <p className="text-xs text-[#f2a900]">★★★★★</p>
+                <p className="text-xs text-slate-500 underline">500+ Tracking</p>
+              </div>
+            </div>
+            <div className="mt-9 grid grid-cols-4 rounded-xl border border-slate-200 bg-white/90 px-7 py-5 shadow-sm">
+              {[
+                ['300%', 'Ad revenue'],
+                ['35%', 'Lower cost'],
+                ['4:1%', 'Average ROAS'],
+                ['2.7X%', 'ROI'],
+              ].map(([value, label]) => (
+                <div className="text-center" key={value}>
+                  <p className="text-2xl font900 text-[#1689f9]">{value}<span className="text-lg">↑</span></p>
+                  <p className="text-[11px] text-slate-500">{label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative rotate-[-3deg] rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_24px_80px_rgba(74,89,110,.18)]">
+            <div className="absolute -right-5 -top-8 rotate-[22deg] text-6xl">📌</div>
+            <ul className="space-y-6 text-xl font800">
+              {checklist.map((item) => (
+                <li className="flex items-start gap-4" key={item}>
+                  <span className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#eea20d] text-sm text-white">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-28 text-center">
+          <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font700 text-slate-700 shadow-sm">
+            <ShieldCheck size={16} /> Trusted partners and tools
+          </div>
+          <div className="mx-auto mt-12 flex max-w-4xl flex-wrap items-center justify-center gap-4">
+            {partnerTools.map((tool) => (
+              <span className="grid min-h-12 min-w-16 place-items-center rounded-lg bg-white px-4 py-3 text-sm font900 text-slate-700 shadow-sm" key={tool}>{tool}</span>
+            ))}
+          </div>
+          <a className="mt-14 inline-flex items-center gap-2 rounded-lg bg-[#1fd45f] px-6 py-4 text-base font900 text-white shadow-[0_14px_40px_rgba(31,212,95,.26)]" href="https://wa.me/8801883244180">
+            <MessageCircle size={20} /> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -135,39 +216,7 @@ function SectionIntro({ eyebrow, title, copy, dark = false }) {
 export default function App() {
   return (
     <main className="min-h-screen bg-obsidian text-white">
-      <section className="hero-grid overflow-hidden">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-6">
-          <a className="text-sm font900 tracking-[0.18em]" href="#top">SHAKIL AHMED</a>
-          <div className="hidden rounded-full border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font700 text-white/70 md:flex md:gap-8">
-            <a href="#services">Services</a>
-            <a href="#audit">Audit</a>
-            <a href="#faq">FAQ</a>
-          </div>
-          <Button href="mailto:kayiumconsults@gmail.com">Book audit <ArrowRight size={16} /></Button>
-        </nav>
-
-        <div id="top" className="mx-auto grid max-w-7xl items-center gap-14 px-5 pb-24 pt-12 lg:min-h-[820px] lg:grid-cols-[.92fr_1.08fr] lg:pt-6">
-          <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-xs font800 text-white/72 backdrop-blur">
-              <Sparkles size={14} className="text-gold" /> Premium conversion tracking systems
-            </div>
-            <h1 className="max-w-4xl text-6xl font900 leading-[0.9] tracking-[-0.055em] sm:text-8xl lg:text-[7.7rem]">
-              Make your ad platforms stop guessing.
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/60">
-              GA4, GTM, Meta CAPI, Google Ads, server-side tracking, and first-party signal architecture for brands that cannot afford dirty conversion data.
-            </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Button href="mailto:kayiumconsults@gmail.com">Book a signal audit <CalendarCheck size={17} /></Button>
-              <Button href="https://wa.me/8801883244180" variant="ghost">WhatsApp <MessageCircle size={17} /></Button>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-2">
-              {channels.map((tool) => <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 text-xs font800 text-white/58" key={tool}>{tool}</span>)}
-            </div>
-          </div>
-          <SignalConsole />
-        </div>
-      </section>
+      <ReferenceHero />
 
       <section id="audit" className="bg-linen text-obsidian">
         <div className="mx-auto max-w-7xl px-5 py-24">

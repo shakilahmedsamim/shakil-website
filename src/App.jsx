@@ -187,7 +187,7 @@ function ReferenceHero() {
         <HeroVideoFrame />
 
         <div className="mt-11 text-center">
-          <Button href="mailto:kayiumconsults@gmail.com">Claim Your Tracking Audit! <span className="grid h-[30px] w-[30px] place-items-center rounded-full bg-[#f0f2f6] text-[#5235ef]"><ArrowRight size={16} strokeWidth={2.6} /></span></Button>
+          <Button href={whatsappLink}>Claim Your Tracking Audit! <span className="grid h-[30px] w-[30px] place-items-center rounded-full bg-[#f0f2f6] text-[#5235ef]"><ArrowRight size={16} strokeWidth={2.6} /></span></Button>
         </div>
 
         <div className="mx-auto mt-24 grid max-w-[1030px] items-center gap-14 lg:grid-cols-[1fr_.9fr]">
@@ -195,9 +195,9 @@ function ReferenceHero() {
             <h2 className="max-w-xl text-4xl font900 leading-tight sm:text-5xl">Full-Funnel Tracking to Scale Profitably</h2>
             <div className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-4">
               <div className="flex items-center gap-3">
-                <img alt="Shakil Ahmed" className="h-10 w-10 rounded-full object-cover ring-2 ring-white" src={profileImage} />
+                <img alt="Shakil Ahmed Samim" className="h-10 w-10 rounded-full object-cover ring-2 ring-white" src={profileImage} />
                 <div>
-                  <p className="text-sm font800">Shakil Ahmed</p>
+                  <p className="text-sm font800">Shakil Ahmed Samim</p>
                   <p className="text-xs text-slate-500">5,763 Followers</p>
                 </div>
               </div>
@@ -346,7 +346,7 @@ export default function App() {
         <h2 className="mx-auto max-w-3xl text-5xl font900 leading-tight sm:text-7xl">Get the signal quality your ad budget deserves.</h2>
         <p className="mx-auto mt-5 max-w-xl text-white/55">Start with a focused tracking audit and see exactly where your funnel data is leaking.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Button href="mailto:kayiumconsults@gmail.com">Book audit</Button>
+          <Button href={whatsappLink}>Book audit</Button>
           <Button href={whatsappLink} variant="ghost">WhatsApp</Button>
           <a className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/8" href={linkedinLink} aria-label="LinkedIn"><Linkedin size={18} /></a>
           <a className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/8" href="https://youtube.com" aria-label="YouTube"><Youtube size={18} /></a>

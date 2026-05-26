@@ -29,13 +29,13 @@ const avatars = [
   'https://i.pravatar.cc/80?img=59',
 ];
 const partnerTools = [
-  { name: 'GA4', src: './images/GA4.png' },
-  { name: 'Google Ads', src: './images/Google Ads.webp' },
-  { name: 'Google Tag Manager', src: './images/Google Tag Manager.png' },
-  { name: 'Meta', src: './images/Meta.png' },
-  { name: 'Microsoft Ads', src: './images/Microsoft ads.png' },
-  { name: 'Shopify', src: './images/Shopify.png' },
-  { name: 'Stape', src: './images/stape.png' },
+  { name: 'GA4', src: './images/GA4.png', delay: '0s' },
+  { name: 'Google Ads', src: './images/Google Ads.webp', delay: '.12s' },
+  { name: 'Google Tag Manager', src: './images/Google Tag Manager.png', delay: '.24s' },
+  { name: 'Meta', src: './images/Meta.png', delay: '.36s' },
+  { name: 'Microsoft Ads', src: './images/Microsoft ads.png', delay: '.48s' },
+  { name: 'Shopify', src: './images/Shopify.png', delay: '.6s' },
+  { name: 'Stape', src: './images/stape.png', delay: '.72s' },
 ];
 
 const leakChecks = [
@@ -184,7 +184,7 @@ function ReferenceHero() {
 
         <div className="mx-auto mt-24 grid max-w-[1030px] items-center gap-14 lg:grid-cols-[1fr_.9fr]">
           <div>
-            <h2 className="max-w-xl text-4xl font900 leading-tight sm:text-5xl">Full-Funnel Tracking to Scale Profitably</h2>
+            <h2 className="premium-heading max-w-xl text-4xl font900 leading-[.98] sm:text-5xl">Full-Funnel Tracking to Scale Profitably</h2>
             <div className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-4">
               <div className="flex items-center gap-3">
                 <img alt="Shakil Ahmed Samim" className="h-10 w-10 rounded-full object-cover ring-2 ring-white" src={profileImage} />
@@ -198,26 +198,26 @@ function ReferenceHero() {
                 <p className="text-xs text-slate-500 underline">500+ Tracking</p>
               </div>
             </div>
-            <div className="mt-9 grid grid-cols-2 rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm sm:grid-cols-4">
+            <div className="stat-card mt-9 grid grid-cols-2 rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm sm:grid-cols-4">
               {[
                 ['300%', 'Ad revenue'],
                 ['35%', 'Lower cost'],
                 ['4:1', 'Average ROAS'],
                 ['2.7X', 'ROI'],
-              ].map(([value, label]) => (
-                <div className="px-3 py-2 text-center" key={value}>
-                  <p className="text-2xl font900 text-[#1689f9]">{value}<span className="text-lg">↑</span></p>
+              ].map(([value, label], index) => (
+                <div className="stat-item px-3 py-2 text-center" key={value} style={{ animationDelay: `${index * 120}ms` }}>
+                  <p className="stat-value text-2xl font900 text-[#1689f9]">{value}<span className="text-lg">↑</span></p>
                   <p className="text-[11px] text-slate-500">{label}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="relative rotate-[-3deg] rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_80px_rgba(74,89,110,.18)] sm:p-9">
-            <img alt="" aria-hidden="true" className="pointer-events-none absolute -right-8 -top-10 h-24 w-24 rotate-[22deg] object-contain" src={pinImage} />
+          <div className="checklist-card relative rotate-[-3deg] rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_80px_rgba(74,89,110,.18)] sm:p-9">
+            <img alt="" aria-hidden="true" className="pin-float pointer-events-none absolute -right-8 -top-10 h-24 w-24 rotate-[22deg] object-contain" src={pinImage} />
             <ul className="space-y-5 text-lg font800 sm:text-xl">
-              {checklist.map((item) => (
-                <li className="flex items-start gap-4" key={item}>
+              {checklist.map((item, index) => (
+                <li className="checklist-row flex items-start gap-4" key={item} style={{ animationDelay: `${index * 110}ms` }}>
                   <span className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#eea20d] text-sm text-white">✓</span>
                   <span>{item}</span>
                 </li>
@@ -232,7 +232,7 @@ function ReferenceHero() {
           </div>
           <div className="mx-auto mt-10 flex max-w-5xl flex-wrap items-center justify-center gap-4">
             {partnerTools.map((tool) => (
-              <span className="grid h-16 min-w-[92px] place-items-center rounded-xl border border-slate-200/80 bg-white px-4 shadow-[0_10px_28px_rgba(74,91,115,.08)]" key={tool.name}>
+              <span className="partner-logo-card grid h-16 min-w-[92px] place-items-center rounded-xl border border-slate-200/80 bg-white px-4 shadow-[0_10px_28px_rgba(74,91,115,.08)]" key={tool.name} style={{ animationDelay: tool.delay }}>
                 <PartnerLogo {...tool} />
               </span>
             ))}

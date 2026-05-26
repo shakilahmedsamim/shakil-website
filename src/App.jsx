@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   ArrowRight,
   CalendarCheck,
@@ -9,18 +10,25 @@ import {
   LineChart,
   Linkedin,
   MessageCircle,
-  Play,
   ShieldCheck,
   Sparkles,
   Target,
   Youtube,
 } from 'lucide-react';
 
-const heroVideoSrc = '';
-
 const proofPoints = ['Tracking in 3 Hours', 'I Manage Everything', '24/7 Expert Support'];
-const partnerTools = ['SCALIXAI', 'Shopify', 'Stape', 'Meta', 'GTM', 'Google Ads', 'GA4', 'Microsoft', 'AdRock'];
 const avatars = ['AK', 'MS', 'JR', 'TN', 'RB'];
+const partnerTools = [
+  ['SCALIXAI', 'text-[#4b2b69]'],
+  ['Shopify', 'text-[#65a843]'],
+  ['Stape', 'text-[#f15a24]'],
+  ['Meta', 'text-[#0966ff]'],
+  ['GTM', 'text-[#4778ff]'],
+  ['Ads', 'text-[#2e7df6]'],
+  ['GA4', 'text-[#f39c12]'],
+  ['Microsoft', 'text-[#2f7dd1]'],
+  ['AdRock', 'text-[#e73743]'],
+];
 
 const leakChecks = [
   ['Ad blocker loss', 'Browser events blocked before platforms receive signal.'],
@@ -48,53 +56,82 @@ const faqs = [
 ];
 
 function Button({ href, children, variant = 'primary' }) {
-  const base = 'inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font800 transition duration-300';
+  const base = 'inline-flex items-center justify-center gap-2 rounded-full text-sm font800 transition duration-300';
   const styles = {
-    primary: 'bg-[#7547ff] text-white shadow-[0_18px_45px_rgba(117,71,255,.38)] hover:-translate-y-0.5 hover:bg-[#5f35df]',
-    dark: 'bg-obsidian text-white shadow-[0_24px_70px_rgba(0,0,0,.28)] hover:-translate-y-0.5',
-    ghost: 'border border-white/15 bg-white/8 text-white backdrop-blur hover:-translate-y-0.5 hover:bg-white/14',
+    primary: 'bg-[#7547ff] px-7 py-3.5 text-white shadow-[0_18px_45px_rgba(117,71,255,.36)] hover:-translate-y-0.5 hover:bg-[#5f35df]',
+    dark: 'bg-obsidian px-5 py-3 text-white shadow-[0_24px_70px_rgba(0,0,0,.28)] hover:-translate-y-0.5',
+    ghost: 'border border-white/15 bg-white/8 px-5 py-3 text-white backdrop-blur hover:-translate-y-0.5 hover:bg-white/14',
   };
 
   return <a className={`${base} ${styles[variant]}`} href={href}>{children}</a>;
 }
 
-function HeroVideo() {
+function VidalyticsEmbed() {
+  useEffect(() => {
+    const flag = '__vidalytics_SmDRjS4JjsHLVuwd_loaded';
+
+    if (window[flag]) {
+      return;
+    }
+
+    window[flag] = true;
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.text = `(function (v, i, d, a, l, y, t, c, s) {
+    y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
+    if (!vsl){vsl=function(u,cb){
+        if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
+        if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
+        i.getElementsByTagName("head")[0].appendChild(s);
+    };}
+    vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
+})(window, document, 'Vidalytics', 'vidalytics_embed_SmDRjS4JjsHLVuwd', 'https://fast.vidalytics.com/embeds/i4lAbS7M/SmDRjS4JjsHLVuwd/');`;
+    document.body.appendChild(script);
+  }, []);
+
   return (
-    <div className="relative mx-auto mt-9 w-full max-w-[710px]">
-      <div className="absolute -left-4 top-5 hidden h-[310px] w-44 rounded-l-2xl bg-white md:block" />
-      <div className="absolute left-12 top-3 hidden h-24 w-20 rounded-xl bg-white shadow-xl md:block">
-        <div className="m-2 h-12 rounded-lg bg-[#dbe8f5]" />
-        <div className="mx-auto mt-2 h-3 w-10 rounded-full bg-[#7547ff]/20" />
-      </div>
-      <div className="relative overflow-hidden rounded-none bg-white shadow-[0_30px_80px_rgba(74,89,110,.18)] md:h-[315px]">
-        <div className="grid min-h-[300px] md:grid-cols-[.52fr_.48fr]">
-          <div className="relative overflow-hidden bg-[radial-gradient(circle_at_20px_20px,#ccd7e4_1.3px,transparent_1.3px)] [background-size:20px_20px]">
-            <div className="absolute left-[28%] top-[34%] text-[86px] font900 leading-none text-[#1689f9] opacity-80">M</div>
-            <div className="absolute bottom-6 left-24 flex gap-2 rounded-lg bg-white p-2 shadow-xl">
-              <span className="h-5 w-5 rounded-full bg-black" />
-              <span className="h-5 w-5 rounded-full bg-[#d9903b]" />
-              <span className="h-5 w-5 rounded-full bg-[#c92121]" />
-            </div>
-          </div>
-          <div className="relative min-h-[300px] bg-gradient-to-br from-[#ced8df] via-[#aebbc1] to-[#f3c08a]">
-            {heroVideoSrc ? (
-              <video className="h-full w-full object-cover" src={heroVideoSrc} controls playsInline poster="" />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center bg-[linear-gradient(90deg,rgba(255,255,255,.35),rgba(255,255,255,0)_38%),radial-gradient(circle_at_72%_42%,#1c2329_0_8%,transparent_9%)]">
-                <div className="h-56 w-40 rounded-t-full bg-[#111820] shadow-2xl" />
-                <div className="absolute bottom-0 h-28 w-64 rounded-t-[60px] bg-[#101010]" />
-              </div>
-            )}
-          </div>
+    <div className="vidalytics-shell">
+      <div id="vidalytics_embed_SmDRjS4JjsHLVuwd" style={{ width: '100%', position: 'relative', paddingTop: '56.25%' }} />
+    </div>
+  );
+}
+
+function HeroVideoFrame() {
+  return (
+    <div className="mx-auto mt-10 w-full max-w-[720px] px-2 sm:px-0">
+      <div className="relative rounded-[22px] bg-white p-2 shadow-[0_26px_80px_rgba(76,90,116,.16)] ring-1 ring-slate-200/80">
+        <div className="absolute -left-8 top-10 hidden h-56 w-28 rounded-l-[24px] border border-slate-200 bg-white/85 shadow-xl lg:block" />
+        <div className="absolute -left-2 top-5 hidden h-24 w-20 rounded-2xl border border-slate-200 bg-white p-2 shadow-xl md:block">
+          <div className="h-12 rounded-xl bg-gradient-to-br from-[#cfdce9] to-[#f6d2b0]" />
+          <div className="mx-auto mt-2 h-3 w-10 rounded-full bg-[#7547ff]/20" />
         </div>
-        <div className="absolute left-1/2 top-1/2 flex h-56 w-[420px] max-w-[78%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-xl border border-white/80 bg-white/35 text-center text-white shadow-[0_20px_80px_rgba(0,0,0,.18)] backdrop-blur-[2px]">
-          <Play size={42} fill="currentColor" />
-          <p className="mt-4 text-2xl font900 leading-tight drop-shadow">Meta Your Video Is Playing</p>
-          <p className="text-xl font900 drop-shadow">Click To Unmute</p>
+        <div className="relative overflow-hidden rounded-[18px] bg-[#0b0e14]">
+          <VidalyticsEmbed />
         </div>
       </div>
     </div>
   );
+}
+
+function LogoMark({ name, colorClass }) {
+  if (name === 'Meta') {
+    return <span className={`text-3xl font900 ${colorClass}`}>∞</span>;
+  }
+
+  if (name === 'GTM') {
+    return <span className={`grid h-9 w-9 rotate-45 place-items-center rounded-lg bg-[#dbe7ff] ${colorClass}`}><span className="-rotate-45 text-sm font900">G</span></span>;
+  }
+
+  if (name === 'Microsoft') {
+    return (
+      <span className="grid h-8 w-8 grid-cols-2 gap-1">
+        <span className="bg-[#f25022]" /><span className="bg-[#7fba00]" />
+        <span className="bg-[#00a4ef]" /><span className="bg-[#ffb900]" />
+      </span>
+    );
+  }
+
+  return <span className={`text-lg font900 ${colorClass}`}>{name}</span>;
 }
 
 function ReferenceHero() {
@@ -111,11 +148,11 @@ function ReferenceHero() {
       <div className="bg-[#ffdf67] px-4 py-2 text-center text-sm font800">I help marketers & agencies scale campaigns with accurate tracking...</div>
       <div className="mx-auto max-w-7xl px-5 pb-20 pt-12">
         <div className="mx-auto max-w-5xl text-center">
-          <h1 className="text-4xl font500 leading-tight tracking-[-0.04em] sm:text-5xl lg:text-[3.45rem]">
+          <h1 className="text-[2.55rem] font500 leading-[1.14] sm:text-5xl lg:text-[3.55rem]">
             Wasting ad spend due to inaccurate tracking?
             <span className="mt-5 block">I fix it so your ads get the right data to scale</span>
           </h1>
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-base font700">
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-base font700">
             {proofPoints.map((point) => (
               <span className="inline-flex items-center gap-2" key={point}>
                 <CheckCircle2 size={18} className="text-[#1689f9]" /> {point}
@@ -135,16 +172,16 @@ function ReferenceHero() {
           </div>
         </div>
 
-        <HeroVideo />
+        <HeroVideoFrame />
 
         <div className="mt-11 text-center">
           <Button href="mailto:kayiumconsults@gmail.com">Claim Your Tracking Audit! <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#7547ff]"><ArrowRight size={18} /></span></Button>
         </div>
 
-        <div className="mx-auto mt-24 grid max-w-[980px] items-center gap-12 lg:grid-cols-[1fr_.9fr]">
+        <div className="mx-auto mt-24 grid max-w-[1030px] items-center gap-14 lg:grid-cols-[1fr_.9fr]">
           <div>
-            <h2 className="max-w-xl text-4xl font900 leading-tight tracking-[-0.04em] sm:text-5xl">Full-Funnel Tracking to Scale Profitably</h2>
-            <div className="mt-8 flex items-center gap-10">
+            <h2 className="max-w-xl text-4xl font900 leading-tight sm:text-5xl">Full-Funnel Tracking to Scale Profitably</h2>
+            <div className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-4">
               <div className="flex items-center gap-3">
                 <span className="grid h-10 w-10 place-items-center rounded-full bg-[#cde9f4] text-xs font900">AK</span>
                 <div>
@@ -157,14 +194,14 @@ function ReferenceHero() {
                 <p className="text-xs text-slate-500 underline">500+ Tracking</p>
               </div>
             </div>
-            <div className="mt-9 grid grid-cols-4 rounded-xl border border-slate-200 bg-white/90 px-7 py-5 shadow-sm">
+            <div className="mt-9 grid grid-cols-2 rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm sm:grid-cols-4">
               {[
                 ['300%', 'Ad revenue'],
                 ['35%', 'Lower cost'],
-                ['4:1%', 'Average ROAS'],
-                ['2.7X%', 'ROI'],
+                ['4:1', 'Average ROAS'],
+                ['2.7X', 'ROI'],
               ].map(([value, label]) => (
-                <div className="text-center" key={value}>
+                <div className="px-3 py-2 text-center" key={value}>
                   <p className="text-2xl font900 text-[#1689f9]">{value}<span className="text-lg">↑</span></p>
                   <p className="text-[11px] text-slate-500">{label}</p>
                 </div>
@@ -172,9 +209,9 @@ function ReferenceHero() {
             </div>
           </div>
 
-          <div className="relative rotate-[-3deg] rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_24px_80px_rgba(74,89,110,.18)]">
-            <div className="absolute -right-5 -top-8 rotate-[22deg] text-6xl">📌</div>
-            <ul className="space-y-6 text-xl font800">
+          <div className="relative rotate-[-3deg] rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_80px_rgba(74,89,110,.18)] sm:p-9">
+            <div className="absolute -right-5 -top-6 h-12 w-12 rotate-[18deg] rounded-full bg-[#ff4338] shadow-lg before:absolute before:left-1/2 before:top-9 before:h-10 before:w-1 before:-translate-x-1/2 before:rotate-[-28deg] before:bg-[#b22222]" />
+            <ul className="space-y-5 text-lg font800 sm:text-xl">
               {checklist.map((item) => (
                 <li className="flex items-start gap-4" key={item}>
                   <span className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#eea20d] text-sm text-white">✓</span>
@@ -189,12 +226,14 @@ function ReferenceHero() {
           <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font700 text-slate-700 shadow-sm">
             <ShieldCheck size={16} /> Trusted partners and tools
           </div>
-          <div className="mx-auto mt-12 flex max-w-4xl flex-wrap items-center justify-center gap-4">
-            {partnerTools.map((tool) => (
-              <span className="grid min-h-12 min-w-16 place-items-center rounded-lg bg-white px-4 py-3 text-sm font900 text-slate-700 shadow-sm" key={tool}>{tool}</span>
+          <div className="mx-auto mt-10 flex max-w-5xl flex-wrap items-center justify-center gap-4">
+            {partnerTools.map(([tool, color]) => (
+              <span className="grid h-14 min-w-20 place-items-center rounded-xl bg-white px-4 shadow-sm ring-1 ring-slate-200/70" key={tool}>
+                <LogoMark name={tool} colorClass={color} />
+              </span>
             ))}
           </div>
-          <a className="mt-14 inline-flex items-center gap-2 rounded-lg bg-[#1fd45f] px-6 py-4 text-base font900 text-white shadow-[0_14px_40px_rgba(31,212,95,.26)]" href="https://wa.me/8801883244180">
+          <a className="mt-12 inline-flex items-center gap-2 rounded-lg bg-[#1fd45f] px-6 py-4 text-base font900 text-white shadow-[0_14px_40px_rgba(31,212,95,.26)]" href="https://wa.me/8801883244180">
             <MessageCircle size={20} /> Chat on WhatsApp
           </a>
         </div>
@@ -206,7 +245,7 @@ function ReferenceHero() {
 function SectionIntro({ eyebrow, title, copy, dark = false }) {
   return (
     <div className="mx-auto mb-12 max-w-3xl text-center">
-      <p className={`text-xs font900 uppercase tracking-[0.22em] ${dark ? 'text-mint' : 'text-cobalt'}`}>{eyebrow}</p>
+      <p className={`text-xs font900 uppercase ${dark ? 'text-mint' : 'text-cobalt'}`}>{eyebrow}</p>
       <h2 className={`mt-4 text-4xl font900 leading-tight sm:text-6xl ${dark ? 'text-white' : 'text-obsidian'}`}>{title}</h2>
       {copy && <p className={`mt-5 text-lg leading-8 ${dark ? 'text-white/55' : 'text-slate-600'}`}>{copy}</p>}
     </div>
@@ -260,7 +299,7 @@ export default function App() {
       <section className="bg-white text-obsidian">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-28 lg:grid-cols-[.85fr_1.15fr]">
           <div>
-            <p className="text-xs font900 uppercase tracking-[0.22em] text-cobalt">Execution model</p>
+            <p className="text-xs font900 uppercase text-cobalt">Execution model</p>
             <h2 className="mt-4 text-5xl font900 leading-tight sm:text-7xl">No messy handoff. No mystery tags.</h2>
             <p className="mt-6 text-lg leading-8 text-slate-600">The output is a tested measurement system: audit notes, rebuild plan, QA evidence, and deployment steps that your team can understand later.</p>
           </div>

@@ -10,12 +10,12 @@ import {
   Linkedin,
   MessageCircle,
   ShieldCheck,
-  Sparkles,
   Target,
   Youtube,
 } from 'lucide-react';
 
-const whatsappLink = 'http://wa.me/08801843752280';
+const whatsappLink = 'https://wa.me/8801843752280';
+const emailLink = 'mailto:shakilahmedsamims@gmail.com';
 const linkedinLink = 'https://www.linkedin.com/in/mdshakilahmedsamim';
 const profileImage = './images/Shakil.jpg';
 const pinImage = 'https://framerusercontent.com/images/wUciDkb7amyTwaAe0wqiFkjra0M.png?width=362&height=354';
@@ -29,15 +29,13 @@ const avatars = [
   'https://i.pravatar.cc/80?img=59',
 ];
 const partnerTools = [
-  ['SCALIXAI', 'text-[#4b2b69]'],
-  ['Shopify', 'text-[#65a843]'],
-  ['Stape', 'text-[#f15a24]'],
-  ['Meta', 'text-[#0966ff]'],
-  ['GTM', 'text-[#4778ff]'],
-  ['Ads', 'text-[#2e7df6]'],
-  ['GA4', 'text-[#f39c12]'],
-  ['Microsoft', 'text-[#2f7dd1]'],
-  ['AdRock', 'text-[#e73743]'],
+  { name: 'GA4', src: './images/GA4.png' },
+  { name: 'Google Ads', src: './images/Google Ads.webp' },
+  { name: 'Google Tag Manager', src: './images/Google Tag Manager.png' },
+  { name: 'Meta', src: './images/Meta.png' },
+  { name: 'Microsoft Ads', src: './images/Microsoft ads.png' },
+  { name: 'Shopify', src: './images/Shopify.png' },
+  { name: 'Stape', src: './images/stape.png' },
 ];
 
 const leakChecks = [
@@ -109,35 +107,29 @@ function VidalyticsEmbed() {
 
 function HeroVideoFrame() {
   return (
-    <div className="mx-auto mt-10 w-full max-w-[760px] px-2 sm:px-0">
-      <div className="relative rounded-[24px] bg-white p-2 shadow-[0_28px_90px_rgba(76,90,116,.18)] ring-1 ring-slate-200/90">
-        <div className="relative overflow-hidden rounded-[18px] bg-[#0b0e14]">
-          <VidalyticsEmbed />
+    <div className="mx-auto mt-10 w-full max-w-[820px] px-2 sm:px-0">
+      <div className="relative rounded-[34px] bg-[linear-gradient(135deg,#ffffff_0%,#f6fbff_46%,#dcecff_100%)] p-3 shadow-[0_34px_110px_rgba(61,83,114,.22)] ring-1 ring-white/80">
+        <div className="absolute inset-x-16 -bottom-8 h-10 rounded-full bg-[#6f63ff]/20 blur-3xl" />
+        <div className="relative overflow-hidden rounded-[25px] bg-[#080b12] shadow-inner ring-1 ring-black/10">
+          <div className="flex h-11 items-center justify-between border-b border-white/10 bg-[#0b0e14] px-4">
+            <div className="flex items-center gap-2">
+              <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+              <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+              <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+            </div>
+            <span className="hidden text-xs font700 text-white/50 sm:block">tracking-audit.video</span>
+          </div>
+          <div className="overflow-hidden rounded-b-[25px]">
+            <VidalyticsEmbed />
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-function LogoMark({ name, colorClass }) {
-  if (name === 'Meta') {
-    return <span className={`text-3xl font900 ${colorClass}`}>∞</span>;
-  }
-
-  if (name === 'GTM') {
-    return <span className={`grid h-9 w-9 rotate-45 place-items-center rounded-lg bg-[#dbe7ff] ${colorClass}`}><span className="-rotate-45 text-sm font900">G</span></span>;
-  }
-
-  if (name === 'Microsoft') {
-    return (
-      <span className="grid h-8 w-8 grid-cols-2 gap-1">
-        <span className="bg-[#f25022]" /><span className="bg-[#7fba00]" />
-        <span className="bg-[#00a4ef]" /><span className="bg-[#ffb900]" />
-      </span>
-    );
-  }
-
-  return <span className={`text-lg font900 ${colorClass}`}>{name}</span>;
+function PartnerLogo({ name, src }) {
+  return <img alt={`${name} logo`} className="max-h-9 max-w-[118px] object-contain" loading="lazy" src={src} />;
 }
 
 function ReferenceHero() {
@@ -239,9 +231,9 @@ function ReferenceHero() {
             <ShieldCheck size={16} /> Trusted partners and tools
           </div>
           <div className="mx-auto mt-10 flex max-w-5xl flex-wrap items-center justify-center gap-4">
-            {partnerTools.map(([tool, color]) => (
-              <span className="grid h-14 min-w-20 place-items-center rounded-xl bg-white px-4 shadow-sm ring-1 ring-slate-200/70" key={tool}>
-                <LogoMark name={tool} colorClass={color} />
+            {partnerTools.map((tool) => (
+              <span className="grid h-16 min-w-[92px] place-items-center rounded-xl border border-slate-200/80 bg-white px-4 shadow-[0_10px_28px_rgba(74,91,115,.08)]" key={tool.name}>
+                <PartnerLogo {...tool} />
               </span>
             ))}
           </div>
@@ -346,7 +338,7 @@ export default function App() {
         <h2 className="mx-auto max-w-3xl text-5xl font900 leading-tight sm:text-7xl">Get the signal quality your ad budget deserves.</h2>
         <p className="mx-auto mt-5 max-w-xl text-white/55">Start with a focused tracking audit and see exactly where your funnel data is leaking.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Button href={whatsappLink}>Book audit</Button>
+          <Button href={emailLink}>Email me</Button>
           <Button href={whatsappLink} variant="ghost">WhatsApp</Button>
           <a className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/8" href={linkedinLink} aria-label="LinkedIn"><Linkedin size={18} /></a>
           <a className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/8" href="https://youtube.com" aria-label="YouTube"><Youtube size={18} /></a>

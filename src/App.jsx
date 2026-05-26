@@ -17,7 +17,8 @@ import {
 
 const whatsappLink = 'http://wa.me/08801843752280';
 const linkedinLink = 'https://www.linkedin.com/in/mdshakilahmedsamim';
-const profileImage = './images/shakil-avatar.svg';
+const profileImage = './images/Shakil.jpg';
+const pinImage = 'https://framerusercontent.com/images/wUciDkb7amyTwaAe0wqiFkjra0M.png?width=362&height=354';
 
 const proofPoints = ['Tracking in 3 Hours', 'I Manage Everything', '24/7 Expert Support'];
 const avatars = [
@@ -67,7 +68,7 @@ const faqs = [
 function Button({ href, children, variant = 'primary' }) {
   const base = 'inline-flex items-center justify-center gap-2 rounded-full text-sm font900 transition duration-300';
   const styles = {
-    primary: 'bg-[linear-gradient(135deg,#8b5cf6_0%,#6738f6_54%,#4f25d8_100%)] px-7 py-3.5 text-white shadow-[0_18px_45px_rgba(117,71,255,.38)] ring-1 ring-white/35 hover:-translate-y-0.5 hover:shadow-[0_24px_58px_rgba(117,71,255,.45)]',
+    primary: 'border border-[#5235ef] bg-[linear-gradient(180deg,#5235ef_0%,#8771ff_100%)] px-7 py-3.5 text-[18px] font700 text-[#f0f2f6] shadow-[0_6px_20px_rgba(82,53,239,.6)] hover:-translate-y-0.5 hover:shadow-[0_12px_34px_rgba(82,53,239,.52)]',
     dark: 'bg-obsidian px-5 py-3 text-white shadow-[0_24px_70px_rgba(0,0,0,.28)] ring-1 ring-white/10 hover:-translate-y-0.5',
     ghost: 'border border-white/15 bg-white/8 px-5 py-3 text-white backdrop-blur hover:-translate-y-0.5 hover:bg-white/14',
     whatsapp: 'bg-[linear-gradient(135deg,#21d86a,#12b957)] px-6 py-4 text-white shadow-[0_16px_42px_rgba(18,185,87,.3)] ring-1 ring-white/40 hover:-translate-y-0.5',
@@ -186,7 +187,7 @@ function ReferenceHero() {
         <HeroVideoFrame />
 
         <div className="mt-11 text-center">
-          <Button href="mailto:kayiumconsults@gmail.com">Claim Your Tracking Audit! <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#7547ff]"><ArrowRight size={18} /></span></Button>
+          <Button href="mailto:kayiumconsults@gmail.com">Claim Your Tracking Audit! <span className="grid h-[30px] w-[30px] place-items-center rounded-full bg-[#f0f2f6] text-[#5235ef]"><ArrowRight size={16} strokeWidth={2.6} /></span></Button>
         </div>
 
         <div className="mx-auto mt-24 grid max-w-[1030px] items-center gap-14 lg:grid-cols-[1fr_.9fr]">
@@ -221,7 +222,7 @@ function ReferenceHero() {
           </div>
 
           <div className="relative rotate-[-3deg] rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_80px_rgba(74,89,110,.18)] sm:p-9">
-            <div className="absolute -right-5 -top-6 h-12 w-12 rotate-[18deg] rounded-full bg-[#ff4338] shadow-lg before:absolute before:left-1/2 before:top-9 before:h-10 before:w-1 before:-translate-x-1/2 before:rotate-[-28deg] before:bg-[#b22222]" />
+            <img alt="" aria-hidden="true" className="pointer-events-none absolute -right-8 -top-10 h-24 w-24 rotate-[22deg] object-contain" src={pinImage} />
             <ul className="space-y-5 text-lg font800 sm:text-xl">
               {checklist.map((item) => (
                 <li className="flex items-start gap-4" key={item}>

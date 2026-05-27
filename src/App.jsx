@@ -20,6 +20,7 @@ const linkedinLink = 'https://www.linkedin.com/in/mdshakilahmedsamim';
 const youtubeLink = 'https://www.youtube.com/@ShakilTrackingGuru';
 const facebookLink = 'https://www.facebook.com/mdshakilahmedsamim';
 const profileImage = './images/Shakil.jpg';
+const videoFrameImage = './images/videoframe.png';
 const pinImage = 'https://framerusercontent.com/images/wUciDkb7amyTwaAe0wqiFkjra0M.png?width=362&height=354';
 
 const proofPoints = ['Tracking in 3 Hours', 'I Manage Everything', '24/7 Expert Support'];
@@ -110,50 +111,12 @@ function VidalyticsEmbed() {
 }
 
 function HeroVideoFrame() {
-  const sideTiles = [
-    { name: 'GA4 Review', note: 'Live audit', tone: 'blue' },
-    { name: 'CAPI Check', note: 'Deduped', tone: 'green' },
-    { name: 'Ads Match', note: 'Verified', tone: 'orange' },
-  ];
-
   return (
-    <div className="video-stage relative mx-auto mt-10 w-full max-w-[1160px] px-2 pb-20 pt-14 sm:px-0">
-      <div className="video-water-scene" aria-hidden="true">
-        <span className="video-room video-room-left" />
-        <span className="video-room video-room-right" />
-        <span className="video-room video-room-bottom" />
-        <span className="video-room video-room-top" />
-        <span className="video-wall video-wall-left-a" />
-        <span className="video-wall video-wall-left-b" />
-        <span className="video-wall video-wall-right-a" />
-        <span className="video-wall video-wall-right-b" />
-        <span className="water-flow water-flow-left" />
-        <span className="water-flow water-flow-right" />
-        <span className="water-flow water-flow-center" />
-        <span className="map-label map-label-left">Meeting Room</span>
-        <span className="map-label map-label-right">Signal Lounge</span>
-        <span className="map-label map-label-bottom">Audit Sprint</span>
-        <span className="map-label map-label-fade">Debug Room</span>
-      </div>
-      <div className="video-frame relative z-10 mx-auto max-w-[720px] overflow-visible rounded-[28px] bg-white p-2.5">
-        <div className="video-frame-halo" />
-        <div className="relative overflow-hidden rounded-[20px] bg-[#070a0f] ring-1 ring-black/10">
+    <div className="video-frame-scene relative mx-auto mt-10 w-full max-w-[1260px]">
+      <img className="video-frame-art" src={videoFrameImage} alt="" aria-hidden="true" />
+      <div className="video-embed-window">
+        <div className="video-embed-mask">
           <VidalyticsEmbed />
-          <div className="video-frame-label pointer-events-none">
-            <span>Tracking Audit</span>
-            <small>4 signal checkpoints</small>
-          </div>
-          <div className="video-mini-stack pointer-events-none">
-            {sideTiles.map((tile, index) => (
-              <span className={`video-mini-card video-mini-card-${tile.tone}`} key={tile.name} style={{ animationDelay: `${index * 140}ms` }}>
-                <span className="video-mini-avatar">{tile.name.slice(0, 1)}</span>
-                <span>
-                  <strong>{tile.name}</strong>
-                  <small>{tile.note}</small>
-                </span>
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </div>
@@ -211,7 +174,7 @@ function ReferenceHero() {
   ];
 
   return (
-    <section id="top" className="overflow-hidden bg-[#eaf3fd] text-[#070a0f]">
+    <section id="top" className="overflow-hidden bg-[#f8fbff] text-[#070a0f]">
       <div className="bg-[#ffdf67] px-4 py-2 text-center text-sm font800">I help marketers & agencies scale campaigns with accurate tracking...</div>
       <div className="mx-auto max-w-7xl px-5 pb-20 pt-12">
         <div className="mx-auto max-w-5xl text-center">

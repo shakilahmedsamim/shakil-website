@@ -146,6 +146,30 @@ function PartnerLogo({ name, src, size, text }) {
   return <img alt={`${name} logo`} className={className} loading="lazy" src={src} />;
 }
 
+function FooterClock() {
+  return (
+    <div className="footer-clock-wrap" aria-hidden="true">
+      <div className="footer-light footer-light-orange" />
+      <div className="footer-light footer-light-blue" />
+      <div className="footer-clock">
+        <div className="clock-ring clock-ring-outer" />
+        <div className="clock-ring clock-ring-inner" />
+        <div className="clock-brand">SA</div>
+        <span className="clock-tick clock-tick-12">12</span>
+        <span className="clock-tick clock-tick-3">3</span>
+        <span className="clock-tick clock-tick-6">6</span>
+        <span className="clock-tick clock-tick-9">9</span>
+        <span className="clock-hand clock-hand-hour" />
+        <span className="clock-hand clock-hand-minute" />
+        <span className="clock-hand clock-hand-second" />
+        <span className="clock-center" />
+        <span className="clock-glow clock-glow-orange" />
+        <span className="clock-glow clock-glow-blue" />
+      </div>
+    </div>
+  );
+}
+
 function ReferenceHero() {
   const checklist = [
     'Google Ads Conversion Tracking',
@@ -348,14 +372,31 @@ export default function App() {
         </div>
       </section>
 
-      <footer className="border-t border-white/10 px-5 py-20 text-center">
-        <h2 className="mx-auto max-w-3xl text-5xl font900 leading-tight sm:text-7xl">Get the signal quality your ad budget deserves.</h2>
-        <p className="mx-auto mt-5 max-w-xl text-white/55">Start with a focused tracking audit and see exactly where your funnel data is leaking.</p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Button href={emailLink}>Email me</Button>
-          <Button href={whatsappLink} variant="ghost">WhatsApp</Button>
-          <a className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/8" href={linkedinLink} aria-label="LinkedIn"><Linkedin size={18} /></a>
-          <a className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/8" href="https://youtube.com" aria-label="YouTube"><Youtube size={18} /></a>
+      <footer className="footer-cta relative overflow-hidden border-t border-white/10 px-5 py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[.95fr_1fr]">
+          <FooterClock />
+          <div className="relative z-10 max-w-2xl text-left">
+            <p className="text-sm font800 uppercase text-[#ff865c]">Ready to fix the signal?</p>
+            <h2 className="mt-5 text-5xl font900 leading-[.96] text-white sm:text-7xl">Join the tracking movement.</h2>
+            <p className="mt-6 max-w-xl text-base leading-7 text-white/62">
+              Stop guessing which ads are working. Get a clean audit, fixed events, and conversion data your campaigns can scale with.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Button href={whatsappLink}>Claim Your Tracking Audit! <span className="grid h-[30px] w-[30px] place-items-center rounded-full bg-[#f0f2f6] text-[#5235ef]"><ArrowRight size={16} strokeWidth={2.6} /></span></Button>
+              <Button href={emailLink} variant="ghost">Email me</Button>
+            </div>
+          </div>
+        </div>
+        <div className="relative z-10 mx-auto mt-16 flex max-w-7xl flex-col gap-5 border-t border-white/10 pt-7 text-sm text-white/45 md:flex-row md:items-center md:justify-between">
+          <p>Copyright © 2026 Shakil Ahmed Samim. All rights reserved.</p>
+          <div className="flex flex-wrap items-center gap-5">
+            <a className="transition hover:text-white" href={linkedinLink}>LinkedIn</a>
+            <a className="transition hover:text-white" href={whatsappLink}>WhatsApp</a>
+            <a className="transition hover:text-white" href={emailLink}>Email</a>
+            <a className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/10" href={linkedinLink} aria-label="LinkedIn"><Linkedin size={16} /></a>
+            <a className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/10" href="https://youtube.com" aria-label="YouTube"><Youtube size={16} /></a>
+            <a className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/10" href={whatsappLink} aria-label="WhatsApp"><MessageCircle size={16} /></a>
+          </div>
         </div>
       </footer>
     </main>

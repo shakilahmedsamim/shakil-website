@@ -17,6 +17,8 @@ import {
 const whatsappLink = 'https://wa.me/8801843752280';
 const emailLink = 'mailto:shakilahmedsamims@gmail.com';
 const linkedinLink = 'https://www.linkedin.com/in/mdshakilahmedsamim';
+const youtubeLink = 'https://www.youtube.com/@ShakilTrackingGuru';
+const facebookLink = 'https://www.facebook.com/mdshakilahmedsamim';
 const profileImage = './images/Shakil.jpg';
 const pinImage = 'https://framerusercontent.com/images/wUciDkb7amyTwaAe0wqiFkjra0M.png?width=362&height=354';
 
@@ -109,24 +111,41 @@ function VidalyticsEmbed() {
 
 function HeroVideoFrame() {
   return (
-    <div className="video-stage relative mx-auto mt-10 w-full max-w-[1060px] px-2 py-12 sm:px-0">
+    <div className="video-stage relative mx-auto mt-10 w-full max-w-[1180px] px-2 py-16 sm:px-0">
       <div className="video-water-scene" aria-hidden="true">
         <span className="video-room video-room-left" />
         <span className="video-room video-room-right" />
         <span className="video-room video-room-bottom" />
         <span className="video-room video-room-top" />
+        <span className="video-wall video-wall-left-a" />
+        <span className="video-wall video-wall-left-b" />
+        <span className="video-wall video-wall-right-a" />
+        <span className="video-wall video-wall-right-b" />
         <span className="water-flow water-flow-left" />
         <span className="water-flow water-flow-right" />
         <span className="water-flow water-flow-center" />
         <span className="map-label map-label-left">Meeting Room</span>
         <span className="map-label map-label-right">Signal Lounge</span>
         <span className="map-label map-label-bottom">Audit Sprint</span>
+        <span className="map-label map-label-fade">Debug Room</span>
       </div>
-      <div className="video-frame relative z-10 mx-auto max-w-[675px] overflow-hidden rounded-[28px] bg-white p-2.5">
+      <div className="video-frame relative z-10 mx-auto max-w-[690px] overflow-hidden rounded-[28px] bg-white p-2.5">
         <div className="video-side-glow video-side-glow-left" />
         <div className="video-side-glow video-side-glow-right" />
         <div className="relative overflow-hidden rounded-[21px] bg-[#070a0f] ring-1 ring-black/10">
           <VidalyticsEmbed />
+          <div className="video-frame-label pointer-events-none">
+            <span>Tracking Audit</span>
+            <small>4 signal checkpoints</small>
+          </div>
+          <div className="video-mini-stack pointer-events-none">
+            {['GA4 DebugView', 'Meta CAPI', 'Ads Conversion'].map((label, index) => (
+              <span className="video-mini-card" key={label} style={{ animationDelay: `${index * 140}ms` }}>
+                <strong>{label}</strong>
+                <small>{index === 0 ? 'Verified' : index === 1 ? 'Deduped' : 'Matched'}</small>
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -158,7 +177,7 @@ function FooterClock() {
       <div className="footer-clock">
         <div className="clock-ring clock-ring-outer" />
         <div className="clock-ring clock-ring-inner" />
-        <div className="clock-brand">SA</div>
+        <div className="clock-brand">$</div>
         <span className="clock-tick clock-tick-12">12</span>
         <span className="clock-tick clock-tick-3">3</span>
         <span className="clock-tick clock-tick-6">6</span>
@@ -395,9 +414,12 @@ export default function App() {
           <div className="flex flex-wrap items-center gap-5">
             <a className="transition hover:text-white" href={linkedinLink}>LinkedIn</a>
             <a className="transition hover:text-white" href={whatsappLink}>WhatsApp</a>
+            <a className="transition hover:text-white" href={facebookLink}>Facebook</a>
+            <a className="transition hover:text-white" href={youtubeLink}>YouTube</a>
             <a className="transition hover:text-white" href={emailLink}>Email</a>
             <a className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/10" href={linkedinLink} aria-label="LinkedIn"><Linkedin size={16} /></a>
-            <a className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/10" href="https://youtube.com" aria-label="YouTube"><Youtube size={16} /></a>
+            <a className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-xs font900 transition hover:bg-white/10" href={facebookLink} aria-label="Facebook">f</a>
+            <a className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/10" href={youtubeLink} aria-label="YouTube"><Youtube size={16} /></a>
             <a className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/10" href={whatsappLink} aria-label="WhatsApp"><MessageCircle size={16} /></a>
           </div>
         </div>

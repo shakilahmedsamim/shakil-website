@@ -110,8 +110,14 @@ function VidalyticsEmbed() {
 }
 
 function HeroVideoFrame() {
+  const sideTiles = [
+    { name: 'GA4 Review', note: 'Live audit', tone: 'blue' },
+    { name: 'CAPI Check', note: 'Deduped', tone: 'green' },
+    { name: 'Ads Match', note: 'Verified', tone: 'orange' },
+  ];
+
   return (
-    <div className="video-stage relative mx-auto mt-10 w-full max-w-[1180px] px-2 py-16 sm:px-0">
+    <div className="video-stage relative mx-auto mt-10 w-full max-w-[1160px] px-2 pb-20 pt-14 sm:px-0">
       <div className="video-water-scene" aria-hidden="true">
         <span className="video-room video-room-left" />
         <span className="video-room video-room-right" />
@@ -129,20 +135,22 @@ function HeroVideoFrame() {
         <span className="map-label map-label-bottom">Audit Sprint</span>
         <span className="map-label map-label-fade">Debug Room</span>
       </div>
-      <div className="video-frame relative z-10 mx-auto max-w-[690px] overflow-hidden rounded-[28px] bg-white p-2.5">
-        <div className="video-side-glow video-side-glow-left" />
-        <div className="video-side-glow video-side-glow-right" />
-        <div className="relative overflow-hidden rounded-[21px] bg-[#070a0f] ring-1 ring-black/10">
+      <div className="video-frame relative z-10 mx-auto max-w-[720px] overflow-visible rounded-[28px] bg-white p-2.5">
+        <div className="video-frame-halo" />
+        <div className="relative overflow-hidden rounded-[20px] bg-[#070a0f] ring-1 ring-black/10">
           <VidalyticsEmbed />
           <div className="video-frame-label pointer-events-none">
             <span>Tracking Audit</span>
             <small>4 signal checkpoints</small>
           </div>
           <div className="video-mini-stack pointer-events-none">
-            {['GA4 DebugView', 'Meta CAPI', 'Ads Conversion'].map((label, index) => (
-              <span className="video-mini-card" key={label} style={{ animationDelay: `${index * 140}ms` }}>
-                <strong>{label}</strong>
-                <small>{index === 0 ? 'Verified' : index === 1 ? 'Deduped' : 'Matched'}</small>
+            {sideTiles.map((tile, index) => (
+              <span className={`video-mini-card video-mini-card-${tile.tone}`} key={tile.name} style={{ animationDelay: `${index * 140}ms` }}>
+                <span className="video-mini-avatar">{tile.name.slice(0, 1)}</span>
+                <span>
+                  <strong>{tile.name}</strong>
+                  <small>{tile.note}</small>
+                </span>
               </span>
             ))}
           </div>

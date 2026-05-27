@@ -109,8 +109,16 @@ function VidalyticsEmbed() {
 
 function HeroVideoFrame() {
   return (
-    <div className="video-stage mx-auto mt-10 w-full max-w-[705px] px-2 sm:px-0">
-      <div className="video-frame relative overflow-hidden rounded-[28px] bg-white p-2.5">
+    <div className="video-stage relative mx-auto mt-10 w-full max-w-[1040px] px-2 py-10 sm:px-0">
+      <div className="video-water-scene" aria-hidden="true">
+        <span className="video-room video-room-left" />
+        <span className="video-room video-room-right" />
+        <span className="video-room video-room-bottom" />
+        <span className="water-flow water-flow-left" />
+        <span className="water-flow water-flow-right" />
+        <span className="water-flow water-flow-center" />
+      </div>
+      <div className="video-frame relative z-10 mx-auto max-w-[705px] overflow-hidden rounded-[28px] bg-white p-2.5">
         <div className="video-side-glow video-side-glow-left" />
         <div className="video-side-glow video-side-glow-right" />
         <div className="relative overflow-hidden rounded-[21px] bg-[#070a0f] ring-1 ring-black/10">
@@ -153,8 +161,8 @@ function ReferenceHero() {
       <div className="mx-auto max-w-7xl px-5 pb-20 pt-12">
         <div className="mx-auto max-w-5xl text-center">
           <h1 className="text-[2.55rem] font500 leading-[1.14] sm:text-5xl lg:text-[3.55rem]">
-            Wasting ad spend due to inaccurate tracking?
-            <span className="mt-5 block">I fix it so your ads get the right data to scale</span>
+            Wasting ad spend on broken tracking?
+            <span className="mt-5 block">I fix it so your ads finally have the data to scale.</span>
           </h1>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-base font700">
             {proofPoints.map((point) => (

@@ -356,6 +356,204 @@ a {
   border-radius: 18px;
 }
 
+.footer-cta {
+  min-height: 560px;
+  background:
+    radial-gradient(circle at 24% 42%, rgba(255, 98, 46, .2), transparent 18%),
+    radial-gradient(circle at 48% 44%, rgba(57, 88, 255, .22), transparent 20%),
+    linear-gradient(180deg, #07080b 0%, #050506 100%);
+}
+
+.footer-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 0 23%, rgba(255,255,255,.035) 23.1% 23.25%, transparent 23.35%),
+    linear-gradient(0deg, transparent 0 63%, rgba(255,255,255,.035) 63.1% 63.22%, transparent 63.35%);
+  opacity: .42;
+  pointer-events: none;
+}
+
+.footer-clock-wrap {
+  position: relative;
+  z-index: 1;
+  min-height: 360px;
+  display: grid;
+  place-items: center;
+}
+
+.footer-light {
+  position: absolute;
+  height: 120px;
+  width: min(48vw, 520px);
+  filter: blur(8px);
+  opacity: .64;
+  mix-blend-mode: screen;
+  transform-origin: 100% 50%;
+}
+
+.footer-light-orange {
+  left: -10%;
+  top: 28%;
+  background: linear-gradient(90deg, transparent, rgba(255, 101, 44, .88), transparent);
+  transform: rotate(14deg);
+  animation: footer-light-breathe 5.8s ease-in-out infinite;
+}
+
+.footer-light-blue {
+  right: 0;
+  bottom: 19%;
+  background: linear-gradient(90deg, transparent, rgba(67, 88, 255, .86), transparent);
+  transform: rotate(16deg);
+  animation: footer-light-breathe 6.4s ease-in-out infinite reverse;
+}
+
+.footer-clock {
+  position: relative;
+  width: min(360px, 76vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,.12), transparent 8%),
+    radial-gradient(circle at 38% 36%, rgba(255, 123, 56, .34), transparent 33%),
+    radial-gradient(circle at 68% 43%, rgba(60, 80, 255, .34), transparent 34%),
+    linear-gradient(145deg, #111319, #050506 64%);
+  box-shadow:
+    inset 0 0 0 12px rgba(255,255,255,.055),
+    inset 0 0 0 18px rgba(0,0,0,.42),
+    0 32px 110px rgba(0,0,0,.64);
+}
+
+.footer-clock::before {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(circle at center, transparent 0 33px, rgba(255,255,255,.06) 34px 35px),
+    repeating-conic-gradient(from -90deg, rgba(255,255,255,.16) 0deg 1deg, transparent 1deg 30deg);
+  mask: radial-gradient(circle, transparent 0 40%, #000 40.5% 100%);
+  opacity: .7;
+}
+
+.footer-clock::after {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 56%, rgba(255,255,255,.12) 57%, transparent 59%);
+}
+
+.clock-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.clock-ring-outer {
+  inset: -5px;
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 0 34px rgba(255,255,255,.12);
+}
+
+.clock-ring-inner {
+  inset: 50px;
+  border: 3px solid rgba(17,19,25,.78);
+}
+
+.clock-brand {
+  position: absolute;
+  inset: 34%;
+  display: grid;
+  place-items: center;
+  border-radius: 22%;
+  background: rgba(255,255,255,.055);
+  color: rgba(255,255,255,.06);
+  font-size: clamp(76px, 8vw, 120px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.clock-tick {
+  position: absolute;
+  color: rgba(255,255,255,.22);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.clock-tick-12 { left: 50%; top: 36px; transform: translateX(-50%); }
+.clock-tick-3 { right: 40px; top: 50%; transform: translateY(-50%); }
+.clock-tick-6 { bottom: 34px; left: 50%; transform: translateX(-50%); }
+.clock-tick-9 { left: 40px; top: 50%; transform: translateY(-50%); }
+
+.clock-hand {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4px;
+  transform-origin: 50% 100%;
+  border-radius: 999px;
+  translate: -50% -100%;
+  pointer-events: none;
+}
+
+.clock-hand-hour {
+  height: 82px;
+  background: linear-gradient(180deg, #ff815d, rgba(255,255,255,.12));
+  box-shadow: 0 0 22px rgba(255, 99, 52, .65);
+  animation: clock-spin 48s linear infinite;
+}
+
+.clock-hand-minute {
+  height: 128px;
+  width: 3px;
+  background: linear-gradient(180deg, #8ea0ff, rgba(255,255,255,.18));
+  box-shadow: 0 0 20px rgba(92, 111, 255, .66);
+  animation: clock-spin 18s linear infinite;
+}
+
+.clock-hand-second {
+  height: 145px;
+  width: 2px;
+  background: rgba(255,255,255,.5);
+  animation: clock-spin 9s linear infinite;
+}
+
+.clock-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 18px;
+  width: 18px;
+  translate: -50% -50%;
+  border-radius: 999px;
+  background: #15171f;
+  box-shadow: inset 0 0 0 3px rgba(255,255,255,.14), 0 0 30px rgba(255,255,255,.12);
+}
+
+.clock-glow {
+  position: absolute;
+  inset: 47px;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  pointer-events: none;
+}
+
+.clock-glow-orange {
+  border-left-color: rgba(255, 107, 55, .98);
+  border-bottom-color: rgba(255, 62, 54, .75);
+  filter: drop-shadow(0 0 15px rgba(255, 90, 46, .9));
+  animation: clock-glow-pulse 4.4s ease-in-out infinite;
+}
+
+.clock-glow-blue {
+  border-right-color: rgba(79, 100, 255, .98);
+  border-top-color: rgba(71, 84, 255, .76);
+  filter: drop-shadow(0 0 15px rgba(78, 97, 255, .9));
+  animation: clock-glow-pulse 4.8s ease-in-out infinite reverse;
+}
+
 ::selection {
   background: #2ee58f;
   color: #070707;
@@ -456,6 +654,37 @@ a {
   }
 }
 
+@keyframes clock-spin {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes clock-glow-pulse {
+  0%, 100% {
+    opacity: .74;
+    scale: 1;
+  }
+  50% {
+    opacity: 1;
+    scale: 1.018;
+  }
+}
+
+@keyframes footer-light-breathe {
+  0%, 100% {
+    opacity: .45;
+    scale: .96;
+  }
+  50% {
+    opacity: .78;
+    scale: 1.05;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .stat-card::before,
   .stat-item,
@@ -463,7 +692,11 @@ a {
   .checklist-card,
   .checklist-row,
   .pin-float,
-  .partner-logo-card {
+  .partner-logo-card,
+  .water-flow,
+  .clock-hand,
+  .clock-glow,
+  .footer-light {
     animation: none;
   }
 

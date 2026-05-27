@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ArrowRight,
   CheckCircle2,
@@ -111,10 +111,12 @@ function VidalyticsEmbed() {
 }
 
 function HeroVideoFrame() {
+  const [frameReady, setFrameReady] = useState(false);
+
   return (
-    <div className="video-frame-scene relative mx-auto mt-10 w-full max-w-[1260px]">
-      <img className="video-frame-art" src={videoFrameImage} alt="" aria-hidden="true" />
-      <div className="video-embed-window">
+    <div className={`video-frame-scene relative mx-auto mt-10 w-full max-w-[1260px] ${frameReady ? 'is-ready' : ''}`}>
+      <img className="video-frame-art" src={videoFrameImage} alt="" aria-hidden="true" onLoad={() => setFrameReady(true)} />
+      <div className={`video-embed-window ${frameReady ? 'is-ready' : ''}`}>
         <div className="video-embed-mask">
           <VidalyticsEmbed />
         </div>

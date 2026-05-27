@@ -123,7 +123,106 @@ a {
 }
 
 .video-stage {
+  min-height: 470px;
   filter: drop-shadow(0 30px 68px rgba(64, 85, 112, .16));
+}
+
+.video-water-scene {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 42px;
+  opacity: .96;
+}
+
+.video-room {
+  position: absolute;
+  border: 1px solid rgba(199, 217, 235, .62);
+  background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(238,247,255,.72));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.96),
+    inset 10px 0 24px rgba(189, 218, 247, .22),
+    0 22px 70px rgba(99, 126, 154, .12);
+}
+
+.video-room::before,
+.video-room::after {
+  content: "";
+  position: absolute;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 0 18px rgba(131, 168, 204, .18);
+}
+
+.video-room::before {
+  width: 14px;
+  top: -2px;
+  bottom: -2px;
+  left: 24%;
+}
+
+.video-room::after {
+  height: 14px;
+  left: -2px;
+  right: -2px;
+  top: 52%;
+}
+
+.video-room-left {
+  width: 42%;
+  height: 82%;
+  left: 2%;
+  top: 10%;
+}
+
+.video-room-right {
+  width: 44%;
+  height: 76%;
+  right: 2%;
+  top: 4%;
+}
+
+.video-room-bottom {
+  width: 76%;
+  height: 34%;
+  left: 12%;
+  bottom: 0;
+}
+
+.water-flow {
+  position: absolute;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 35%, rgba(255,255,255,.9) 0 8%, rgba(119,228,255,.55) 24%, rgba(36,176,255,.24) 48%, rgba(255,255,255,0) 72%),
+    radial-gradient(circle at 70% 65%, rgba(84,231,226,.52), rgba(69,180,255,.16) 42%, transparent 70%);
+  filter: blur(8px);
+  mix-blend-mode: multiply;
+  opacity: .78;
+  animation: water-drift 9s ease-in-out infinite alternate;
+}
+
+.water-flow-left {
+  width: 360px;
+  height: 300px;
+  left: 7%;
+  top: 24%;
+}
+
+.water-flow-right {
+  width: 390px;
+  height: 320px;
+  right: 7%;
+  top: 20%;
+  animation-delay: -3.2s;
+}
+
+.water-flow-center {
+  width: 520px;
+  height: 170px;
+  left: calc(50% - 260px);
+  bottom: 7%;
+  opacity: .5;
+  animation-delay: -5s;
 }
 
 .video-frame {
@@ -342,6 +441,18 @@ a {
   }
   50% {
     translate: 0 -4px;
+  }
+}
+
+@keyframes water-drift {
+  0% {
+    transform: translate3d(-18px, 10px, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(16px, -12px, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(28px, 8px, 0) scale(.98);
   }
 }
 

@@ -116,6 +116,7 @@ function HeroVideoFrame() {
   return (
     <div className={`video-frame-scene relative mx-auto mt-10 w-full max-w-[1260px] ${frameReady ? 'is-ready' : ''}`}>
       <img className="video-frame-art" src={videoFrameImage} alt="" aria-hidden="true" onLoad={() => setFrameReady(true)} />
+      <span className="video-water-motion" aria-hidden="true" />
       <div className={`video-embed-window ${frameReady ? 'is-ready' : ''}`}>
         <div className="video-embed-mask">
           <VidalyticsEmbed />
@@ -176,7 +177,7 @@ function ReferenceHero() {
   ];
 
   return (
-    <section id="top" className="overflow-hidden bg-[#f8fbff] text-[#070a0f]">
+    <section id="top" className="overflow-hidden bg-[#F3F4F8] text-[#070a0f]">
       <div className="bg-[#ffdf67] px-4 py-2 text-center text-sm font800">I help marketers & agencies scale campaigns with accurate tracking...</div>
       <div className="mx-auto max-w-7xl px-5 pb-20 pt-12">
         <div className="mx-auto max-w-5xl text-center">

@@ -109,16 +109,20 @@ function VidalyticsEmbed() {
 
 function HeroVideoFrame() {
   return (
-    <div className="video-stage relative mx-auto mt-10 w-full max-w-[1040px] px-2 py-10 sm:px-0">
+    <div className="video-stage relative mx-auto mt-10 w-full max-w-[1060px] px-2 py-12 sm:px-0">
       <div className="video-water-scene" aria-hidden="true">
         <span className="video-room video-room-left" />
         <span className="video-room video-room-right" />
         <span className="video-room video-room-bottom" />
+        <span className="video-room video-room-top" />
         <span className="water-flow water-flow-left" />
         <span className="water-flow water-flow-right" />
         <span className="water-flow water-flow-center" />
+        <span className="map-label map-label-left">Meeting Room</span>
+        <span className="map-label map-label-right">Signal Lounge</span>
+        <span className="map-label map-label-bottom">Audit Sprint</span>
       </div>
-      <div className="video-frame relative z-10 mx-auto max-w-[705px] overflow-hidden rounded-[28px] bg-white p-2.5">
+      <div className="video-frame relative z-10 mx-auto max-w-[675px] overflow-hidden rounded-[28px] bg-white p-2.5">
         <div className="video-side-glow video-side-glow-left" />
         <div className="video-side-glow video-side-glow-right" />
         <div className="relative overflow-hidden rounded-[21px] bg-[#070a0f] ring-1 ring-black/10">
@@ -383,7 +387,6 @@ export default function App() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button href={whatsappLink}>Claim Your Tracking Audit! <span className="grid h-[30px] w-[30px] place-items-center rounded-full bg-[#f0f2f6] text-[#5235ef]"><ArrowRight size={16} strokeWidth={2.6} /></span></Button>
-              <Button href={emailLink} variant="ghost">Email me</Button>
             </div>
           </div>
         </div>

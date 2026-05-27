@@ -123,27 +123,58 @@ a {
 }
 
 .video-stage {
-  min-height: 470px;
-  filter: drop-shadow(0 30px 68px rgba(64, 85, 112, .16));
+  min-height: 500px;
+  filter: drop-shadow(0 34px 76px rgba(64, 85, 112, .16));
 }
 
 .video-water-scene {
   position: absolute;
-  inset: 0;
+  inset: 12px 0 0;
   pointer-events: none;
   overflow: hidden;
   border-radius: 42px;
-  opacity: .96;
+  opacity: .98;
+}
+
+.video-water-scene::before {
+  content: "";
+  position: absolute;
+  inset: 54px 7% 50px;
+  border-radius: 46px;
+  background:
+    linear-gradient(90deg, transparent 0 28%, rgba(255,255,255,.76) 28.1% 29.2%, transparent 29.3% 100%),
+    linear-gradient(90deg, transparent 0 70%, rgba(255,255,255,.72) 70.1% 71.1%, transparent 71.2% 100%),
+    linear-gradient(0deg, transparent 0 30%, rgba(255,255,255,.72) 30.1% 31.4%, transparent 31.5% 100%),
+    linear-gradient(0deg, transparent 0 66%, rgba(255,255,255,.78) 66.1% 67.4%, transparent 67.5% 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(209, 224, 239, .6),
+    inset 0 0 70px rgba(255,255,255,.78),
+    0 34px 90px rgba(116, 145, 174, .12);
+}
+
+.video-water-scene::after {
+  content: "";
+  position: absolute;
+  inset: 82px 11% 78px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 28% 52%, rgba(111,229,255,.5), rgba(111,229,255,.18) 28%, transparent 56%),
+    radial-gradient(circle at 76% 48%, rgba(103,217,255,.48), rgba(103,217,255,.18) 30%, transparent 58%),
+    radial-gradient(circle at 50% 78%, rgba(255,255,255,.7), transparent 42%);
+  filter: blur(18px);
+  opacity: .88;
+  animation: water-drift 8.5s ease-in-out infinite alternate;
 }
 
 .video-room {
   position: absolute;
-  border: 1px solid rgba(199, 217, 235, .62);
-  background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(238,247,255,.72));
+  border: 1px solid rgba(205, 222, 239, .54);
+  background: linear-gradient(145deg, rgba(255,255,255,.62), rgba(238,247,255,.34));
+  backdrop-filter: blur(4px);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.96),
-    inset 10px 0 24px rgba(189, 218, 247, .22),
-    0 22px 70px rgba(99, 126, 154, .12);
+    inset 0 1px 0 rgba(255,255,255,.8),
+    inset 10px 0 24px rgba(189, 218, 247, .16),
+    0 22px 70px rgba(99, 126, 154, .08);
 }
 
 .video-room::before,
@@ -169,24 +200,32 @@ a {
 }
 
 .video-room-left {
-  width: 42%;
-  height: 82%;
-  left: 2%;
-  top: 10%;
+  width: 34%;
+  height: 68%;
+  left: 8%;
+  top: 18%;
 }
 
 .video-room-right {
-  width: 44%;
-  height: 76%;
-  right: 2%;
-  top: 4%;
+  width: 34%;
+  height: 64%;
+  right: 8%;
+  top: 14%;
 }
 
 .video-room-bottom {
-  width: 76%;
-  height: 34%;
-  left: 12%;
-  bottom: 0;
+  width: 58%;
+  height: 30%;
+  left: 21%;
+  bottom: 5%;
+}
+
+.video-room-top {
+  width: 42%;
+  height: 24%;
+  left: 29%;
+  top: 6%;
+  opacity: .62;
 }
 
 .water-flow {
@@ -202,27 +241,63 @@ a {
 }
 
 .water-flow-left {
-  width: 360px;
-  height: 300px;
-  left: 7%;
-  top: 24%;
+  width: 390px;
+  height: 330px;
+  left: 9%;
+  top: 29%;
 }
 
 .water-flow-right {
-  width: 390px;
-  height: 320px;
-  right: 7%;
-  top: 20%;
+  width: 410px;
+  height: 340px;
+  right: 9%;
+  top: 25%;
   animation-delay: -3.2s;
 }
 
 .water-flow-center {
-  width: 520px;
-  height: 170px;
-  left: calc(50% - 260px);
-  bottom: 7%;
-  opacity: .5;
+  width: 610px;
+  height: 190px;
+  left: calc(50% - 305px);
+  bottom: 13%;
+  opacity: .56;
   animation-delay: -5s;
+}
+
+.map-label {
+  position: absolute;
+  z-index: 1;
+  color: rgba(255,255,255,.85);
+  font-size: 13px;
+  font-weight: 700;
+  text-shadow: 0 8px 22px rgba(43, 116, 151, .34);
+}
+
+.map-label::after {
+  content: "";
+  display: block;
+  width: 38px;
+  height: 6px;
+  margin: 8px auto 0;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255,255,255,.92) 0 18%, transparent 21% 100%);
+  background-size: 10px 6px;
+  animation: label-dots 2.4s linear infinite;
+}
+
+.map-label-left {
+  left: 20%;
+  top: 38%;
+}
+
+.map-label-right {
+  right: 17%;
+  top: 29%;
+}
+
+.map-label-bottom {
+  left: 39%;
+  bottom: 13%;
 }
 
 .video-frame {
@@ -378,9 +453,10 @@ a {
 .footer-clock-wrap {
   position: relative;
   z-index: 1;
-  min-height: 360px;
+  min-height: 390px;
   display: grid;
   place-items: center;
+  isolation: isolate;
 }
 
 .footer-light {
@@ -411,18 +487,31 @@ a {
 
 .footer-clock {
   position: relative;
-  width: min(360px, 76vw);
+  width: min(420px, 78vw);
   aspect-ratio: 1;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 48%, rgba(255,255,255,.12), transparent 8%),
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,.18), transparent 7%),
+    radial-gradient(circle at 48% 46%, rgba(255,255,255,.08), transparent 28%),
     radial-gradient(circle at 38% 36%, rgba(255, 123, 56, .34), transparent 33%),
     radial-gradient(circle at 68% 43%, rgba(60, 80, 255, .34), transparent 34%),
     linear-gradient(145deg, #111319, #050506 64%);
   box-shadow:
-    inset 0 0 0 12px rgba(255,255,255,.055),
-    inset 0 0 0 18px rgba(0,0,0,.42),
-    0 32px 110px rgba(0,0,0,.64);
+    inset 0 0 0 10px rgba(255,255,255,.075),
+    inset 0 0 0 17px rgba(0,0,0,.58),
+    inset 0 0 70px rgba(255,255,255,.04),
+    0 34px 130px rgba(0,0,0,.72);
+}
+
+.footer-clock-wrap::after {
+  content: "";
+  position: absolute;
+  width: min(520px, 86vw);
+  height: min(520px, 86vw);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.08), transparent 57%);
+  filter: blur(20px);
+  z-index: -1;
 }
 
 .footer-clock::before {
@@ -458,8 +547,9 @@ a {
 }
 
 .clock-ring-inner {
-  inset: 50px;
-  border: 3px solid rgba(17,19,25,.78);
+  inset: 58px;
+  border: 4px solid rgba(9,10,14,.82);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 0 32px rgba(0,0,0,.45);
 }
 
 .clock-brand {
@@ -499,14 +589,14 @@ a {
 }
 
 .clock-hand-hour {
-  height: 82px;
+  height: 94px;
   background: linear-gradient(180deg, #ff815d, rgba(255,255,255,.12));
   box-shadow: 0 0 22px rgba(255, 99, 52, .65);
   animation: clock-spin 48s linear infinite;
 }
 
 .clock-hand-minute {
-  height: 128px;
+  height: 148px;
   width: 3px;
   background: linear-gradient(180deg, #8ea0ff, rgba(255,255,255,.18));
   box-shadow: 0 0 20px rgba(92, 111, 255, .66);
@@ -514,7 +604,7 @@ a {
 }
 
 .clock-hand-second {
-  height: 145px;
+  height: 166px;
   width: 2px;
   background: rgba(255,255,255,.5);
   animation: clock-spin 9s linear infinite;
@@ -534,9 +624,9 @@ a {
 
 .clock-glow {
   position: absolute;
-  inset: 47px;
+  inset: 52px;
   border-radius: 50%;
-  border: 5px solid transparent;
+  border: 6px solid transparent;
   pointer-events: none;
 }
 
@@ -654,6 +744,15 @@ a {
   }
 }
 
+@keyframes label-dots {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 20px 0;
+  }
+}
+
 @keyframes clock-spin {
   from {
     rotate: 0deg;
@@ -694,6 +793,7 @@ a {
   .pin-float,
   .partner-logo-card,
   .water-flow,
+  .map-label::after,
   .clock-hand,
   .clock-glow,
   .footer-light {

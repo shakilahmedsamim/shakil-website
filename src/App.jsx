@@ -112,20 +112,12 @@ function VidalyticsEmbed() {
 function HeroVideoFrame() {
   return (
     <div className="video-frame-scene relative mx-auto mt-10 w-full max-w-[1260px]">
-      <span className="water-field water-field-left" aria-hidden="true" />
-      <span className="water-field water-field-right" aria-hidden="true" />
+      <span className="video-aura video-aura-left" aria-hidden="true" />
+      <span className="video-aura video-aura-right" aria-hidden="true" />
       <span className="water-ripple water-ripple-left" aria-hidden="true" />
       <span className="water-ripple water-ripple-right" aria-hidden="true" />
-      <span className="frame-rail rail-left-top" aria-hidden="true" />
-      <span className="frame-rail rail-left-mid" aria-hidden="true" />
-      <span className="frame-rail rail-left-low" aria-hidden="true" />
-      <span className="frame-rail rail-left-vertical" aria-hidden="true" />
-      <span className="frame-rail rail-right-top" aria-hidden="true" />
-      <span className="frame-rail rail-right-mid" aria-hidden="true" />
-      <span className="frame-rail rail-right-low" aria-hidden="true" />
-      <span className="frame-rail rail-right-vertical" aria-hidden="true" />
-      <span className="frame-depth frame-depth-top" aria-hidden="true" />
-      <span className="frame-depth frame-depth-bottom" aria-hidden="true" />
+      <span className="water-shimmer water-shimmer-one" aria-hidden="true" />
+      <span className="water-shimmer water-shimmer-two" aria-hidden="true" />
       <div className="video-embed-window">
         <div className="video-embed-mask">
           <VidalyticsEmbed />

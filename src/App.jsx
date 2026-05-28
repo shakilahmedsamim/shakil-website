@@ -21,6 +21,158 @@ const youtubeLink = 'https://www.youtube.com/@ShakilTrackingGuru';
 const facebookLink = 'https://www.facebook.com/mdshakilahmedsamim';
 const profileImage = './images/Shakil.jpg';
 const pinImage = 'https://framerusercontent.com/images/wUciDkb7amyTwaAe0wqiFkjra0M.png?width=362&height=354';
+const cleanHeroFrameCss = `
+.video-frame-scene {
+  aspect-ratio: 1586 / 760 !important;
+  max-width: 1180px !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  filter: none !important;
+}
+
+.video-frame-scene::before {
+  inset: 19% 13% 10% !important;
+  z-index: 0 !important;
+  border-radius: 999px !important;
+  background:
+    radial-gradient(circle at 24% 52%, rgba(64, 213, 255, .50), rgba(64, 213, 255, .22) 22%, transparent 48%),
+    radial-gradient(circle at 76% 52%, rgba(64, 213, 255, .48), rgba(64, 213, 255, .20) 22%, transparent 48%),
+    radial-gradient(circle at 50% 56%, rgba(255,255,255,.78), rgba(255,255,255,.20) 40%, transparent 68%) !important;
+  filter: blur(20px) saturate(1.16) !important;
+  opacity: .84 !important;
+  animation: animated-frame-breathe 7.5s ease-in-out infinite alternate !important;
+}
+
+.video-frame-scene::after {
+  inset: 9% 8% 0 !important;
+  z-index: 3 !important;
+  border-radius: 999px !important;
+  background:
+    linear-gradient(90deg, rgba(243,244,248,0) 0%, rgba(243,244,248,.72) 10%, rgba(243,244,248,.18) 22%, transparent 38%, transparent 62%, rgba(243,244,248,.18) 78%, rgba(243,244,248,.72) 90%, rgba(243,244,248,0) 100%),
+    linear-gradient(180deg, rgba(243,244,248,.70), transparent 30%, transparent 72%, rgba(243,244,248,.74)) !important;
+  pointer-events: none !important;
+}
+
+.video-aura,
+.water-ripple,
+.water-shimmer {
+  position: absolute;
+  pointer-events: none;
+}
+
+.video-aura {
+  z-index: 1;
+  top: 28%;
+  width: 34%;
+  height: 42%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255,255,255,.92) 0 8%, rgba(87,224,255,.56) 20%, rgba(71,194,255,.20) 46%, transparent 70%);
+  filter: blur(18px);
+  opacity: .78;
+  mix-blend-mode: screen;
+  animation: aura-drift 6.4s ease-in-out infinite;
+}
+
+.video-aura-left { left: 18%; }
+.video-aura-right { right: 18%; animation-delay: -3.2s; }
+
+.water-ripple {
+  z-index: 2 !important;
+  top: 29% !important;
+  width: 21% !important;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(circle, transparent 0 26px, rgba(255,255,255,.42) 28px 30px, transparent 33px 52px),
+    radial-gradient(circle, rgba(66,211,255,.16), transparent 66%) !important;
+  filter: blur(1.6px) !important;
+  opacity: .54 !important;
+  mix-blend-mode: screen !important;
+  animation: ripple-expand 4.8s ease-in-out infinite !important;
+}
+
+.water-ripple-left { left: 24% !important; }
+.water-ripple-right { right: 24% !important; animation-delay: -2.4s; }
+
+.water-shimmer {
+  z-index: 4;
+  left: 50%;
+  width: 56%;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.92), rgba(80,215,255,.45), rgba(255,255,255,.92), transparent);
+  filter: blur(.2px);
+  transform: translateX(-50%);
+  opacity: .68;
+  animation: shimmer-slide 4.9s ease-in-out infinite;
+}
+
+.water-shimmer-one { top: 24%; }
+.water-shimmer-two { bottom: 19%; animation-delay: -2.2s; }
+
+.water-field,
+.frame-rail,
+.frame-depth {
+  display: none !important;
+}
+
+.video-embed-window {
+  top: 50% !important;
+  width: 44.8% !important;
+  padding: 8px !important;
+  border-radius: clamp(18px, 1.75vw, 30px) !important;
+  background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(231,244,255,.90)) !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  box-shadow:
+    0 26px 72px rgba(69, 93, 122, .22),
+    0 0 0 1px rgba(208, 229, 248, .95),
+    inset 0 0 0 1px rgba(255,255,255,.98) !important;
+}
+
+.video-embed-window::before {
+  inset: -24px -72px !important;
+  background:
+    radial-gradient(circle at 18% 50%, rgba(255,255,255,.92), transparent 19%),
+    radial-gradient(circle at 82% 50%, rgba(255,255,255,.92), transparent 19%),
+    radial-gradient(circle at 50% 60%, rgba(73,209,255,.18), transparent 54%) !important;
+  filter: blur(13px) !important;
+}
+
+.video-embed-window::after {
+  content: "";
+  position: absolute;
+  inset: -11px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(255,255,255,.72), rgba(91,221,255,.28), rgba(255,255,255,.72));
+  filter: blur(7px);
+  opacity: .72;
+  animation: frame-edge-glow 4.8s ease-in-out infinite;
+}
+
+@keyframes aura-drift {
+  0%, 100% { transform: translate3d(-12px, 7px, 0) scale(.96); opacity: .56; }
+  50% { transform: translate3d(12px, -8px, 0) scale(1.08); opacity: .9; }
+}
+
+@keyframes shimmer-slide {
+  0%, 100% { opacity: .26; transform: translateX(-50%) scaleX(.72); }
+  50% { opacity: .8; transform: translateX(-50%) scaleX(1.04); }
+}
+
+@keyframes frame-edge-glow {
+  0%, 100% { opacity: .42; transform: scale(.99); }
+  50% { opacity: .82; transform: scale(1.012); }
+}
+
+@media (max-width: 760px) {
+  .video-frame-scene { width: 158% !important; }
+  .video-embed-window { width: 47% !important; padding: 5px !important; }
+  .video-aura { width: 30%; }
+}
+`;
 
 const proofPoints = ['Tracking in 3 Hours', 'I Manage Everything', '24/7 Expert Support'];
 const avatars = [
@@ -295,6 +447,7 @@ function SectionIntro({ eyebrow, title, copy, dark = false }) {
 export default function App() {
   return (
     <main className="min-h-screen bg-obsidian text-white">
+      <style>{cleanHeroFrameCss}</style>
       <ReferenceHero />
 
       <section id="audit" className="bg-linen text-obsidian">

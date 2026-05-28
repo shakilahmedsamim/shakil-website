@@ -347,7 +347,7 @@ function ReferenceHero() {
               </span>
             ))}
           </div>
-          <div className="mt-10 inline-flex items-center rounded-full bg-[#dbe4ee] px-5 py-3 shadow-sm">
+          <div className="mb-3 mt-10 inline-flex items-center rounded-full bg-[#dbe4ee] px-5 py-3 shadow-sm">
             <div className="flex -space-x-2">
               {avatars.map((avatar, index) => (
                 <img

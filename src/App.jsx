@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {
   ArrowRight,
   CheckCircle2,
@@ -20,7 +20,6 @@ const linkedinLink = 'https://www.linkedin.com/in/mdshakilahmedsamim';
 const youtubeLink = 'https://www.youtube.com/@ShakilTrackingGuru';
 const facebookLink = 'https://www.facebook.com/mdshakilahmedsamim';
 const profileImage = './images/Shakil.jpg';
-const videoFrameImage = './images/videoframe.png';
 const pinImage = 'https://framerusercontent.com/images/wUciDkb7amyTwaAe0wqiFkjra0M.png?width=362&height=354';
 
 const proofPoints = ['Tracking in 3 Hours', 'I Manage Everything', '24/7 Expert Support'];
@@ -111,13 +110,23 @@ function VidalyticsEmbed() {
 }
 
 function HeroVideoFrame() {
-  const [frameReady, setFrameReady] = useState(false);
-
   return (
-    <div className={`video-frame-scene relative mx-auto mt-10 w-full max-w-[1260px] ${frameReady ? 'is-ready' : ''}`}>
-      <img className="video-frame-art" src={videoFrameImage} alt="" aria-hidden="true" onLoad={() => setFrameReady(true)} />
-      <span className="video-water-motion" aria-hidden="true" />
-      <div className={`video-embed-window ${frameReady ? 'is-ready' : ''}`}>
+    <div className="video-frame-scene relative mx-auto mt-10 w-full max-w-[1260px]">
+      <span className="water-field water-field-left" aria-hidden="true" />
+      <span className="water-field water-field-right" aria-hidden="true" />
+      <span className="water-ripple water-ripple-left" aria-hidden="true" />
+      <span className="water-ripple water-ripple-right" aria-hidden="true" />
+      <span className="frame-rail rail-left-top" aria-hidden="true" />
+      <span className="frame-rail rail-left-mid" aria-hidden="true" />
+      <span className="frame-rail rail-left-low" aria-hidden="true" />
+      <span className="frame-rail rail-left-vertical" aria-hidden="true" />
+      <span className="frame-rail rail-right-top" aria-hidden="true" />
+      <span className="frame-rail rail-right-mid" aria-hidden="true" />
+      <span className="frame-rail rail-right-low" aria-hidden="true" />
+      <span className="frame-rail rail-right-vertical" aria-hidden="true" />
+      <span className="frame-depth frame-depth-top" aria-hidden="true" />
+      <span className="frame-depth frame-depth-bottom" aria-hidden="true" />
+      <div className="video-embed-window">
         <div className="video-embed-mask">
           <VidalyticsEmbed />
         </div>

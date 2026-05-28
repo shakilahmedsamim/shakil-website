@@ -118,9 +118,11 @@ const cleanHeroFrameCss = `
 }
 
 .video-embed-window {
-  top: 50% !important;
+  top: 48% !important;
   width: 44.8% !important;
   padding: 8px !important;
+  transform: translate(-50%, -50%) !important;
+  animation: none !important;
   border-radius: clamp(18px, 1.75vw, 30px) !important;
   background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(231,244,255,.90)) !important;
   opacity: 1 !important;
@@ -263,7 +265,7 @@ function VidalyticsEmbed() {
 
 function HeroVideoFrame() {
   return (
-    <div className="video-frame-scene relative mx-auto mt-10 w-full max-w-[1260px]">
+    <div className="video-frame-scene relative mx-auto mt-4 w-full max-w-[1260px]">
       <span className="video-aura video-aura-left" aria-hidden="true" />
       <span className="video-aura video-aura-right" aria-hidden="true" />
       <span className="water-ripple water-ripple-left" aria-hidden="true" />
@@ -334,9 +336,9 @@ function ReferenceHero() {
       <div className="bg-[#ffdf67] px-4 py-2 text-center text-sm font800">I help marketers & agencies scale campaigns with accurate tracking...</div>
       <div className="mx-auto max-w-7xl px-5 pb-20 pt-12">
         <div className="mx-auto max-w-5xl text-center">
-          <h1 className="text-[2.55rem] font500 leading-[1.14] sm:text-5xl lg:text-[3.55rem]">
+          <h1 className="text-[2.15rem] font500 leading-[1.12] sm:text-[2.75rem] lg:text-[3.05rem]">
             Wasting ad spend on broken tracking?
-            <span className="mt-5 block">I fix it so your ads finally have the data to scale.</span>
+            <span className="mt-4 block">I fix it so your ads finally have the data to scale.</span>
           </h1>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-base font700">
             {proofPoints.map((point) => (

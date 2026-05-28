@@ -23,8 +23,8 @@ const profileImage = './images/Shakil.jpg';
 const pinImage = 'https://framerusercontent.com/images/wUciDkb7amyTwaAe0wqiFkjra0M.png?width=362&height=354';
 const cleanHeroFrameCss = `
 .video-frame-scene {
-  aspect-ratio: 1586 / 760 !important;
-  max-width: 1180px !important;
+  aspect-ratio: 1586 / 500 !important;
+  max-width: 1060px !important;
   overflow: visible !important;
   background: transparent !important;
   border-radius: 0 !important;
@@ -32,7 +32,7 @@ const cleanHeroFrameCss = `
 }
 
 .video-frame-scene::before {
-  inset: 19% 13% 10% !important;
+  inset: 9% 10% 2% !important;
   z-index: 0 !important;
   border-radius: 999px !important;
   background:
@@ -45,7 +45,7 @@ const cleanHeroFrameCss = `
 }
 
 .video-frame-scene::after {
-  inset: 9% 8% 0 !important;
+  inset: 0 7% 0 !important;
   z-index: 3 !important;
   border-radius: 999px !important;
   background:
@@ -63,7 +63,7 @@ const cleanHeroFrameCss = `
 
 .video-aura {
   z-index: 1;
-  top: 28%;
+  top: 19%;
   width: 34%;
   height: 42%;
   border-radius: 999px;
@@ -79,7 +79,7 @@ const cleanHeroFrameCss = `
 
 .water-ripple {
   z-index: 2 !important;
-  top: 29% !important;
+  top: 17% !important;
   width: 21% !important;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -109,7 +109,7 @@ const cleanHeroFrameCss = `
 }
 
 .water-shimmer-one { top: 24%; }
-.water-shimmer-two { bottom: 19%; animation-delay: -2.2s; }
+.water-shimmer-two { bottom: 12%; animation-delay: -2.2s; }
 
 .water-field,
 .frame-rail,
@@ -118,8 +118,8 @@ const cleanHeroFrameCss = `
 }
 
 .video-embed-window {
-  top: 48% !important;
-  width: 44.8% !important;
+  top: 45% !important;
+  width: 48.5% !important;
   padding: 8px !important;
   transform: translate(-50%, -50%) !important;
   animation: none !important;
@@ -171,7 +171,7 @@ const cleanHeroFrameCss = `
 
 @media (max-width: 760px) {
   .video-frame-scene { width: 158% !important; }
-  .video-embed-window { width: 47% !important; padding: 5px !important; }
+  .video-embed-window { width: 50% !important; padding: 5px !important; }
   .video-aura { width: 30%; }
 }
 `;
@@ -265,7 +265,7 @@ function VidalyticsEmbed() {
 
 function HeroVideoFrame() {
   return (
-    <div className="video-frame-scene relative mx-auto mt-4 w-full max-w-[1260px]">
+    <div className="video-frame-scene relative mx-auto mt-0 w-full max-w-[1260px]">
       <span className="video-aura video-aura-left" aria-hidden="true" />
       <span className="video-aura video-aura-right" aria-hidden="true" />
       <span className="water-ripple water-ripple-left" aria-hidden="true" />
@@ -368,7 +368,7 @@ function ReferenceHero() {
 
         <HeroVideoFrame />
 
-        <div className="mt-11 text-center">
+        <div className="mt-2 text-center">
           <Button href={whatsappLink}>Claim Your Tracking Audit! <span className="grid h-[30px] w-[30px] place-items-center rounded-full bg-[#f0f2f6] text-[#5235ef]"><ArrowRight size={16} strokeWidth={2.6} /></span></Button>
         </div>
 

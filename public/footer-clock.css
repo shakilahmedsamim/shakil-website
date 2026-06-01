@@ -192,14 +192,14 @@
 }
 
 .partner-logo-card img {
-  width: 66% !important;
-  height: 66% !important;
+  width: 73% !important;
+  height: 73% !important;
   object-fit: contain;
 }
 
 .partner-logo-card:nth-child(5) img {
-  width: 72% !important;
-  height: 72% !important;
+  width: 79% !important;
+  height: 79% !important;
 }
 
 @media (max-width: 760px) {

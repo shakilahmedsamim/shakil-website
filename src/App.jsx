@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ArrowRight,
   CheckCircle2,
@@ -221,6 +221,60 @@ const faqs = [
   ['Can you document the setup?', 'Yes. You get a measurement map, QA list, launch notes, and exact conversion definitions.'],
 ];
 
+const clientReviews = [
+  {
+    platform: 'Upwork',
+    title: 'TikTok Ads Manager Pixel Setup & First Ad Launch',
+    quote: 'Shakil has helped me to setup my TikTok Pixel & configured it with GTM. He is someone who I can rely on for my future projects regarding GTM & GA4 Tracking Setup.',
+    tag: 'Reliable',
+  },
+  {
+    platform: 'Upwork',
+    title: 'Tracking analytics and data',
+    quote: 'Great skills, helped a lot with Facebook and Meta ads tracking. Highly recommend.',
+  },
+  {
+    platform: 'Upwork',
+    title: 'Facebook CRM and Conversion API Configuration',
+    quote: 'Great work! Thank you.',
+  },
+  {
+    platform: 'Upwork',
+    title: 'Conversions API & Catalog Setup',
+    quote: 'Good work done. Appreciate it.',
+    tag: 'Committed to Quality',
+  },
+  {
+    platform: 'Fiverr',
+    title: 'GTM, Analytics & Pinterest Conversion Tracking',
+    quote: 'Shakil was absolutely fantastic. He is very technical and good at his job. He knows everything about Google Tag Manager, Google Analytics and conversions linking this to Pinterest.',
+  },
+  {
+    platform: 'Fiverr',
+    title: 'API Setup Collaboration',
+    quote: 'He has very deep knowledge to set up the API. I am impressed by his technical skillset and his collaboration. I will get back to you soon.',
+  },
+  {
+    platform: 'LinkedIn',
+    title: 'Recommendation from Yarne de Win',
+    quote: 'His expertise in conversion tracking, data accuracy, and platform integrations is outstanding. He quickly identifies issues others miss and implements clean, reliable tracking that gives real clarity on performance.',
+  },
+];
+
+const clockDollarMarks = Array.from({ length: 12 }, (_, index) => index);
+
+function getClockAngles(date = new Date()) {
+  const seconds = date.getSeconds();
+  const minutes = date.getMinutes();
+  const hours = date.getHours() % 12;
+
+  return {
+    hour: hours * 30 + minutes * 0.5,
+    minute: minutes * 6 + seconds * 0.1,
+    second: seconds * 6,
+  };
+}
+
 function Button({ href, children, variant = 'primary' }) {
   const base = 'inline-flex items-center justify-center gap-2 rounded-full text-sm font900 transition duration-300';
   const styles = {
@@ -299,11 +353,26 @@ function PartnerLogo({ name, src, size, text }) {
 }
 
 function FooterClock() {
+  const [clockAngles, setClockAngles] = useState(() => getClockAngles());
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setClockAngles(getClockAngles());
+    }, 1000);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
   return (
     <div className="footer-clock-wrap" aria-hidden="true">
       <div className="footer-light footer-light-orange" />
       <div className="footer-light footer-light-blue" />
       <div className="footer-clock">
+        <div className="clock-dollar-orbit">
+          {clockDollarMarks.map((mark) => (
+            <span className="clock-dollar-mark" key={mark} style={{ '--angle': `${mark * 30}deg` }}>$</span>
+          ))}
+        </div>
         <div className="clock-ring clock-ring-outer" />
         <div className="clock-ring clock-ring-inner" />
         <div className="clock-brand">$</div>
@@ -311,9 +380,9 @@ function FooterClock() {
         <span className="clock-tick clock-tick-3">3</span>
         <span className="clock-tick clock-tick-6">6</span>
         <span className="clock-tick clock-tick-9">9</span>
-        <span className="clock-hand clock-hand-hour" />
-        <span className="clock-hand clock-hand-minute" />
-        <span className="clock-hand clock-hand-second" />
+        <span className="clock-hand clock-hand-hour" style={{ '--angle': `${clockAngles.hour}deg` }} />
+        <span className="clock-hand clock-hand-minute" style={{ '--angle': `${clockAngles.minute}deg` }} />
+        <span className="clock-hand clock-hand-second" style={{ '--angle': `${clockAngles.second}deg` }} />
         <span className="clock-center" />
         <span className="clock-glow clock-glow-orange" />
         <span className="clock-glow clock-glow-blue" />
@@ -446,6 +515,37 @@ function SectionIntro({ eyebrow, title, copy, dark = false }) {
   );
 }
 
+function ReviewsSection() {
+  return (
+    <section className="bg-[#f5f7fb] text-obsidian">
+      <div className="mx-auto max-w-7xl px-5 py-28">
+        <SectionIntro
+          eyebrow="Client proof"
+          title="Reviews from Upwork, Fiverr, and LinkedIn."
+          copy="Real feedback from tracking, analytics, pixel, API, and conversion setup projects. No price claims needed, just proof of quality."
+        />
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {clientReviews.map((review, index) => (
+            <article
+              className="review-card rounded-[1.45rem] border border-black/[0.07] bg-white p-6 shadow-[0_24px_70px_rgba(28,45,72,.08)]"
+              key={`${review.platform}-${review.title}`}
+              style={{ animationDelay: `${index * 90}ms` }}
+            >
+              <div className="flex items-center justify-between gap-4">
+                <span className="rounded-full bg-obsidian px-3 py-1 text-xs font900 uppercase text-white">{review.platform}</span>
+                <span className="text-sm font900 text-[#f2a900]">★★★★★ <span className="text-slate-500">5.0</span></span>
+              </div>
+              <h3 className="mt-6 text-xl font900 leading-tight">{review.title}</h3>
+              <p className="mt-5 text-[15px] leading-7 text-slate-600">"{review.quote}"</p>
+              {review.tag && <span className="mt-6 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font800 text-slate-600">{review.tag}</span>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function App() {
   return (
     <main className="min-h-screen bg-obsidian text-white">
@@ -490,6 +590,8 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      <ReviewsSection />
 
       <section className="bg-white text-obsidian">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-28 lg:grid-cols-[.85fr_1.15fr]">

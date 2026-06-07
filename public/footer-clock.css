@@ -1,639 +1,184 @@
-.footer-cta {
+.footer {
   background:
-    radial-gradient(ellipse at 33% 45%, rgba(52, 80, 255, .18), transparent 29%),
-    radial-gradient(ellipse at 25% 48%, rgba(255, 90, 42, .12), transparent 24%),
-    radial-gradient(ellipse at 72% 38%, rgba(254, 236, 30, .045), transparent 28%),
+    radial-gradient(circle at 34% 44%, rgba(254, 236, 30, .10), transparent 17%),
+    radial-gradient(circle at 30% 47%, rgba(17, 117, 70, .24), transparent 27%),
+    radial-gradient(circle at 58% 40%, rgba(255,255,255,.035), transparent 24%),
     linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 26%),
-    linear-gradient(180deg, #070913 0%, #050506 100%) !important;
+    linear-gradient(180deg, #060706 0%, #020303 100%) !important;
 }
 
-.footer-clock-wrap {
-  isolation: isolate;
-  perspective: 1000px;
+.luxury-watch-scene {
+  min-height: 470px !important;
+  perspective: 1300px !important;
 }
 
-.footer-light {
-  display: block !important;
-  position: absolute;
-  top: 50%;
-  z-index: -2;
-  height: 260px;
-  width: min(720px, 86vw);
-  opacity: .52;
-  pointer-events: none;
-  filter: blur(15px);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.72) 21%, #000 48%, rgba(0,0,0,.64) 76%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.72) 21%, #000 48%, rgba(0,0,0,.64) 76%, transparent 100%);
+.luxury-watch-scene::before {
+  width: min(620px, 90vw) !important;
+  height: 210px !important;
+  left: -16% !important;
+  top: 48% !important;
+  background: linear-gradient(90deg, transparent, rgba(254,236,30,.10), rgba(17,117,70,.32), transparent) !important;
+  clip-path: polygon(0 37%, 100% 48%, 100% 59%, 0 48%) !important;
+  filter: blur(16px) !important;
+  opacity: .76 !important;
 }
 
-.footer-light-orange {
-  right: 51%;
+.luxury-watch-scene::after {
+  width: min(620px, 90vw) !important;
+  height: 190px !important;
+  right: -22% !important;
+  top: 53% !important;
+  background: linear-gradient(90deg, rgba(170,188,190,.35), rgba(18,42,34,.22), transparent) !important;
+  clip-path: polygon(0 52%, 100% 72%, 100% 86%, 0 66%) !important;
+  filter: blur(16px) !important;
+  opacity: .55 !important;
+}
+
+.watch-light {
+  inset: 6% 8% !important;
   background:
-    linear-gradient(90deg, transparent 0%, rgba(255, 92, 38, .07) 30%, rgba(255, 101, 45, .5) 100%);
-  clip-path: polygon(0 24%, 100% 47%, 100% 62%, 0 40%);
-  transform: translateY(-54%);
+    radial-gradient(circle at 50% 50%, rgba(254,236,30,.18), transparent 13%),
+    radial-gradient(circle at 50% 50%, rgba(17,117,70,.30), transparent 36%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.08), transparent 54%) !important;
+  filter: blur(22px) !important;
 }
 
-.footer-light-blue {
-  left: 50%;
-  background:
-    linear-gradient(90deg, rgba(64, 84, 255, .58) 0%, rgba(55, 79, 255, .23) 52%, transparent 100%);
-  clip-path: polygon(0 50%, 100% 78%, 100% 92%, 0 64%);
-  transform: translateY(-45%);
-}
-
-.footer-clock {
-  --clock-orbit: min(209px, 37vw);
-  overflow: visible !important;
-  transform: rotateX(8deg) rotateZ(-1deg);
-  background:
-    radial-gradient(circle at 50% 50%, rgba(56, 86, 255, .22), transparent 10%),
-    radial-gradient(circle at 48% 46%, rgba(255,255,255,.08), transparent 31%),
-    radial-gradient(circle at 36% 55%, rgba(255, 99, 46, .18), transparent 28%),
-    radial-gradient(circle at 66% 38%, rgba(72, 94, 255, .23), transparent 36%),
-    repeating-conic-gradient(from -90deg, rgba(255,255,255,.035) 0deg 1deg, transparent 1deg 6deg),
-    linear-gradient(145deg, #191b2b 0%, #0b0e1b 50%, #050609 100%) !important;
-  background-blend-mode: screen, screen, screen, screen, normal, normal;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.20),
-    inset 0 0 0 9px rgba(255,255,255,.045),
-    inset 0 0 0 18px rgba(1,2,8,.76),
-    inset 0 0 96px rgba(98, 117, 255, .11),
-    0 36px 140px rgba(0,0,0,.86),
-    0 0 84px rgba(54, 82, 255, .17) !important;
-}
-
-.footer-clock::before {
-  inset: 22px !important;
-  background:
-    conic-gradient(from -82deg, transparent 0deg 11deg, rgba(255, 126, 66, .95) 13deg, rgba(255, 224, 181, .92) 39deg, transparent 55deg 128deg, rgba(71, 111, 255, .98) 140deg, rgba(111, 131, 255, .84) 232deg, transparent 254deg 360deg),
-    repeating-conic-gradient(from -90deg, rgba(255,255,255,.20) 0deg 1deg, transparent 1deg 9deg) !important;
-  -webkit-mask-image: radial-gradient(circle, transparent 0 70.5%, #000 71.2% 74.6%, transparent 75.3%);
-  mask-image: radial-gradient(circle, transparent 0 70.5%, #000 71.2% 74.6%, transparent 75.3%);
-  opacity: .98 !important;
-  filter:
-    drop-shadow(0 0 12px rgba(255, 111, 55, .68))
-    drop-shadow(0 0 22px rgba(72, 105, 255, .76)) !important;
-  animation: clock-halo-sweep 8.4s ease-in-out infinite alternate !important;
-}
-
-.footer-clock::after {
-  inset: 13px !important;
-  background:
-    radial-gradient(circle at 34% 30%, rgba(255,255,255,.13), transparent 24%),
-    radial-gradient(circle at 56% 58%, rgba(255,255,255,.04), transparent 42%),
-    linear-gradient(115deg, rgba(255,255,255,.11), transparent 22%, transparent 64%, rgba(255,255,255,.052)) !important;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.055),
-    inset 0 -38px 82px rgba(0,0,0,.36);
-  animation: clock-face-sheen 7.6s ease-in-out infinite alternate;
-}
-
-.clock-glow {
-  inset: 44px !important;
-  border: 0 !important;
-  background: transparent;
-  -webkit-mask-image: radial-gradient(circle, transparent 0 87%, #000 88% 91%, transparent 92%);
-  mask-image: radial-gradient(circle, transparent 0 87%, #000 88% 91%, transparent 92%);
-}
-
-.clock-glow-orange {
-  background: conic-gradient(from 210deg, transparent 0 8deg, rgba(255, 118, 55, 1) 22deg, rgba(255, 72, 55, .82) 93deg, transparent 118deg 360deg) !important;
-  filter: drop-shadow(0 0 19px rgba(255, 83, 41, .86));
-  animation: clock-ring-breathe 4.8s ease-in-out infinite;
-}
-
-.clock-glow-blue {
-  background: conic-gradient(from -22deg, rgba(85, 116, 255, .98) 0deg, rgba(93, 112, 255, .92) 116deg, transparent 144deg 360deg) !important;
-  filter: drop-shadow(0 0 22px rgba(80, 105, 255, .9));
-  animation: clock-ring-breathe 5.4s ease-in-out infinite reverse;
-}
-
-.clock-brand {
-  inset: 31% !important;
-  display: grid;
-  place-items: center;
-  border-radius: 50% !important;
-  background:
-    radial-gradient(circle at 42% 35%, rgba(55, 95, 255, .98), rgba(28, 66, 198, .58) 45%, rgba(12, 20, 53, .08) 72%),
-    rgba(8, 12, 29, .18) !important;
-  box-shadow:
-    inset 0 0 0 1px rgba(121, 149, 255, .18),
-    inset 0 -14px 28px rgba(0,0,0,.38),
-    0 0 34px rgba(55, 91, 255, .32) !important;
-  color: rgba(22, 62, 190, .96) !important;
-  font-family: Inter, Arial, sans-serif;
-  font-size: clamp(96px, 10vw, 136px) !important;
-  font-weight: 900;
-  line-height: 1;
-  opacity: .92;
-  filter:
-    drop-shadow(0 1px 0 rgba(144, 172, 255, .12))
-    drop-shadow(0 0 20px rgba(42, 72, 195, .58));
-}
-
-.clock-brand::before {
-  content: none !important;
-}
-
-.clock-brand span {
+.watch-bracelet,
+.watch-case::before,
+.watch-case::after {
   display: none !important;
 }
 
-.clock-dollar-orbit {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  border-radius: 50%;
-  pointer-events: none;
-  animation: clock-orbit-drift 22s linear infinite;
-}
-
-.clock-dollar-mark {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  color: rgba(74, 107, 255, .38);
-  font-size: 11px;
-  font-weight: 900;
-  text-shadow: 0 0 11px rgba(70, 102, 255, .52);
-  transform: rotate(var(--angle)) translateY(calc(var(--clock-orbit) * -1)) rotate(calc(var(--angle) * -1));
-  animation: clock-dollar-pulse 5.8s ease-in-out infinite;
-}
-
-.clock-ring-outer {
-  inset: -8px !important;
-  border-color: rgba(112, 133, 255, .13) !important;
+.watch-case {
+  width: min(410px, 74vw) !important;
+  border-radius: 50% !important;
+  overflow: visible !important;
+  transform: rotateX(7deg) rotateZ(-2deg) !important;
+  background:
+    radial-gradient(circle at 34% 21%, rgba(255,255,255,.95), transparent 8%),
+    radial-gradient(circle at 69% 75%, rgba(255,255,255,.35), transparent 11%),
+    conic-gradient(from 16deg, #111 0deg, #6b7476 18deg, #f5f8f5 34deg, #6c7476 54deg, #242a2c 84deg, #f8faf7 116deg, #4a5255 152deg, #111719 210deg, #edf0ed 250deg, #626b6e 292deg, #171b1e 360deg) !important;
   box-shadow:
-    0 0 34px rgba(71, 95, 255, .16),
-    inset 0 0 0 1px rgba(255,255,255,.055) !important;
+    inset 0 0 0 1px rgba(255,255,255,.58),
+    inset 0 0 0 9px rgba(0,0,0,.32),
+    inset 0 -30px 80px rgba(0,0,0,.62),
+    0 34px 95px rgba(0,0,0,.84),
+    0 0 55px rgba(254,236,30,.10),
+    0 0 90px rgba(17,117,70,.18) !important;
 }
 
-.clock-ring-inner {
-  inset: 69px !important;
-  border: 2px solid rgba(7, 9, 21, .82) !important;
+.watch-crown {
+  right: -14px !important;
+  top: 46% !important;
+  width: 25px !important;
+  height: 43px !important;
+  border-radius: 8px !important;
+  background: repeating-linear-gradient(0deg, #22272a 0 3px, #f2f5f3 3px 5px, #5d6669 5px 8px) !important;
+  opacity: .92 !important;
+}
+
+.green-bezel {
+  inset: 30px !important;
+  background:
+    radial-gradient(circle, transparent 0 61%, rgba(255,255,255,.08) 62% 64%, transparent 65%),
+    conic-gradient(from -18deg, #0b4e2c 0deg, #0f7a42 36deg, #165f38 82deg, #0a3f26 132deg, #107842 190deg, #0c552f 248deg, #0f7a42 310deg, #0b4e2c 360deg) !important;
   box-shadow:
-    inset 0 0 0 1px rgba(118, 138, 255, .08),
-    0 0 26px rgba(0,0,0,.56) !important;
+    inset 0 0 0 1px rgba(255,255,255,.44),
+    inset 0 0 0 8px rgba(0,0,0,.28),
+    inset 0 0 0 22px rgba(255,255,255,.035),
+    0 0 34px rgba(17,117,70,.32) !important;
 }
 
-.clock-tick {
-  z-index: 5;
-  color: rgba(121, 142, 255, .42) !important;
-  text-shadow: 0 0 12px rgba(78, 99, 255, .42);
+.green-bezel::before {
+  background:
+    repeating-conic-gradient(from -90deg, rgba(255,255,255,.78) 0deg .45deg, transparent .55deg 6deg),
+    linear-gradient(124deg, rgba(255,255,255,.32), transparent 22%, transparent 72%, rgba(255,255,255,.14)) !important;
+  -webkit-mask-image: radial-gradient(circle, transparent 0 78%, #000 79% 84%, transparent 85%) !important;
+  mask-image: radial-gradient(circle, transparent 0 78%, #000 79% 84%, transparent 85%) !important;
 }
 
-.clock-hand-hour {
-  height: 122px !important;
-  width: 3px !important;
-  background: linear-gradient(180deg, #ff7b43 0%, rgba(255, 117, 66, .12) 100%) !important;
-  box-shadow: 0 0 18px rgba(255, 102, 49, .7) !important;
-  animation: none !important;
+.bezel-number {
+  color: rgba(255,255,255,.86) !important;
+  font-size: 12px !important;
+  letter-spacing: .3px !important;
+  opacity: .74 !important;
 }
 
-.clock-hand-minute {
-  height: 158px !important;
-  width: 4px !important;
-  background: linear-gradient(180deg, #cdd4ff 0%, rgba(255,255,255,.35) 100%) !important;
-  box-shadow: 0 0 16px rgba(180, 194, 255, .42) !important;
-  animation: none !important;
+.watch-dial {
+  inset: 74px !important;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(254,236,30,.08), transparent 8%),
+    radial-gradient(circle at 50% 48%, rgba(21,31,25,.96), #030404 70%) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(0,0,0,.9),
+    inset 0 0 0 8px rgba(255,255,255,.04),
+    inset 0 -45px 70px rgba(0,0,0,.7),
+    0 0 25px rgba(0,0,0,.7) !important;
 }
 
-.clock-hand-second {
-  height: 168px !important;
-  width: 2px !important;
-  background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,.38) 100%) !important;
-  box-shadow: 0 0 13px rgba(255,255,255,.5) !important;
-  animation: none !important;
+.watch-dial::before {
+  background: linear-gradient(118deg, rgba(255,255,255,.24), transparent 18%, transparent 68%, rgba(255,255,255,.08)) !important;
+  opacity: .75 !important;
 }
 
-.clock-hand {
-  z-index: 8;
-  transform: translate(-50%, -100%) rotate(var(--angle, 0deg)) !important;
-  transition: transform .45s cubic-bezier(.2,.8,.2,1);
+.dial-logo {
+  top: 30% !important;
+  font-size: 46px !important;
+  color: rgba(254,236,30,.86) !important;
+  text-shadow: 0 0 20px rgba(254,236,30,.30) !important;
 }
 
-.clock-center {
-  z-index: 10;
+.dial-copy {
+  font-size: 7px !important;
+  letter-spacing: 1px !important;
+  opacity: .72 !important;
+}
+
+.date-window {
+  right: 24px !important;
+  min-width: 31px !important;
   height: 24px !important;
-  width: 24px !important;
-  background: radial-gradient(circle, #173bd1 0 23%, #081022 24% 58%, #ff8a45 59% 72%, #101426 73%) !important;
-  box-shadow:
-    0 0 0 4px rgba(83, 112, 255, .28),
-    0 0 26px rgba(65, 93, 255, .55),
-    9px 5px 18px rgba(255, 109, 50, .68) !important;
+  border-radius: 5px !important;
+  font-size: 12px !important;
+  box-shadow: inset 0 0 0 2px #090909, 0 0 0 1px rgba(255,255,255,.22) !important;
 }
 
-@keyframes clock-halo-sweep {
-  0% { opacity: .74; transform: rotate(-2deg) scale(.995); }
-  100% { opacity: 1; transform: rotate(3deg) scale(1.006); }
+.marker.round {
+  width: 15px !important;
+  height: 15px !important;
 }
 
-@keyframes clock-face-sheen {
-  0% { opacity: .78; transform: rotate(-1deg); }
-  100% { opacity: 1; transform: rotate(1.25deg); }
+.marker.bar {
+  width: 10px !important;
+  height: 27px !important;
 }
 
-@keyframes clock-ring-breathe {
-  0%, 100% { opacity: .72; transform: scale(.995); }
-  50% { opacity: 1; transform: scale(1.008); }
+.marker.m12 {
+  width: 22px !important;
+  height: 24px !important;
 }
 
-@keyframes clock-orbit-drift {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.watch-hand.hour {
+  width: 8px !important;
+  height: 67px !important;
 }
 
-@keyframes clock-dollar-pulse {
-  0%, 100% { opacity: .28; }
-  50% { opacity: .72; }
+.watch-hand.minute {
+  width: 6px !important;
+  height: 97px !important;
 }
 
-.review-card {
-  position: relative;
-  overflow: hidden;
-  animation: review-card-in .72s cubic-bezier(.2,.8,.2,1) both;
-  transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
+.watch-hand.second {
+  width: 2px !important;
+  height: 110px !important;
 }
 
-.review-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, transparent 0%, rgba(22,137,249,.08) 38%, rgba(255,255,255,.74) 50%, transparent 62%);
-  opacity: 0;
-  transform: translateX(-55%);
-  transition: opacity .26s ease, transform .5s ease;
-  pointer-events: none;
+.watch-center {
+  width: 22px !important;
+  height: 22px !important;
 }
 
-.review-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(22,137,249,.18);
-  box-shadow: 0 30px 86px rgba(28,45,72,.13);
-}
-
-.review-card:hover::before {
-  opacity: 1;
-  transform: translateX(55%);
-}
-
-@keyframes review-card-in {
-  0% { opacity: 0; transform: translateY(16px) scale(.985); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-#top .mt-2 > a,
-.footer-cta .mt-8 > a {
-  border-color: #FEEC1E !important;
-  background: #FEEC1E !important;
-  color: #111318 !important;
-  box-shadow: 0 10px 28px rgba(254, 236, 30, .32) !important;
-}
-
-#top .mt-2 > a:hover,
-.footer-cta .mt-8 > a:hover {
-  box-shadow: 0 14px 34px rgba(254, 236, 30, .42) !important;
-}
-
-#top .mt-2 > a span,
-.footer-cta .mt-8 > a span {
-  background: #111318 !important;
-  color: #FEEC1E !important;
-}
-
-.partner-logo-card {
-  display: grid !important;
-  place-items: center;
-  flex: 0 0 auto;
-}
-
-.partner-logo-card:nth-child(1),
-.partner-logo-card:nth-child(9) {
-  height: 38px !important;
-}
-
-.partner-logo-card:nth-child(2),
-.partner-logo-card:nth-child(8) {
-  height: 42px !important;
-}
-
-.partner-logo-card:nth-child(3),
-.partner-logo-card:nth-child(7) {
-  height: 46px !important;
-}
-
-.partner-logo-card:nth-child(4),
-.partner-logo-card:nth-child(6) {
-  height: 50px !important;
-}
-
-.partner-logo-card:nth-child(5) {
-  height: 56px !important;
-}
-
-.partner-logo-card-square:nth-child(2),
-.partner-logo-card-square:nth-child(8) {
-  width: 44px !important;
-}
-
-.partner-logo-card-square:nth-child(3),
-.partner-logo-card-square:nth-child(7) {
-  width: 48px !important;
-}
-
-.partner-logo-card-wide:nth-child(4),
-.partner-logo-card-square:nth-child(6) {
-  width: 54px !important;
-}
-
-.partner-logo-card-square:nth-child(5) {
-  width: 60px !important;
-}
-
-.partner-logo-card img {
-  width: 86% !important;
-  height: 86% !important;
-  object-fit: contain;
-  transform: scale(1.08);
-}
-
-.partner-logo-card:nth-child(5) img {
-  width: 92% !important;
-  height: 92% !important;
-  transform: scale(1.1);
-}
-
-@media (max-width: 760px) {
-  .footer-light {
-    width: 520px;
-    opacity: .7;
-  }
-
-  .partner-logo-card:nth-child(n) {
-    transform: scale(.92);
-  }
-}
-
-/* Premium footer clock v2: sharper dark dial, internal lighting, and cleaner brand accents. */
-.footer-cta {
-  background:
-    radial-gradient(circle at 31% 46%, rgba(44, 78, 255, .22), transparent 26%),
-    radial-gradient(circle at 24% 45%, rgba(254, 236, 30, .065), transparent 20%),
-    radial-gradient(circle at 75% 34%, rgba(254, 236, 30, .05), transparent 22%),
-    linear-gradient(90deg, transparent 0 23%, rgba(255,255,255,.035) 23.08% 23.18%, transparent 23.28%),
-    linear-gradient(180deg, rgba(255,255,255,.04) 0 1px, transparent 1px 52%),
-    linear-gradient(180deg, #070914 0%, #050507 100%) !important;
-}
-
-.footer-clock-wrap {
-  min-height: 430px;
-  transform-style: preserve-3d;
-}
-
-.footer-clock-wrap::before {
-  content: "";
-  position: absolute;
-  width: min(640px, 92vw);
-  height: min(470px, 70vw);
-  border-radius: 50%;
-  background:
-    radial-gradient(ellipse at 48% 48%, rgba(42, 70, 210, .28), transparent 36%),
-    radial-gradient(ellipse at 42% 44%, rgba(254, 236, 30, .08), transparent 28%),
-    linear-gradient(90deg, transparent, rgba(255,255,255,.055), transparent);
-  filter: blur(18px);
-  opacity: .88;
-  z-index: -4;
-}
-
-.footer-light {
-  height: 210px;
-  opacity: .34;
-  filter: blur(10px) saturate(1.12);
-}
-
-.footer-light-orange {
-  right: 53%;
-  background:
-    linear-gradient(90deg, transparent 0%, rgba(254, 236, 30, .08) 28%, rgba(255, 105, 45, .30) 100%) !important;
-  clip-path: polygon(0 30%, 100% 48%, 100% 58%, 0 42%);
-}
-
-.footer-light-blue {
-  left: 49%;
-  background:
-    linear-gradient(90deg, rgba(71, 99, 255, .48) 0%, rgba(55, 84, 255, .18) 56%, transparent 100%) !important;
-  clip-path: polygon(0 53%, 100% 74%, 100% 88%, 0 66%);
-}
-
-.footer-clock {
-  --clock-orbit: min(218px, 37vw);
-  width: min(430px, 78vw) !important;
-  border: 1px solid rgba(128, 151, 255, .13);
-  transform: rotateX(9deg) rotateZ(-1.8deg);
-  background:
-    radial-gradient(circle at 50% 50%, rgba(254, 236, 30, .035), transparent 8%),
-    radial-gradient(circle at 43% 50%, rgba(255, 105, 50, .18), transparent 29%),
-    radial-gradient(circle at 63% 40%, rgba(73, 105, 255, .28), transparent 37%),
-    radial-gradient(circle at 50% 50%, rgba(255,255,255,.07), transparent 46%),
-    repeating-conic-gradient(from -90deg, rgba(255,255,255,.12) 0deg .7deg, transparent .8deg 6deg),
-    linear-gradient(145deg, #191b2d 0%, #080b18 52%, #030407 100%) !important;
-  background-blend-mode: screen, screen, screen, screen, soft-light, normal;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.16),
-    inset 0 0 0 8px rgba(255,255,255,.035),
-    inset 0 0 0 20px rgba(0,0,0,.54),
-    inset 0 -68px 110px rgba(0,0,0,.44),
-    0 44px 150px rgba(0,0,0,.88),
-    0 0 68px rgba(58, 87, 255, .18) !important;
-}
-
-.footer-clock::before {
-  inset: 21px !important;
-  background:
-    conic-gradient(from -85deg,
-      transparent 0deg 15deg,
-      rgba(254, 236, 30, .48) 20deg,
-      rgba(255, 119, 58, .98) 38deg,
-      rgba(255, 238, 207, .95) 56deg,
-      transparent 72deg 133deg,
-      rgba(61, 99, 255, .96) 144deg,
-      rgba(101, 126, 255, .90) 229deg,
-      rgba(254, 236, 30, .34) 247deg,
-      transparent 263deg 360deg),
-    repeating-conic-gradient(from -90deg, rgba(255,255,255,.26) 0deg .7deg, transparent .7deg 10deg) !important;
-  -webkit-mask-image: radial-gradient(circle, transparent 0 69.8%, #000 70.5% 75.2%, transparent 76%);
-  mask-image: radial-gradient(circle, transparent 0 69.8%, #000 70.5% 75.2%, transparent 76%);
-  filter:
-    drop-shadow(0 0 13px rgba(254, 236, 30, .25))
-    drop-shadow(0 0 18px rgba(255, 104, 48, .65))
-    drop-shadow(0 0 25px rgba(69, 101, 255, .78)) !important;
-  animation: premium-arc-glow 6.8s ease-in-out infinite alternate !important;
-}
-
-.footer-clock::after {
-  inset: 14px !important;
-  background:
-    linear-gradient(115deg, rgba(255,255,255,.14), transparent 20%, transparent 64%, rgba(255,255,255,.06)),
-    radial-gradient(circle at 44% 31%, rgba(255,255,255,.14), transparent 23%),
-    radial-gradient(circle at 56% 60%, rgba(254,236,30,.035), transparent 42%) !important;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.055),
-    inset 0 -44px 80px rgba(0,0,0,.40);
-  opacity: .92;
-}
-
-.clock-brand {
-  inset: 32% !important;
-  color: rgba(31, 72, 224, .98) !important;
-  background:
-    radial-gradient(circle at 48% 42%, rgba(254, 236, 30, .09), transparent 18%),
-    radial-gradient(circle at 50% 48%, rgba(50, 92, 255, .78), rgba(25, 52, 150, .38) 47%, rgba(7, 10, 25, .10) 72%) !important;
-  font-size: clamp(104px, 10.4vw, 148px) !important;
-  text-shadow:
-    0 0 20px rgba(55, 93, 255, .62),
-    0 2px 0 rgba(255,255,255,.05);
-  box-shadow:
-    inset 0 0 0 1px rgba(137, 158, 255, .16),
-    inset 0 -18px 38px rgba(0,0,0,.42),
-    0 0 42px rgba(46, 83, 255, .34) !important;
-}
-
-.clock-brand::after {
-  content: "";
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #FEEC1E;
-  right: 23%;
-  bottom: 33%;
-  box-shadow: 0 0 18px rgba(254, 236, 30, .75);
-}
-
-.clock-dollar-mark {
-  color: rgba(74, 108, 255, .42);
-  font-size: 12px;
-  text-shadow:
-    0 0 12px rgba(73, 105, 255, .58),
-    0 0 22px rgba(254, 236, 30, .10);
-}
-
-.clock-tick {
-  color: rgba(141, 158, 255, .50) !important;
-}
-
-.clock-hand-hour {
-  height: 125px !important;
-  width: 3px !important;
-  background: linear-gradient(180deg, #ff7445 0%, rgba(254, 236, 30, .24) 42%, rgba(255, 117, 66, .10) 100%) !important;
-  box-shadow: 0 0 18px rgba(255, 105, 50, .74) !important;
-}
-
-.clock-hand-minute {
-  height: 160px !important;
-  width: 4px !important;
-  background: linear-gradient(180deg, #dce2ff 0%, rgba(255,255,255,.40) 100%) !important;
-}
-
-.clock-hand-second {
-  height: 170px !important;
-  background: linear-gradient(180deg, #ffffff 0%, rgba(254,236,30,.42) 52%, rgba(255,255,255,.26) 100%) !important;
-  box-shadow: 0 0 15px rgba(254, 236, 30, .22), 0 0 13px rgba(255,255,255,.45) !important;
-}
-
-.clock-center {
-  height: 26px !important;
-  width: 26px !important;
-  background:
-    radial-gradient(circle, #112ad3 0 22%, #060b1b 23% 56%, #FEEC1E 57% 68%, #101426 69%) !important;
-  box-shadow:
-    0 0 0 4px rgba(79, 111, 255, .28),
-    0 0 24px rgba(66, 99, 255, .55),
-    8px 5px 18px rgba(254, 236, 30, .34) !important;
-}
-
-.clock-ring-inner {
-  inset: 67px !important;
-}
-
-.clock-ring-outer {
-  inset: -7px !important;
-  border-color: rgba(140, 158, 255, .16) !important;
-}
-
-.clock-glow-orange,
-.clock-glow-blue {
-  opacity: .92;
-}
-
-@keyframes premium-arc-glow {
-  0% { opacity: .72; transform: rotate(-2.5deg) scale(.994); }
-  45% { opacity: 1; }
-  100% { opacity: .92; transform: rotate(2deg) scale(1.006); }
-}
-
-.partner-logo-card:nth-child(1),
-.partner-logo-card:nth-child(9) {
-  height: 44px !important;
-}
-
-.partner-logo-card:nth-child(2),
-.partner-logo-card:nth-child(8) {
-  height: 48px !important;
-}
-
-.partner-logo-card:nth-child(3),
-.partner-logo-card:nth-child(7) {
-  height: 52px !important;
-}
-
-.partner-logo-card:nth-child(4),
-.partner-logo-card:nth-child(6) {
-  height: 56px !important;
-}
-
-.partner-logo-card:nth-child(5) {
-  height: 62px !important;
-}
-
-.partner-logo-card-square:nth-child(2),
-.partner-logo-card-square:nth-child(8) {
-  width: 50px !important;
-}
-
-.partner-logo-card-square:nth-child(3),
-.partner-logo-card-square:nth-child(7) {
-  width: 54px !important;
-}
-
-.partner-logo-card-wide:nth-child(4),
-.partner-logo-card-square:nth-child(6) {
-  width: 60px !important;
-}
-
-.partner-logo-card-square:nth-child(5) {
-  width: 66px !important;
-}
-
-.partner-logo-card-brand {
-  width: 108px !important;
-}
-
-.partner-logo-card-adrock {
-  width: 112px !important;
-}
-
-@media (max-width: 760px) {
-  .footer-clock-wrap {
-    min-height: 340px;
-  }
-
-  .footer-clock {
-    width: min(340px, 86vw) !important;
-  }
-
-  .partner-logo-card:nth-child(n) {
-    transform: scale(.98);
-  }
+@media (max-width: 680px) {
+  .luxury-watch-scene { min-height: 340px !important; }
+  .watch-case { width: min(300px, 78vw) !important; }
 }

@@ -8,6 +8,7 @@ import {
   Linkedin,
   Mail,
   MessageCircle,
+  Quote,
   Send,
   ShieldCheck,
   Target,
@@ -61,6 +62,7 @@ const reviews = [
     avatar: 'https://i.pravatar.cc/120?img=36',
     title: 'TikTok Ads Manager Pixel Setup & First Ad Launch',
     quote: 'Shakil has helped me to setup my TikTok Pixel and configured it with GTM. He is someone who I can rely on for my future projects regarding GTM and GA4 Tracking Setup.',
+    result: 'Pixel + GTM configured',
   },
   {
     platform: 'Upwork',
@@ -69,6 +71,7 @@ const reviews = [
     avatar: 'https://i.pravatar.cc/120?img=23',
     title: 'Tracking analytics and data',
     quote: 'Great skills, helped a lot with Facebook and Meta ads tracking. Highly recommend.',
+    result: 'Meta tracking fixed',
   },
   {
     platform: 'Upwork',
@@ -77,6 +80,7 @@ const reviews = [
     avatar: 'https://i.pravatar.cc/120?img=11',
     title: 'Facebook CRM and Conversion API Configuration',
     quote: 'Great work! Thank you.',
+    result: 'CRM + CAPI connected',
   },
   {
     platform: 'Upwork',
@@ -85,6 +89,7 @@ const reviews = [
     avatar: 'https://i.pravatar.cc/120?img=49',
     title: 'Conversions API & Catalog Setup',
     quote: 'Good work done. Appreciate it.',
+    result: 'Catalog signal improved',
   },
   {
     platform: 'Fiverr',
@@ -93,6 +98,7 @@ const reviews = [
     avatar: 'https://i.pravatar.cc/120?img=15',
     title: 'GTM, Analytics & Pinterest Conversion Tracking',
     quote: 'Shakil was absolutely fantastic. He is very technical and good at his job. He knows everything about Google Tag Manager, Google Analytics and conversions linking this to Pinterest.',
+    result: 'Analytics + Pinterest setup',
   },
   {
     platform: 'Fiverr',
@@ -101,6 +107,7 @@ const reviews = [
     avatar: 'https://i.pravatar.cc/120?img=18',
     title: 'API Setup Collaboration',
     quote: 'He has very deep knowledge to set up the API. I am impressed by his technical skillset and his collaboration. I will get back to you soon.',
+    result: 'API tracking support',
   },
   {
     platform: 'LinkedIn',
@@ -109,7 +116,14 @@ const reviews = [
     avatar: 'https://i.pravatar.cc/120?img=52',
     title: 'LinkedIn Recommendation',
     quote: 'His expertise in conversion tracking, data accuracy, and platform integrations is outstanding. He quickly identifies issues others miss and implements clean, reliable tracking that gives real clarity on performance.',
+    result: 'Reliable performance data',
   },
+];
+
+const reviewStats = [
+  ['500+', 'tracking setups'],
+  ['5.0', 'average rating'],
+  ['3', 'proof channels'],
 ];
 
 const faqs = [
@@ -155,6 +169,7 @@ a { color: inherit; text-decoration: none; }
 .creator-row img { width: 42px; height: 42px; border-radius: 999px; object-fit: cover; border: 2px solid #fff; box-shadow: 0 12px 28px rgba(0,0,0,.12); }
 .creator-row strong { display: block; font-size: 15px; }
 .creator-row small { color: #64748b; }
+stats { display: grid; }
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 38px; max-width: 520px; padding: 23px 22px; border-radius: 18px; background: rgba(255,255,255,.96); border: 1px solid rgba(15,23,42,.1); box-shadow: 0 22px 70px rgba(28,45,72,.09); }
 .stats strong { display: block; color: #1689f9; font-size: 28px; line-height: 1; }
 .stats small { display: block; margin-top: 7px; color: #64748b; font-size: 11px; }
@@ -184,14 +199,33 @@ a { color: inherit; text-decoration: none; }
 .service-card { padding: 28px; border-radius: 26px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); min-height: 210px; }
 .service-card h3 { margin: 0; font-size: 24px; line-height: 1.1; }
 .service-card p { color: rgba(255,255,255,.62); line-height: 1.65; }
-.reviews { background: #f6f8fb; }
-.review-card { position: relative; overflow: hidden; min-height: 335px; padding: 28px; border-radius: 24px; background: linear-gradient(180deg,#fff,#fbfdff); border: 1px solid rgba(15,23,42,.08); box-shadow: 0 24px 80px rgba(28,45,72,.09); transition: transform .25s ease, box-shadow .25s ease; }
-.review-card:hover { transform: translateY(-6px); box-shadow: 0 34px 100px rgba(28,45,72,.14); }
+.reviews { position: relative; overflow: hidden; background: linear-gradient(180deg,#f7fafc,#eef3f8); }
+.reviews::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 18% 18%, rgba(254,236,30,.22), transparent 24%), radial-gradient(circle at 82% 4%, rgba(15,23,42,.10), transparent 28%); pointer-events: none; }
+.reviews .container { position: relative; z-index: 1; }
+.review-showcase { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(320px, .92fr); gap: 22px; align-items: stretch; margin-bottom: 22px; }
+.review-feature { display: grid; align-content: space-between; min-height: 380px; padding: 34px; border-radius: 28px; background: #050507; color: white; box-shadow: 0 34px 110px rgba(5,5,7,.2); }
+.review-feature svg { color: var(--brand); filter: drop-shadow(0 0 18px rgba(254,236,30,.4)); }
+.review-feature h3 { max-width: 760px; margin: 26px 0 0; font-size: clamp(30px, 3.6vw, 56px); line-height: .98; font-weight: 950; }
+.review-feature p { max-width: 760px; margin: 20px 0 0; color: rgba(255,255,255,.7); font-size: 18px; line-height: 1.75; }
+.review-feature .client { border-color: rgba(255,255,255,.12); }
+.review-feature .client small { color: rgba(255,255,255,.55); }
+.review-panel { display: grid; gap: 14px; }
+.review-score { padding: 26px; border-radius: 24px; background: white; border: 1px solid rgba(15,23,42,.08); box-shadow: 0 24px 80px rgba(28,45,72,.09); }
+.review-score strong { display: block; font-size: 48px; line-height: .9; font-weight: 950; }
+.review-score p { margin-top: 10px; color: #64748b; line-height: 1.55; }
+.review-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.review-stat { min-height: 108px; padding: 16px; border-radius: 18px; background: rgba(255,255,255,.72); border: 1px solid rgba(15,23,42,.08); }
+.review-stat strong { display: block; font-size: 29px; line-height: 1; font-weight: 950; }
+.review-stat small { display: block; margin-top: 8px; color: #64748b; font-weight: 750; line-height: 1.25; }
+.review-card { position: relative; overflow: hidden; min-height: 330px; padding: 26px; border-radius: 22px; background: rgba(255,255,255,.9); border: 1px solid rgba(15,23,42,.08); box-shadow: 0 24px 80px rgba(28,45,72,.08); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.review-card::before { content: ''; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg,var(--brand),#111827); opacity: .82; }
+.review-card:hover { transform: translateY(-6px); border-color: rgba(15,23,42,.16); box-shadow: 0 34px 100px rgba(28,45,72,.14); }
 .review-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.platform { border-radius: 999px; background: #050507; color: #fff; padding: 6px 11px; font-size: 12px; font-weight: 950; text-transform: uppercase; }
+.platform { border-radius: 999px; background: #050507; color: #fff; padding: 7px 12px; font-size: 12px; font-weight: 950; text-transform: uppercase; }
 .stars { color: #f2a900; font-size: 14px; font-weight: 950; white-space: nowrap; }
-.review-card h3 { margin: 26px 0 0; font-size: 23px; line-height: 1.08; font-weight: 950; }
+.review-card h3 { margin: 24px 0 0; font-size: 22px; line-height: 1.08; font-weight: 950; }
 .review-card p { color: #475569; line-height: 1.72; }
+.review-result { display: inline-flex; align-items: center; min-height: 34px; margin-top: 18px; padding: 0 12px; border-radius: 999px; background: #fff9bf; color: #111827; font-size: 12px; font-weight: 950; }
 .client { display: flex; align-items: center; gap: 13px; margin-top: 24px; padding-top: 18px; border-top: 1px solid #eef2f7; }
 .client img { width: 48px; height: 48px; border-radius: 999px; object-fit: cover; border: 2px solid #fff; box-shadow: 0 12px 28px rgba(15,23,42,.14); }
 .client strong { display: block; }
@@ -275,8 +309,8 @@ details p { color: rgba(255,255,255,.62); line-height: 1.7; }
 @keyframes watchPulse { from { opacity: .66; transform: scale(.97); } to { opacity: 1; transform: scale(1.03); } }
 @keyframes bezelShine { from { opacity: .66; transform: rotate(-5deg); } to { opacity: 1; transform: rotate(5deg); } }
 @keyframes glassSweep { 0%,100% { opacity: .4; transform: translateX(-10%) rotate(-12deg); } 50% { opacity: .8; transform: translateX(8%) rotate(-12deg); } }
-@media (max-width: 980px) { .split, .contact-layout, .footer-grid { grid-template-columns: 1fr; } .service-grid, .review-grid { grid-template-columns: 1fr 1fr; } .footer-copy { text-align: center; margin: 0 auto; } .footer .btn { margin: 0 auto; } }
-@media (max-width: 680px) { .hero h1 { font-size: 38px; } .section { padding: 72px 16px; } .service-grid, .review-grid, .stats { grid-template-columns: 1fr; } .check-card { transform: none; } .luxury-watch-scene { min-height: 400px; } .watch-case { width: min(310px, 78vw); } .watch-bracelet { width: 160px; height: 92px; } .watch-bracelet.top { top: 18px; } .watch-bracelet.bottom { bottom: 18px; } .dial-logo { font-size: 48px; } .date-window { right: 16px; min-width: 28px; height: 23px; font-size: 12px; } }
+@media (max-width: 980px) { .split, .contact-layout, .footer-grid, .review-showcase { grid-template-columns: 1fr; } .service-grid, .review-grid { grid-template-columns: 1fr 1fr; } .footer-copy { text-align: center; margin: 0 auto; } .footer .btn { margin: 0 auto; } }
+@media (max-width: 680px) { .hero h1 { font-size: 38px; } .section { padding: 72px 16px; } .service-grid, .review-grid, .review-stats, .stats { grid-template-columns: 1fr; } .review-feature, .review-score, .review-card { border-radius: 20px; padding: 22px; } .review-feature { min-height: auto; } .check-card { transform: none; } .luxury-watch-scene { min-height: 400px; } .watch-case { width: min(310px, 78vw); } .watch-bracelet { width: 160px; height: 92px; } .watch-bracelet.top { top: 18px; } .watch-bracelet.bottom { bottom: 18px; } .dial-logo { font-size: 48px; } .date-window { right: 16px; min-width: 28px; height: 23px; font-size: 12px; } }
 `;
 
 function getClockAngles(date = new Date()) {
@@ -480,14 +514,41 @@ function SectionTitle({ eyebrow, title, copy }) {
 }
 
 function Reviews() {
+  const featuredReview = reviews[6];
+  const visibleReviews = reviews.slice(0, 6);
+
   return (
     <section className="section reviews">
       <div className="container">
-        <SectionTitle eyebrow="Client proof" title={<span>What Clients <span style={{ color: '#9aa3b2' }}>Say About Me</span></span>} copy="Proof from tracking, analytics, pixel, API, and conversion setup projects across Upwork, Fiverr, and LinkedIn." />
+        <SectionTitle eyebrow="Client proof" title={<span>Real clients. Real <span style={{ color: '#9aa3b2' }}>tracking fixes.</span></span>} copy="Proof from Upwork, Fiverr, and LinkedIn projects across GTM, GA4, Meta Pixel, CAPI, API, and conversion tracking." />
+        <div className="review-showcase">
+          <article className="review-feature">
+            <div>
+              <Quote size={42} />
+              <h3>{featuredReview.title}</h3>
+              <p>“{featuredReview.quote}”</p>
+            </div>
+            <div className="client">
+              <img src={featuredReview.avatar} alt={featuredReview.name} />
+              <div><strong>{featuredReview.name}</strong><small>{featuredReview.role}</small></div>
+            </div>
+          </article>
+          <div className="review-panel">
+            <div className="review-score">
+              <span className="platform">Multi-platform proof</span>
+              <strong>★★★★★</strong>
+              <p>Clients hire me when their ad platforms need clean conversion data, better event quality, and tracking they can trust before scaling spend.</p>
+            </div>
+            <div className="review-stats">
+              {reviewStats.map(([value, label]) => <div className="review-stat" key={label}><strong>{value}</strong><small>{label}</small></div>)}
+            </div>
+          </div>
+        </div>
         <div className="review-grid">
-          {reviews.map((review) => <article className="review-card" key={review.title}>
+          {visibleReviews.map((review) => <article className="review-card" key={review.title}>
             <div className="review-top"><span className="platform">{review.platform}</span><span className="stars">★★★★★ 5.0</span></div>
             <h3>{review.title}</h3><p>“{review.quote}”</p>
+            <span className="review-result">{review.result}</span>
             <div className="client"><img src={review.avatar} alt={review.name} /><div><strong>{review.name}</strong><small>{review.role}</small></div></div>
           </article>)}
         </div>

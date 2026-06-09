@@ -1,0 +1,180 @@
+.reviews {
+  background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 52%, #e5ebf2 100%) !important;
+}
+
+.reviews::before {
+  background:
+    linear-gradient(115deg, rgba(254,236,30,.34), transparent 24%),
+    linear-gradient(90deg, rgba(15,23,42,.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(15,23,42,.06) 1px, transparent 1px) !important;
+  background-size: auto, 82px 82px, 82px 82px !important;
+}
+
+.reviews::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 155px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(15,23,42,.18), transparent);
+  pointer-events: none;
+}
+
+.review-proof-strip {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: -28px auto 34px;
+}
+
+.proof-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.78);
+  border: 1px solid rgba(15,23,42,.1);
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow: 0 18px 46px rgba(28,45,72,.08);
+  backdrop-filter: blur(10px);
+}
+
+.proof-chip::before {
+  content: '✓';
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #111827;
+  color: #FEEC1E;
+  font-size: 12px;
+}
+
+.review-feature {
+  position: relative !important;
+  min-height: 410px !important;
+  overflow: hidden !important;
+  background: linear-gradient(145deg, #050507 0%, #10131a 62%, #050507 100%) !important;
+  box-shadow: 0 38px 120px rgba(5,5,7,.24) !important;
+}
+
+.review-feature::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(125deg, rgba(254,236,30,.22), transparent 24%, transparent 70%, rgba(255,255,255,.07));
+  pointer-events: none;
+}
+
+.review-feature::after {
+  content: 'PROOF';
+  position: absolute;
+  right: -18px;
+  bottom: -16px;
+  color: rgba(255,255,255,.045);
+  font-size: 128px;
+  line-height: .8;
+  font-weight: 950;
+  pointer-events: none;
+}
+
+.review-feature > * {
+  position: relative;
+  z-index: 1;
+}
+
+.review-score {
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 28px !important;
+  background: rgba(255,255,255,.9) !important;
+}
+
+.review-score::after {
+  content: '';
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 76px;
+  height: 76px;
+  border-radius: 18px;
+  border: 1px solid rgba(15,23,42,.08);
+  background: repeating-linear-gradient(135deg, rgba(15,23,42,.11) 0 2px, transparent 2px 8px);
+  opacity: .38;
+  transform: rotate(8deg);
+}
+
+.review-card {
+  min-height: 344px !important;
+  padding: 28px !important;
+  border-radius: 24px !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.86)) !important;
+  box-shadow: 0 28px 90px rgba(28,45,72,.1) !important;
+  backdrop-filter: blur(10px);
+}
+
+.review-card::before {
+  height: 5px !important;
+  background: linear-gradient(90deg, var(--brand), #111827 74%, transparent) !important;
+  opacity: .95 !important;
+}
+
+.review-card::after {
+  content: '”';
+  position: absolute;
+  right: 18px;
+  bottom: -38px;
+  color: rgba(15,23,42,.05);
+  font-size: 132px;
+  line-height: 1;
+  font-weight: 950;
+  pointer-events: none;
+}
+
+.review-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 40px 120px rgba(28,45,72,.16) !important;
+}
+
+.wall-clock-scene { position: relative; min-height: 520px; display: grid; place-items: center; isolation: isolate; }
+.wall-clock-scene::before { content: ''; position: absolute; inset: 12% 2% 8%; border-radius: 42px; background: linear-gradient(135deg, rgba(255,255,255,.12), transparent 44%), linear-gradient(90deg, rgba(254,236,30,.18), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.08); transform: rotate(-4deg); }
+.wall-clock-scene::after { content: ''; position: absolute; width: min(470px, 84vw); height: 86px; bottom: 26px; border-radius: 50%; background: rgba(0,0,0,.54); filter: blur(30px); z-index: -1; }
+.wall-clock-frame { position: relative; width: min(440px, 82vw); aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; transform: rotate(-4deg); filter: drop-shadow(0 36px 60px rgba(0,0,0,.48)); background: #0b0d10; box-shadow: inset 0 0 0 6px #171a1f, inset 0 0 0 13px #050608, 0 0 0 1px rgba(255,255,255,.1); }
+.wall-clock-frame::before { content: ''; position: absolute; inset: -18px; border-radius: 50%; background: conic-gradient(from 210deg, rgba(255,255,255,.18), rgba(255,255,255,.03), rgba(254,236,30,.22), rgba(255,255,255,.08)); opacity: .7; z-index: -1; }
+.wall-clock-face { position: absolute; inset: 28px; border-radius: 50%; overflow: hidden; background: radial-gradient(circle at 44% 38%, rgba(255,255,255,.62), transparent 24%), radial-gradient(circle at 64% 72%, rgba(0,0,0,.08), transparent 22%), #f1eee4; box-shadow: inset 0 0 32px rgba(0,0,0,.18), inset 0 0 0 1px rgba(255,255,255,.55); }
+.wall-clock-face::before { content: ''; position: absolute; inset: 22%; border-radius: 50%; border: 2px solid rgba(17,24,39,.52); opacity: .6; }
+.clock-number { position: absolute; left: 50%; top: 50%; width: 82px; height: 82px; margin: -41px; display: grid; place-items: center; color: #111318; font-size: clamp(46px, 7.5vw, 76px); line-height: 1; font-weight: 950; transform: rotate(var(--angle)) translateY(-164px) rotate(calc(-1 * var(--angle))); }
+.clock-number.n12 { --angle: 0deg; } .clock-number.n1 { --angle: 30deg; } .clock-number.n2 { --angle: 60deg; } .clock-number.n3 { --angle: 90deg; } .clock-number.n4 { --angle: 120deg; } .clock-number.n5 { --angle: 150deg; } .clock-number.n6 { --angle: 180deg; } .clock-number.n7 { --angle: 210deg; } .clock-number.n8 { --angle: 240deg; } .clock-number.n9 { --angle: 270deg; } .clock-number.n10 { --angle: 300deg; } .clock-number.n11 { --angle: 330deg; }
+.minute-tick { position: absolute; left: 50%; top: 50%; width: 4px; height: 25px; margin-left: -2px; margin-top: -12px; border-radius: 999px; background: #111318; transform: rotate(calc(var(--i) * 6deg)) translateY(-110px); transform-origin: 50% 50%; opacity: .95; }
+.minute-tick.major { width: 5px; height: 38px; margin-left: -2.5px; margin-top: -19px; }
+.minute-number { position: absolute; left: 50%; top: 50%; width: 42px; height: 32px; margin: -16px -21px; display: grid; place-items: center; color: #111318; font-size: 22px; font-weight: 850; transform: rotate(var(--angle)) translateY(-86px) rotate(calc(-1 * var(--angle))); }
+.minute-number.m60 { --angle: 0deg; } .minute-number.m5 { --angle: 30deg; } .minute-number.m10 { --angle: 60deg; } .minute-number.m15 { --angle: 90deg; } .minute-number.m20 { --angle: 120deg; } .minute-number.m25 { --angle: 150deg; } .minute-number.m30 { --angle: 180deg; } .minute-number.m35 { --angle: 210deg; } .minute-number.m40 { --angle: 240deg; } .minute-number.m45 { --angle: 270deg; } .minute-number.m50 { --angle: 300deg; } .minute-number.m55 { --angle: 330deg; }
+.clock-hand { position: absolute; left: 50%; top: 50%; height: 14px; border-radius: 999px; background: #111318; transform-origin: 8px 50%; box-shadow: 0 8px 13px rgba(0,0,0,.22); }
+.clock-hand.minute { width: 174px; transform: translate(-8px,-50%) rotate(-150deg); }
+.clock-hand.hour { width: 184px; height: 13px; transform: translate(-8px,-50%) rotate(-28deg); }
+.clock-center-dot { position: absolute; left: 50%; top: 50%; width: 34px; height: 34px; border-radius: 50%; background: #111318; transform: translate(-50%, -50%); box-shadow: 0 8px 22px rgba(0,0,0,.28); }
+.wall-clock-caption { position: absolute; right: -18px; bottom: 42px; max-width: 210px; padding: 14px 16px; border-radius: 18px; background: rgba(255,255,255,.9); color: #0f172a; border: 1px solid rgba(255,255,255,.22); box-shadow: 0 22px 60px rgba(0,0,0,.22); }
+.wall-clock-caption strong { display: block; font-size: 13px; font-weight: 950; text-transform: uppercase; }
+.wall-clock-caption small { display: block; margin-top: 5px; color: #475569; font-weight: 750; line-height: 1.35; }
+
+@media (max-width: 680px) {
+  .review-proof-strip { margin-top: -20px; }
+  .proof-chip { width: 100%; justify-content: center; }
+  .review-feature::after { font-size: 82px; }
+  .wall-clock-scene { min-height: 400px; }
+  .wall-clock-frame { width: min(320px, 82vw); }
+  .clock-number { width: 56px; height: 56px; margin: -28px; font-size: 44px; transform: rotate(var(--angle)) translateY(-112px) rotate(calc(-1 * var(--angle))); }
+  .minute-tick { height: 17px; margin-top: -8px; transform: rotate(calc(var(--i) * 6deg)) translateY(-76px); }
+  .minute-tick.major { height: 26px; margin-top: -13px; }
+  .minute-number { font-size: 15px; transform: rotate(var(--angle)) translateY(-58px) rotate(calc(-1 * var(--angle))); }
+  .clock-hand.minute { width: 118px; }
+  .clock-hand.hour { width: 126px; }
+  .wall-clock-caption { right: 8px; bottom: 18px; max-width: 180px; }
+}

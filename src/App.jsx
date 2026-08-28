@@ -27,13 +27,17 @@ const web3formsAccessKey = 'fbbc127d-3482-4ca9-a1dc-6cf9feea76b0';
 const profileImage = './images/Shakil.jpg';
 const pinImage = 'https://framerusercontent.com/images/wUciDkb7amyTwaAe0wqiFkjra0M.png?width=362&height=354';
 
-const avatars = [
-  'https://i.pravatar.cc/96?img=12',
-  'https://i.pravatar.cc/96?img=32',
-  'https://i.pravatar.cc/96?img=15',
-  'https://i.pravatar.cc/96?img=47',
-  'https://i.pravatar.cc/96?img=59',
-];
+const avatarPalette = ['#0e6f3c', '#155e38', '#0f172a', '#3d4d6b', '#4a3a0f'];
+
+function initials(name) {
+  return name.split(' ').filter(Boolean).slice(0, 2).map((word) => word[0].toUpperCase()).join('');
+}
+
+function Avatar({ name }) {
+  const hash = [...name].reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  const background = avatarPalette[hash % avatarPalette.length];
+  return <span className="avatar-badge" style={{ background }}>{initials(name)}</span>;
+}
 
 const partnerTools = [
   { name: 'SCALIXAI', text: 'SCALIXAI' },
@@ -59,7 +63,6 @@ const reviews = [
     platform: 'Upwork',
     name: 'Upwork Client',
     role: 'TikTok Pixel & GTM setup',
-    avatar: 'https://i.pravatar.cc/120?img=36',
     title: 'TikTok Ads Manager Pixel Setup & First Ad Launch',
     quote: 'Shakil has helped me to setup my TikTok Pixel and configured it with GTM. He is someone who I can rely on for my future projects regarding GTM and GA4 Tracking Setup.',
     result: 'Pixel + GTM configured',
@@ -68,7 +71,6 @@ const reviews = [
     platform: 'Upwork',
     name: 'Meta Ads Client',
     role: 'Tracking analytics and data',
-    avatar: 'https://i.pravatar.cc/120?img=23',
     title: 'Tracking analytics and data',
     quote: 'Great skills, helped a lot with Facebook and Meta ads tracking. Highly recommend.',
     result: 'Meta tracking fixed',
@@ -77,7 +79,6 @@ const reviews = [
     platform: 'Upwork',
     name: 'CRM Client',
     role: 'Facebook CAPI configuration',
-    avatar: 'https://i.pravatar.cc/120?img=11',
     title: 'Facebook CRM and Conversion API Configuration',
     quote: 'Great work! Thank you.',
     result: 'CRM + CAPI connected',
@@ -86,7 +87,6 @@ const reviews = [
     platform: 'Upwork',
     name: 'Catalog Setup Client',
     role: 'Conversions API specialist',
-    avatar: 'https://i.pravatar.cc/120?img=49',
     title: 'Conversions API & Catalog Setup',
     quote: 'Good work done. Appreciate it.',
     result: 'Catalog signal improved',
@@ -95,7 +95,6 @@ const reviews = [
     platform: 'Fiverr',
     name: 'umedrahman96',
     role: 'United Kingdom',
-    avatar: 'https://i.pravatar.cc/120?img=15',
     title: 'GTM, Analytics & Pinterest Conversion Tracking',
     quote: 'Shakil was absolutely fantastic. He is very technical and good at his job. He knows everything about Google Tag Manager, Google Analytics and conversions linking this to Pinterest.',
     result: 'Analytics + Pinterest setup',
@@ -104,7 +103,6 @@ const reviews = [
     platform: 'Fiverr',
     name: 'itsharry27',
     role: 'Pakistan',
-    avatar: 'https://i.pravatar.cc/120?img=18',
     title: 'API Setup Collaboration',
     quote: 'He has very deep knowledge to set up the API. I am impressed by his technical skillset and his collaboration. I will get back to you soon.',
     result: 'API tracking support',
@@ -113,12 +111,13 @@ const reviews = [
     platform: 'LinkedIn',
     name: 'Yarne de Win',
     role: 'Google Ads, CRO & Copywriting Specialist',
-    avatar: 'https://i.pravatar.cc/120?img=52',
     title: 'LinkedIn Recommendation',
     quote: 'His expertise in conversion tracking, data accuracy, and platform integrations is outstanding. He quickly identifies issues others miss and implements clean, reliable tracking that gives real clarity on performance.',
     result: 'Reliable performance data',
   },
 ];
+
+const proofStrip = ['Verified platform reviews', 'Tracking-specific outcomes', 'Agency-ready handoff'];
 
 const reviewStats = [
   ['500+', 'tracking setups'],
@@ -151,7 +150,7 @@ a { color: inherit; text-decoration: none; }
 .proof-row svg { color: #1689f9; }
 .rating-pill { display: inline-flex; align-items: center; gap: 14px; margin-top: 50px; padding: 11px 20px; border-radius: 999px; background: #dbe4ee; box-shadow: 0 12px 26px rgba(42, 59, 82, .08); }
 .avatar-stack { display: flex; margin-left: 3px; }
-.avatar-stack img { width: 31px; height: 31px; border-radius: 999px; object-fit: cover; border: 2px solid #dbe4ee; margin-left: -8px; }
+.avatar-stack img, .avatar-stack .avatar-badge { width: 31px; height: 31px; border-radius: 999px; object-fit: cover; border: 2px solid #dbe4ee; margin-left: -8px; font-size: 11px; }
 .rating-stars { color: #f2a900; font-size: 13px; line-height: 1; }
 .rating-pill strong { display: block; margin-top: 3px; font-size: 14px; line-height: 1; text-decoration: underline; text-decoration-color: rgba(0,0,0,.35); }
 .video-stage { position: relative; width: min(720px, 86vw); margin: 48px auto 0; isolation: isolate; }
@@ -199,37 +198,47 @@ stats { display: grid; }
 .service-card { padding: 28px; border-radius: 26px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); min-height: 210px; }
 .service-card h3 { margin: 0; font-size: 24px; line-height: 1.1; }
 .service-card p { color: rgba(255,255,255,.62); line-height: 1.65; }
-.reviews { position: relative; overflow: hidden; background: linear-gradient(180deg,#f7fafc,#eef3f8); }
-.reviews::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 18% 18%, rgba(254,236,30,.22), transparent 24%), radial-gradient(circle at 82% 4%, rgba(15,23,42,.10), transparent 28%); pointer-events: none; }
+.reviews { position: relative; overflow: hidden; background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 52%, #e5ebf2 100%); }
+.reviews::before { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(254,236,30,.34), transparent 24%), linear-gradient(90deg, rgba(15,23,42,.08) 1px, transparent 1px), linear-gradient(180deg, rgba(15,23,42,.06) 1px, transparent 1px); background-size: auto, 82px 82px, 82px 82px; pointer-events: none; }
+.reviews::after { content: ''; position: absolute; left: 0; right: 0; top: 155px; height: 1px; background: linear-gradient(90deg, transparent, rgba(15,23,42,.18), transparent); pointer-events: none; }
 .reviews .container { position: relative; z-index: 1; }
+.review-proof-strip { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 26px 0 34px; }
+.proof-chip { display: inline-flex; align-items: center; min-height: 42px; padding: 0 16px; border-radius: 999px; background: rgba(255,255,255,.78); border: 1px solid rgba(15,23,42,.1); color: #0f172a; font-size: 13px; font-weight: 900; box-shadow: 0 18px 46px rgba(28,45,72,.08); backdrop-filter: blur(10px); }
+.proof-chip::before { content: '✓'; display: grid; place-items: center; width: 18px; height: 18px; margin-right: 8px; border-radius: 50%; background: #111827; color: var(--brand); font-size: 12px; }
 .review-showcase { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(320px, .92fr); gap: 22px; align-items: stretch; margin-bottom: 22px; }
-.review-feature { display: grid; align-content: space-between; min-height: 380px; padding: 34px; border-radius: 28px; background: #050507; color: white; box-shadow: 0 34px 110px rgba(5,5,7,.2); }
+.review-feature { position: relative; overflow: hidden; display: grid; align-content: space-between; min-height: 410px; padding: 34px; border-radius: 28px; background: linear-gradient(145deg, #050507 0%, #10131a 62%, #050507 100%); color: white; box-shadow: 0 38px 120px rgba(5,5,7,.24); }
+.review-feature::before { content: ''; position: absolute; inset: 0; background: linear-gradient(125deg, rgba(254,236,30,.22), transparent 24%, transparent 70%, rgba(255,255,255,.07)); pointer-events: none; }
+.review-feature::after { content: 'PROOF'; position: absolute; right: -18px; bottom: -16px; color: rgba(255,255,255,.045); font-size: 128px; line-height: .8; font-weight: 950; pointer-events: none; }
+.review-feature > * { position: relative; z-index: 1; }
 .review-feature svg { color: var(--brand); filter: drop-shadow(0 0 18px rgba(254,236,30,.4)); }
 .review-feature h3 { max-width: 760px; margin: 26px 0 0; font-size: clamp(30px, 3.6vw, 56px); line-height: .98; font-weight: 950; }
 .review-feature p { max-width: 760px; margin: 20px 0 0; color: rgba(255,255,255,.7); font-size: 18px; line-height: 1.75; }
 .review-feature .client { border-color: rgba(255,255,255,.12); }
 .review-feature .client small { color: rgba(255,255,255,.55); }
 .review-panel { display: grid; gap: 14px; }
-.review-score { padding: 26px; border-radius: 24px; background: white; border: 1px solid rgba(15,23,42,.08); box-shadow: 0 24px 80px rgba(28,45,72,.09); }
+.review-score { position: relative; overflow: hidden; padding: 28px; border-radius: 24px; background: rgba(255,255,255,.9); border: 1px solid rgba(15,23,42,.08); box-shadow: 0 24px 80px rgba(28,45,72,.09); }
+.review-score::after { content: ''; position: absolute; right: 20px; top: 20px; width: 76px; height: 76px; border-radius: 18px; border: 1px solid rgba(15,23,42,.08); background: repeating-linear-gradient(135deg, rgba(15,23,42,.11) 0 2px, transparent 2px 8px); opacity: .38; transform: rotate(8deg); }
 .review-score strong { display: block; font-size: 48px; line-height: .9; font-weight: 950; }
 .review-score p { margin-top: 10px; color: #64748b; line-height: 1.55; }
 .review-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .review-stat { min-height: 108px; padding: 16px; border-radius: 18px; background: rgba(255,255,255,.72); border: 1px solid rgba(15,23,42,.08); }
 .review-stat strong { display: block; font-size: 29px; line-height: 1; font-weight: 950; }
 .review-stat small { display: block; margin-top: 8px; color: #64748b; font-weight: 750; line-height: 1.25; }
-.review-card { position: relative; overflow: hidden; min-height: 330px; padding: 26px; border-radius: 22px; background: rgba(255,255,255,.9); border: 1px solid rgba(15,23,42,.08); box-shadow: 0 24px 80px rgba(28,45,72,.08); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
-.review-card::before { content: ''; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg,var(--brand),#111827); opacity: .82; }
-.review-card:hover { transform: translateY(-6px); border-color: rgba(15,23,42,.16); box-shadow: 0 34px 100px rgba(28,45,72,.14); }
+.review-card { position: relative; overflow: hidden; min-height: 344px; padding: 28px; border-radius: 24px; background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.86)); border: 1px solid rgba(15,23,42,.08); box-shadow: 0 28px 90px rgba(28,45,72,.1); backdrop-filter: blur(10px); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.review-card::before { content: ''; position: absolute; inset: 0 0 auto; height: 5px; background: linear-gradient(90deg, var(--brand), #111827 74%, transparent); opacity: .95; }
+.review-card::after { content: '”'; position: absolute; right: 18px; bottom: -38px; color: rgba(15,23,42,.05); font-size: 132px; line-height: 1; font-weight: 950; pointer-events: none; }
+.review-card:hover { transform: translateY(-8px); border-color: rgba(15,23,42,.16); box-shadow: 0 40px 120px rgba(28,45,72,.16); }
 .review-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .platform { border-radius: 999px; background: #050507; color: #fff; padding: 7px 12px; font-size: 12px; font-weight: 950; text-transform: uppercase; }
 .stars { color: #f2a900; font-size: 14px; font-weight: 950; white-space: nowrap; }
-.review-card h3 { margin: 24px 0 0; font-size: 22px; line-height: 1.08; font-weight: 950; }
-.review-card p { color: #475569; line-height: 1.72; }
-.review-result { display: inline-flex; align-items: center; min-height: 34px; margin-top: 18px; padding: 0 12px; border-radius: 999px; background: #fff9bf; color: #111827; font-size: 12px; font-weight: 950; }
-.client { display: flex; align-items: center; gap: 13px; margin-top: 24px; padding-top: 18px; border-top: 1px solid #eef2f7; }
-.client img { width: 48px; height: 48px; border-radius: 999px; object-fit: cover; border: 2px solid #fff; box-shadow: 0 12px 28px rgba(15,23,42,.14); }
+.review-card h3 { position: relative; margin: 24px 0 0; font-size: 22px; line-height: 1.08; font-weight: 950; }
+.review-card p { position: relative; color: #475569; line-height: 1.72; }
+.review-result { position: relative; display: inline-flex; align-items: center; min-height: 34px; margin-top: 18px; padding: 0 12px; border-radius: 999px; background: #fff9bf; color: #111827; font-size: 12px; font-weight: 950; }
+.client { position: relative; display: flex; align-items: center; gap: 13px; margin-top: 24px; padding-top: 18px; border-top: 1px solid #eef2f7; }
+.client img, .client .avatar-badge { width: 48px; height: 48px; border-radius: 999px; object-fit: cover; border: 2px solid #fff; box-shadow: 0 12px 28px rgba(15,23,42,.14); font-size: 16px; }
 .client strong { display: block; }
 .client small { color: #64748b; }
+.avatar-badge { display: grid; place-items: center; flex-shrink: 0; color: #fff; font-weight: 900; letter-spacing: .02em; }
 .contact { background: white; }
 .contact-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 46px; }
 .proof-list { display: grid; gap: 14px; margin-top: 28px; }
@@ -256,47 +265,20 @@ details p { color: rgba(255,255,255,.62); line-height: 1.7; }
 .footer { position: relative; overflow: hidden; background: #050507; color: white; padding: 82px 20px 38px; border-top: 1px solid rgba(255,255,255,.1); }
 .footer::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 29% 45%, rgba(14,111,60,.20), transparent 29%), radial-gradient(circle at 32% 45%, rgba(254,236,30,.10), transparent 17%), linear-gradient(90deg, transparent 0 25%, rgba(255,255,255,.04) 25.05% 25.15%, transparent 25.25%), linear-gradient(180deg, rgba(255,255,255,.035) 0 1px, transparent 1px 55%); }
 .footer-grid { position: relative; z-index: 1; display: grid; grid-template-columns: .95fr 1fr; gap: 56px; align-items: center; }
-.luxury-watch-scene { position: relative; min-height: 520px; display: grid; place-items: center; perspective: 1200px; isolation: isolate; }
-.luxury-watch-scene::before { content: ''; position: absolute; width: min(680px, 92vw); height: 270px; left: -21%; top: 44%; transform: translateY(-50%); background: linear-gradient(90deg, transparent, rgba(254,236,30,.08), rgba(14,111,60,.32)); clip-path: polygon(0 34%, 100% 48%, 100% 60%, 0 44%); filter: blur(12px); opacity: .7; }
-.luxury-watch-scene::after { content: ''; position: absolute; width: min(690px, 92vw); height: 245px; right: -36%; top: 54%; transform: translateY(-50%); background: linear-gradient(90deg, rgba(120,145,155,.44), rgba(44,64,74,.18), transparent); clip-path: polygon(0 52%, 100% 76%, 100% 91%, 0 66%); filter: blur(12px); opacity: .66; }
-.watch-light { position: absolute; inset: 8% 5%; z-index: -2; border-radius: 50%; background: radial-gradient(circle at 48% 48%, rgba(254,236,30,.20), transparent 16%), radial-gradient(circle at 50% 50%, rgba(14,111,60,.25), transparent 35%), radial-gradient(circle at 50% 50%, rgba(255,255,255,.10), transparent 52%); filter: blur(18px); animation: watchPulse 4.8s ease-in-out infinite alternate; }
-.watch-bracelet { position: absolute; left: 50%; width: min(210px, 36vw); height: 128px; transform: translateX(-50%) rotateX(8deg); display: grid; grid-template-columns: 1fr 1.24fr 1fr; gap: 4px; padding: 0 9px; opacity: .96; filter: drop-shadow(0 16px 28px rgba(0,0,0,.5)); }
-.watch-bracelet.top { top: 10px; }
-.watch-bracelet.bottom { bottom: 10px; transform: translateX(-50%) rotateX(-8deg); }
-.bracelet-link { border-radius: 18px; background: linear-gradient(90deg, #6d7378 0%, #f8faf9 23%, #8f969a 46%, #fefefe 63%, #444b50 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.28), inset 9px 0 18px rgba(255,255,255,.22), inset -11px 0 18px rgba(0,0,0,.38); }
-.bracelet-link.center { background: linear-gradient(90deg, #a8adb0 0%, #ffffff 28%, #9aa0a4 52%, #f8faf9 74%, #575f65 100%); }
-.watch-case { position: relative; z-index: 2; width: min(390px, 74vw); aspect-ratio: 1; border-radius: 50%; transform: rotateX(9deg) rotateZ(-1deg); background: radial-gradient(circle at 35% 24%, rgba(255,255,255,.9), transparent 11%), radial-gradient(circle at 68% 76%, rgba(255,255,255,.34), transparent 14%), conic-gradient(from 0deg, #40474c, #f6f7f6 18deg, #777f84 48deg, #fdfdfb 72deg, #4a5358 118deg, #d4d8d7 150deg, #2c3236 216deg, #f5f6f3 270deg, #515b61 322deg, #111418 360deg); box-shadow: inset 0 0 0 1px rgba(255,255,255,.42), inset 0 0 0 14px rgba(0,0,0,.28), inset 0 -34px 78px rgba(0,0,0,.55), 0 40px 110px rgba(0,0,0,.82), 0 0 70px rgba(254,236,30,.10); }
-.watch-case::before, .watch-case::after { content: ''; position: absolute; left: 50%; width: 156px; height: 70px; transform: translateX(-50%); background: linear-gradient(90deg, #5e666b, #f8faf9 36%, #6c7479 64%, #171b1f); filter: drop-shadow(0 10px 18px rgba(0,0,0,.4)); z-index: -1; }
-.watch-case::before { top: -24px; clip-path: polygon(16% 100%, 84% 100%, 100% 0, 0 0); }
-.watch-case::after { bottom: -24px; clip-path: polygon(0 100%, 100% 100%, 84% 0, 16% 0); }
-.watch-crown { position: absolute; right: -18px; top: 46%; width: 28px; height: 48px; border-radius: 9px; background: repeating-linear-gradient(0deg, #31383d 0 4px, #e3e7e6 4px 7px, #5f686d 7px 11px); box-shadow: inset 0 0 0 1px rgba(255,255,255,.3), 8px 0 18px rgba(0,0,0,.45); }
-.green-bezel { position: absolute; inset: 28px; border-radius: 50%; overflow: hidden; background: conic-gradient(from 0deg, #e7ede8 0 8deg, var(--watch-green) 8deg 72deg, #155e38 72deg 142deg, #f4f8f5 142deg 150deg, #0c4f30 150deg 285deg, #f8fbf8 285deg 294deg, #0f6b3d 294deg 360deg); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), inset 0 0 0 12px rgba(0,0,0,.3), 0 0 32px rgba(14,111,60,.34); }
-.green-bezel::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: repeating-conic-gradient(from -90deg, rgba(255,255,255,.82) 0deg .55deg, transparent .65deg 4.95deg), linear-gradient(130deg, rgba(255,255,255,.44), transparent 22%, transparent 70%, rgba(255,255,255,.18)); -webkit-mask-image: radial-gradient(circle, transparent 0 78%, #000 79% 87%, transparent 88%); mask-image: radial-gradient(circle, transparent 0 78%, #000 79% 87%, transparent 88%); animation: bezelShine 6s ease-in-out infinite alternate; }
-.bezel-number { position: absolute; z-index: 3; color: rgba(255,255,255,.92); font-size: 15px; font-weight: 950; text-shadow: 0 1px 4px rgba(0,0,0,.45); }
-.bezel-number.n10 { top: 55px; right: 86px; transform: rotate(34deg); }
-.bezel-number.n20 { right: 48px; bottom: 100px; transform: rotate(88deg); }
-.bezel-number.n30 { bottom: 51px; left: 50%; transform: translateX(-50%); }
-.bezel-number.n40 { left: 48px; bottom: 100px; transform: rotate(-88deg); }
-.bezel-number.n50 { top: 56px; left: 85px; transform: rotate(-34deg); }
-.watch-dial { position: absolute; inset: 68px; border-radius: 50%; overflow: hidden; background: radial-gradient(circle at 50% 47%, rgba(254,236,30,.08), transparent 7%), radial-gradient(circle at 50% 44%, rgba(14,111,60,.22), transparent 28%), linear-gradient(132deg, rgba(255,255,255,.10), transparent 25%, transparent 66%, rgba(255,255,255,.08)), radial-gradient(circle, #111318 0 48%, #040507 100%); box-shadow: inset 0 0 0 2px rgba(0,0,0,.65), inset 0 0 0 7px rgba(255,255,255,.04), inset 0 -42px 70px rgba(0,0,0,.58); }
-.watch-dial::before { content: ''; position: absolute; inset: -20%; background: linear-gradient(115deg, rgba(255,255,255,.26), transparent 17%, transparent 64%, rgba(255,255,255,.08)); transform: rotate(-12deg); animation: glassSweep 7s ease-in-out infinite; }
-.dial-logo { position: absolute; left: 50%; top: 30%; transform: translate(-50%, -50%); color: rgba(254,236,30,.82); font-size: 76px; font-weight: 950; line-height: 1; text-shadow: 0 0 24px rgba(254,236,30,.24); }
-.dial-copy { position: absolute; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,.78); font-size: 9px; font-weight: 850; letter-spacing: 1.8px; white-space: nowrap; }
-.dial-copy.top { top: 45%; }
-.dial-copy.bottom { bottom: 28%; color: rgba(255,255,255,.48); }
-.date-window { position: absolute; right: 25px; top: 49%; transform: translateY(-50%); min-width: 36px; height: 29px; display: grid; place-items: center; border-radius: 7px; background: linear-gradient(#fff,#dfe4e4); color: #111; font-size: 15px; font-weight: 950; box-shadow: inset 0 0 0 2px #111, 0 0 0 2px rgba(255,255,255,.22); }
-.marker { position: absolute; z-index: 4; background: linear-gradient(#fff, #dbe9d6); box-shadow: 0 0 10px rgba(230,255,219,.55); }
-.marker.round { width: 18px; height: 18px; border-radius: 50%; }
-.marker.bar { width: 12px; height: 33px; border-radius: 8px; }
-.marker.m12 { left: 50%; top: 15px; transform: translateX(-50%); clip-path: polygon(50% 0, 100% 100%, 0 100%); width: 26px; height: 28px; background: #f6fff2; }
-.marker.m6 { left: 50%; bottom: 17px; transform: translateX(-50%); }
-.marker.m9 { left: 17px; top: 50%; transform: translateY(-50%) rotate(90deg); }
-.marker.m1 { right: 49px; top: 34px; } .marker.m2 { right: 26px; top: 87px; } .marker.m4 { right: 37px; bottom: 61px; } .marker.m5 { right: 83px; bottom: 27px; } .marker.m7 { left: 83px; bottom: 27px; } .marker.m8 { left: 37px; bottom: 61px; } .marker.m10 { left: 26px; top: 87px; } .marker.m11 { left: 49px; top: 34px; }
-.watch-hand { position: absolute; left: 50%; top: 50%; transform-origin: 50% 100%; z-index: 8; border-radius: 999px; transform: translate(-50%, -100%) rotate(var(--angle)); transition: transform .45s cubic-bezier(.2,.8,.2,1); }
-.watch-hand.hour { width: 9px; height: 75px; background: linear-gradient(#f5fff2, #84918e); box-shadow: 0 0 12px rgba(255,255,255,.28); }
-.watch-hand.minute { width: 7px; height: 105px; background: linear-gradient(#f8fff6, #c6d1cf 72%, rgba(255,255,255,.24)); box-shadow: 0 0 14px rgba(255,255,255,.28); }
-.watch-hand.second { width: 2px; height: 118px; background: linear-gradient(#fffe8a, var(--brand), rgba(254,236,30,.25)); box-shadow: 0 0 14px rgba(254,236,30,.58); }
-.watch-center { position: absolute; z-index: 9; left: 50%; top: 50%; width: 25px; height: 25px; border-radius: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, #0a0d10 0 30%, var(--brand) 31% 44%, #dfe6e2 45% 63%, #111 64%); box-shadow: 0 0 0 4px rgba(255,255,255,.16), 0 0 20px rgba(254,236,30,.35); }
+.footer-clock-scene { position: relative; min-height: 440px; display: grid; place-items: center; gap: 22px; isolation: isolate; }
+.footer-clock-scene::before { content: ''; position: absolute; width: min(480px, 86vw); height: min(480px, 86vw); border-radius: 50%; background: radial-gradient(circle, rgba(14,111,60,.24), transparent 62%); filter: blur(34px); z-index: -1; }
+.clock-face { position: relative; width: min(320px, 76vw); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 36% 30%, rgba(255,255,255,.07), transparent 40%), radial-gradient(circle, #171b1f 0%, #06070a 78%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.09), inset 0 0 0 9px rgba(0,0,0,.55), inset 0 0 0 10px rgba(14,111,60,.42), 0 30px 90px rgba(0,0,0,.6), 0 0 46px rgba(254,236,30,.07); }
+.clock-tick { position: absolute; left: 50%; top: 50%; width: 2px; height: 8px; margin: -150px 0 0 -1px; background: rgba(255,255,255,.2); border-radius: 2px; transform-origin: 50% 150px; transform: rotate(calc(var(--i) * 6deg)); }
+.clock-tick.major { width: 3px; height: 13px; margin-left: -1.5px; background: rgba(255,255,255,.48); }
+.clock-numeral { position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; margin: -15px 0 0 -15px; display: grid; place-items: center; color: rgba(255,255,255,.92); font-size: 16px; font-weight: 800; transform: rotate(calc(var(--i) * 30deg)) translateY(-118px) rotate(calc(var(--i) * -30deg)); }
+.clock-hand { position: absolute; left: 50%; top: 50%; z-index: 8; transform-origin: 50% 100%; border-radius: 999px; transform: translate(-50%, -100%) rotate(var(--angle)); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+.clock-hand.hour { width: 6px; height: 58px; background: linear-gradient(#f5fff2, #8a9793); box-shadow: 0 0 10px rgba(255,255,255,.22); }
+.clock-hand.minute { width: 4px; height: 84px; background: linear-gradient(#f8fff6, #c6d1cf 75%); box-shadow: 0 0 10px rgba(255,255,255,.2); }
+.clock-hand.second { width: 2px; height: 96px; background: var(--brand); transition: none; box-shadow: 0 0 10px rgba(254,236,30,.5); }
+.clock-center { position: absolute; z-index: 9; left: 50%; top: 50%; width: 14px; height: 14px; border-radius: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, var(--brand) 0 45%, #111 60%); box-shadow: 0 0 0 3px rgba(255,255,255,.14), 0 0 14px rgba(254,236,30,.4); }
+.clock-caption { position: relative; max-width: 220px; padding: 14px 18px; border-radius: 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(8px); text-align: center; }
+.clock-caption strong { display: block; color: var(--brand); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; font-weight: 900; }
+.clock-caption small { display: block; margin-top: 6px; color: rgba(255,255,255,.66); font-size: 13px; line-height: 1.5; }
 .footer-copy { position: relative; z-index: 2; max-width: 650px; }
 .footer-copy .eyebrow { color: var(--brand); font-size: 14px; text-transform: uppercase; font-weight: 950; }
 .footer-copy h2 { margin: 18px 0 0; color: white; font-size: clamp(52px, 5.8vw, 86px); line-height: .94; font-weight: 950; }
@@ -306,11 +288,8 @@ details p { color: rgba(255,255,255,.62); line-height: 1.7; }
 .icon-link { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05); }
 .calendly-badge-widget { z-index: 9997 !important; }
 @keyframes videoGlow { from { opacity: .72; transform: scale(.98); } to { opacity: 1; transform: scale(1.02); } }
-@keyframes watchPulse { from { opacity: .66; transform: scale(.97); } to { opacity: 1; transform: scale(1.03); } }
-@keyframes bezelShine { from { opacity: .66; transform: rotate(-5deg); } to { opacity: 1; transform: rotate(5deg); } }
-@keyframes glassSweep { 0%,100% { opacity: .4; transform: translateX(-10%) rotate(-12deg); } 50% { opacity: .8; transform: translateX(8%) rotate(-12deg); } }
 @media (max-width: 980px) { .split, .contact-layout, .footer-grid, .review-showcase { grid-template-columns: 1fr; } .service-grid, .review-grid { grid-template-columns: 1fr 1fr; } .footer-copy { text-align: center; margin: 0 auto; } .footer .btn { margin: 0 auto; } }
-@media (max-width: 680px) { .hero h1 { font-size: 38px; } .section { padding: 72px 16px; } .service-grid, .review-grid, .review-stats, .stats { grid-template-columns: 1fr; } .review-feature, .review-score, .review-card { border-radius: 20px; padding: 22px; } .review-feature { min-height: auto; } .check-card { transform: none; } .luxury-watch-scene { min-height: 400px; } .watch-case { width: min(310px, 78vw); } .watch-bracelet { width: 160px; height: 92px; } .watch-bracelet.top { top: 18px; } .watch-bracelet.bottom { bottom: 18px; } .dial-logo { font-size: 48px; } .date-window { right: 16px; min-width: 28px; height: 23px; font-size: 12px; } }
+@media (max-width: 680px) { .hero h1 { font-size: 38px; } .section { padding: 72px 16px; } .service-grid, .review-grid, .review-stats, .stats { grid-template-columns: 1fr; } .review-feature, .review-score, .review-card { border-radius: 20px; padding: 22px; } .review-feature { min-height: auto; } .review-feature::after { font-size: 82px; } .review-proof-strip { margin-top: -6px; } .proof-chip { width: 100%; justify-content: center; } .check-card { transform: none; } .footer-clock-scene { min-height: 340px; } .clock-face { width: min(230px, 72vw); } .clock-tick { margin-top: -108px; transform-origin: 50% 108px; } .clock-numeral { font-size: 13px; transform: rotate(calc(var(--i) * 30deg)) translateY(-85px) rotate(calc(var(--i) * -30deg)); } .clock-hand.hour { height: 42px; } .clock-hand.minute { height: 60px; } .clock-hand.second { height: 69px; } }
 `;
 
 function getClockAngles(date = new Date()) {
@@ -432,33 +411,23 @@ function FooterWatch() {
     return () => window.clearInterval(timer);
   }, []);
 
-  const roundMarkers = ['m1', 'm2', 'm4', 'm5', 'm7', 'm8', 'm10', 'm11'];
+  const numerals = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
   return (
-    <div className="luxury-watch-scene" aria-hidden="true">
-      <span className="watch-light" />
-      <div className="watch-bracelet top"><span className="bracelet-link" /><span className="bracelet-link center" /><span className="bracelet-link" /></div>
-      <div className="watch-case">
-        <span className="watch-crown" />
-        <div className="green-bezel">
-          <span className="bezel-number n10">10</span><span className="bezel-number n20">20</span><span className="bezel-number n30">30</span><span className="bezel-number n40">40</span><span className="bezel-number n50">50</span>
-          <div className="watch-dial">
-            <span className="dial-logo">$</span>
-            <span className="dial-copy top">TRACKING</span>
-            <span className="dial-copy bottom">SIGNAL CERTIFIED</span>
-            <span className="date-window">28</span>
-            <span className="marker m12" />
-            <span className="marker bar m6" />
-            <span className="marker bar m9" />
-            {roundMarkers.map((marker) => <span className={`marker round ${marker}`} key={marker} />)}
-            <span className="watch-hand hour" style={{ '--angle': angles.hour }} />
-            <span className="watch-hand minute" style={{ '--angle': angles.minute }} />
-            <span className="watch-hand second" style={{ '--angle': angles.second }} />
-            <span className="watch-center" />
-          </div>
-        </div>
+    <div className="footer-clock-scene" aria-hidden="true">
+      <div className="clock-face">
+        {Array.from({ length: 60 }, (_, i) => (
+          <span className={`clock-tick${i % 5 === 0 ? ' major' : ''}`} key={i} style={{ '--i': i }} />
+        ))}
+        {numerals.map((number, i) => (
+          <span className="clock-numeral" key={number} style={{ '--i': i }}>{number}</span>
+        ))}
+        <span className="clock-hand hour" style={{ '--angle': angles.hour }} />
+        <span className="clock-hand minute" style={{ '--angle': angles.minute }} />
+        <span className="clock-hand second" style={{ '--angle': angles.second }} />
+        <span className="clock-center" />
       </div>
-      <div className="watch-bracelet bottom"><span className="bracelet-link" /><span className="bracelet-link center" /><span className="bracelet-link" /></div>
+      <div className="clock-caption"><strong>Timing matters</strong><small>Clean tracking before the next campaign push.</small></div>
     </div>
   );
 }
@@ -475,7 +444,7 @@ function Hero() {
           {['Tracking in 3 Hours', 'I Manage Everything', '24/7 Expert Support'].map((item) => <span key={item}><CheckCircle2 size={18} />{item}</span>)}
         </div>
         <div className="rating-pill">
-          <div className="avatar-stack">{avatars.map((avatar) => <img alt="client" key={avatar} src={avatar} />)}</div>
+          <div className="avatar-stack">{reviews.slice(0, 5).map((review) => <Avatar key={review.name} name={review.name} />)}</div>
           <div><div className="rating-stars">★★★★★</div><strong>500+ Tracking</strong></div>
         </div>
       </div>
@@ -521,6 +490,7 @@ function Reviews() {
     <section className="section reviews">
       <div className="container">
         <SectionTitle eyebrow="Client proof" title={<span>Real clients. Real <span style={{ color: '#9aa3b2' }}>tracking fixes.</span></span>} copy="Proof from Upwork, Fiverr, and LinkedIn projects across GTM, GA4, Meta Pixel, CAPI, API, and conversion tracking." />
+        <div className="review-proof-strip">{proofStrip.map((proof) => <span className="proof-chip" key={proof}>{proof}</span>)}</div>
         <div className="review-showcase">
           <article className="review-feature">
             <div>
@@ -529,7 +499,7 @@ function Reviews() {
               <p>“{featuredReview.quote}”</p>
             </div>
             <div className="client">
-              <img src={featuredReview.avatar} alt={featuredReview.name} />
+              <Avatar name={featuredReview.name} />
               <div><strong>{featuredReview.name}</strong><small>{featuredReview.role}</small></div>
             </div>
           </article>
@@ -549,7 +519,7 @@ function Reviews() {
             <div className="review-top"><span className="platform">{review.platform}</span><span className="stars">★★★★★ 5.0</span></div>
             <h3>{review.title}</h3><p>“{review.quote}”</p>
             <span className="review-result">{review.result}</span>
-            <div className="client"><img src={review.avatar} alt={review.name} /><div><strong>{review.name}</strong><small>{review.role}</small></div></div>
+            <div className="client"><Avatar name={review.name} /><div><strong>{review.name}</strong><small>{review.role}</small></div></div>
           </article>)}
         </div>
       </div>

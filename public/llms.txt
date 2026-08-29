@@ -11,8 +11,14 @@
   cookie loss, and broken conversion paths in an existing setup.
 - Server-side Google Tag Manager: first-party event routing for GA4,
   Google Ads, and Meta CAPI with clean event match quality.
-- Meta Conversions API: CAPI, catalog feed, CRM events, lead quality,
-  and offline conversion imports.
+- GA4 and funnel tracking: key event configuration, funnel exploration
+  reports, cross-domain tracking, and Debug View QA.
+- Meta Conversions API: CAPI with browser and server deduplication,
+  catalog feed, CRM events, lead quality, and offline conversion
+  imports.
+- Google Ads conversion tracking: conversion action setup, enhanced
+  conversions, value-based bidding data cleanup, and attribution
+  review.
 - Measurement handoff: a readable event map, launch checklist, debug
   evidence, and next-step operating notes delivered after setup.
 

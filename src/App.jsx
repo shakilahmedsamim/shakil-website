@@ -51,10 +51,67 @@ const partnerTools = [
 ];
 
 const services = [
-  ['Tracking audit', 'Find duplicate events, missing values, weak dedupe, cookie loss, and broken conversion paths.'],
-  ['Server-side GTM', 'First-party routing for GA4, Google Ads, Meta CAPI, and clean event match quality.'],
-  ['Conversion API', 'Meta CAPI, catalog, CRM events, lead quality, offline conversion imports, and QA notes.'],
-  ['Measurement handoff', 'Readable event map, launch checklist, debug evidence, and next-step operating notes.'],
+  {
+    title: 'Tracking Audit',
+    summary: 'A full audit of your existing GA4, GTM, Meta Pixel, and Google Ads setup before anything gets touched.',
+    bullets: [
+      ['Duplicate & missing events', 'events firing twice, or not firing at all on key pages'],
+      ['Weak or broken dedupe', 'browser and server events counted as two separate conversions'],
+      ['Signal loss points', 'iOS, ad blockers, and browser privacy limits cutting your data'],
+      ['Broken conversion paths', 'purchase or lead events that silently fail'],
+      ['A written report', 'ranked by what is costing you the most data first'],
+    ],
+  },
+  {
+    title: 'Server-Side GTM',
+    summary: 'First-party tracking through a server container, so your data is not fully dependent on the browser.',
+    bullets: [
+      ['Server container setup', 'hosted and configured for your domain'],
+      ['First-party routing', 'for GA4, Google Ads, and Meta CAPI'],
+      ['Client & server tag config', 'built to match your actual funnel'],
+      ['Event enrichment', 'clean, complete data before it reaches ad platforms'],
+    ],
+  },
+  {
+    title: 'GA4 & Funnel Tracking',
+    summary: 'A GA4 property that actually reflects how people move through your funnel, not the default setup.',
+    bullets: [
+      ['Key event configuration', 'the events that map to real business outcomes'],
+      ['Funnel exploration reports', 'built around your actual buying journey'],
+      ['Cross-domain tracking', 'when checkout or booking lives on another domain'],
+      ['Debug View QA', 'verified before anything goes live'],
+    ],
+  },
+  {
+    title: 'Meta Conversions API',
+    summary: 'Server-side event delivery to Meta, so the Pixel is not your only signal source.',
+    bullets: [
+      ['CAPI setup', 'with browser + server event deduplication'],
+      ['Catalog & CRM events', 'connected for accurate downstream signal'],
+      ['Match quality fixes', 'better lead and customer matching'],
+      ['Offline conversion imports', 'for sales that close outside the browser'],
+    ],
+  },
+  {
+    title: 'Google Ads Conversion Tracking',
+    summary: 'Conversion actions that match what actually matters to your business, not just the default event tags.',
+    bullets: [
+      ['Conversion action setup', 'purchase, lead, call, or offline conversions'],
+      ['Enhanced conversions', 'configured for stronger match rates'],
+      ['Value-based bidding data', 'cleaned so bidding optimizes on real value'],
+      ['Attribution review', 'so you know which paths actually convert'],
+    ],
+  },
+  {
+    title: 'Measurement Handoff',
+    summary: 'Documentation so tracking never becomes a black box only I understand.',
+    bullets: [
+      ['A readable event map', 'what fires, when, and why'],
+      ['Launch & QA checklist', 'used to verify the setup before go-live'],
+      ['Debug evidence', 'proof every event fires correctly'],
+      ['Operating notes', 'for your team to maintain it going forward'],
+    ],
+  },
 ];
 
 const reviews = [
@@ -193,10 +250,16 @@ stats { display: grid; }
 .section-title h2 { margin: 15px 0 0; font-size: clamp(40px, 5vw, 70px); line-height: .98; font-weight: 950; }
 .section-title p { margin: 18px auto 0; max-width: 680px; color: #64748b; font-size: 18px; line-height: 1.65; }
 .dark .section-title p { color: rgba(255,255,255,.6); }
-.service-grid, .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.service-card { padding: 28px; border-radius: 26px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); min-height: 210px; }
-.service-card h3 { margin: 0; font-size: 24px; line-height: 1.1; }
-.service-card p { color: rgba(255,255,255,.62); line-height: 1.65; }
+.review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 34px; }
+.service-card { padding: 30px; border-radius: 26px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); transition: transform .25s ease, border-color .25s ease, background .25s ease; }
+.service-card:hover { transform: translateY(-6px); border-color: rgba(254,236,30,.32); background: rgba(255,255,255,.09); }
+.service-card h3 { margin: 0; font-size: 23px; line-height: 1.1; }
+.service-card > p { margin: 12px 0 20px; color: rgba(255,255,255,.62); line-height: 1.6; }
+.service-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+.service-card li { padding-left: 20px; position: relative; color: rgba(255,255,255,.68); line-height: 1.55; font-size: 14px; }
+.service-card li::before { content: ''; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--brand); }
+.service-card li strong { color: rgba(255,255,255,.94); font-weight: 800; }
 .reviews { position: relative; overflow: hidden; background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 52%, #e5ebf2 100%); }
 .reviews::before { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(254,236,30,.34), transparent 24%), linear-gradient(90deg, rgba(15,23,42,.08) 1px, transparent 1px), linear-gradient(180deg, rgba(15,23,42,.06) 1px, transparent 1px); background-size: auto, 82px 82px, 82px 82px; pointer-events: none; }
 .reviews::after { content: ''; position: absolute; left: 0; right: 0; top: 155px; height: 1px; background: linear-gradient(90deg, transparent, rgba(15,23,42,.18), transparent); pointer-events: none; }
@@ -499,6 +562,29 @@ function SectionTitle({ eyebrow, title, copy }) {
   return <div className="section-title"><div className="eyebrow">{eyebrow}</div><h2>{title}</h2>{copy && <p>{copy}</p>}</div>;
 }
 
+function Services() {
+  return (
+    <section className="section dark">
+      <div className="container">
+        <SectionTitle eyebrow="Full-stack tracking" title="Built like infrastructure, presented like a premium product." copy="Six services, one clean handoff: audit, rebuild, and QA for every conversion event your ads depend on." />
+        <div className="service-grid">
+          {services.map((service) => (
+            <article className="service-card" key={service.title}>
+              <h3>{service.title}</h3>
+              <p>{service.summary}</p>
+              <ul>
+                {service.bullets.map(([label, detail]) => (
+                  <li key={label}><strong>{label}:</strong> {detail}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Reviews() {
   const featuredReview = reviews[6];
   const visibleReviews = reviews.slice(0, 6);
@@ -580,5 +666,5 @@ function Footer() {
 }
 
 export default function App() {
-  return <main className="page"><CalendlyBadge /><style>{pageCss}</style><a className="whatsapp-fab" href={whatsappLink} aria-label="Chat on WhatsApp"><MessageCircle size={26} /></a><Hero /><section className="section dark"><div className="container"><SectionTitle eyebrow="Full-stack tracking" title="Built like infrastructure, presented like a premium product." copy="Clear tracking systems for serious campaigns: audit, rebuild, QA, and clean handoff." /><div className="service-grid">{services.map(([title, body]) => <article className="service-card" key={title}><h3>{title}</h3><p>{body}</p></article>)}</div></div></section><Reviews /><Contact /><section className="section dark"><div className="container"><SectionTitle eyebrow="Decision clarity" title="Questions serious buyers ask before fixing tracking." /><div className="faq-list">{faqs.map(([q,a]) => <details key={q}><summary>{q}<ChevronDown size={18} /></summary><p>{a}</p></details>)}</div></div></section><Footer /></main>;
+  return <main className="page"><CalendlyBadge /><style>{pageCss}</style><a className="whatsapp-fab" href={whatsappLink} aria-label="Chat on WhatsApp"><MessageCircle size={26} /></a><Hero /><Services /><Reviews /><Contact /><section className="section dark"><div className="container"><SectionTitle eyebrow="Decision clarity" title="Questions serious buyers ask before fixing tracking." /><div className="faq-list">{faqs.map(([q,a]) => <details key={q}><summary>{q}<ChevronDown size={18} /></summary><p>{a}</p></details>)}</div></div></section><Footer /></main>;
 }

@@ -194,6 +194,17 @@ const pageCss = `
 body { margin: 0; background: var(--soft); }
 a { color: inherit; text-decoration: none; }
 .page { min-height: 100vh; color: var(--ink); background: var(--soft); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: 0; }
+.site-header { position: sticky; top: 0; z-index: 60; background: rgba(5,5,7,.86); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.08); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 68px; }
+.brand { font-size: 20px; font-weight: 950; color: white; }
+.brand span { color: var(--brand); }
+.site-nav { display: flex; align-items: center; gap: 28px; }
+.site-nav a { font-size: 14px; font-weight: 800; color: rgba(255,255,255,.72); transition: color .18s ease; }
+.site-nav a:hover { color: white; }
+.header-cta { min-height: 40px; padding: 0 8px 0 18px; font-size: 13px; }
+.header-cta .circle { width: 25px; height: 25px; }
+#services, #reviews, #faq, #contact { scroll-margin-top: 84px; }
+@media (max-width: 860px) { .site-nav { display: none; } }
 .top-strip { background: #ffdf67; color: #050507; text-align: center; padding: 8px 16px; font-size: 14px; font-weight: 900; }
 .section { padding: 96px 20px; }
 .container { max-width: 1220px; margin: 0 auto; }
@@ -279,14 +290,13 @@ stats { display: grid; }
 .review-feature .client small { color: rgba(255,255,255,.55); }
 .review-panel { display: grid; gap: 14px; }
 .review-score { position: relative; overflow: hidden; padding: 28px; border-radius: 24px; background: rgba(255,255,255,.9); border: 1px solid rgba(15,23,42,.08); box-shadow: 0 24px 80px rgba(28,45,72,.09); }
-.review-score::after { content: ''; position: absolute; right: 20px; top: 20px; width: 76px; height: 76px; border-radius: 18px; border: 1px solid rgba(15,23,42,.08); background: repeating-linear-gradient(135deg, rgba(15,23,42,.11) 0 2px, transparent 2px 8px); opacity: .38; transform: rotate(8deg); }
-.review-score strong { display: block; font-size: 48px; line-height: .9; font-weight: 950; }
+.review-score strong { display: block; font-size: 40px; line-height: .9; font-weight: 950; color: #f2a900; letter-spacing: 4px; }
 .review-score p { margin-top: 10px; color: #64748b; line-height: 1.55; }
 .review-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .review-stat { min-height: 108px; padding: 16px; border-radius: 18px; background: rgba(255,255,255,.72); border: 1px solid rgba(15,23,42,.08); }
 .review-stat strong { display: block; font-size: 29px; line-height: 1; font-weight: 950; }
 .review-stat small { display: block; margin-top: 8px; color: #64748b; font-weight: 750; line-height: 1.25; }
-.review-card { position: relative; overflow: hidden; min-height: 344px; padding: 28px; border-radius: 24px; background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.86)); border: 1px solid rgba(15,23,42,.08); box-shadow: 0 28px 90px rgba(28,45,72,.1); backdrop-filter: blur(10px); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.review-card { position: relative; overflow: hidden; display: flex; flex-direction: column; min-height: 320px; padding: 28px; border-radius: 24px; background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.86)); border: 1px solid rgba(15,23,42,.08); box-shadow: 0 28px 90px rgba(28,45,72,.1); backdrop-filter: blur(10px); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
 .review-card::before { content: ''; position: absolute; inset: 0 0 auto; height: 5px; background: linear-gradient(90deg, var(--brand), #111827 74%, transparent); opacity: .95; }
 .review-card::after { content: '”'; position: absolute; right: 18px; bottom: -38px; color: rgba(15,23,42,.05); font-size: 132px; line-height: 1; font-weight: 950; pointer-events: none; }
 .review-card:hover { transform: translateY(-8px); border-color: rgba(15,23,42,.16); box-shadow: 0 40px 120px rgba(28,45,72,.16); }
@@ -296,7 +306,7 @@ stats { display: grid; }
 .review-card h3 { position: relative; margin: 24px 0 0; font-size: 22px; line-height: 1.08; font-weight: 950; }
 .review-card p { position: relative; color: #475569; line-height: 1.72; }
 .review-result { position: relative; display: inline-flex; align-items: center; min-height: 34px; margin-top: 18px; padding: 0 12px; border-radius: 999px; background: #fff9bf; color: #111827; font-size: 12px; font-weight: 950; }
-.client { position: relative; display: flex; align-items: center; gap: 13px; margin-top: 24px; padding-top: 18px; border-top: 1px solid #eef2f7; }
+.client { position: relative; display: flex; align-items: center; gap: 13px; margin-top: auto; padding-top: 18px; border-top: 1px solid #eef2f7; }
 .client img, .client .avatar-badge { width: 48px; height: 48px; border-radius: 999px; object-fit: cover; border: 2px solid #fff; box-shadow: 0 12px 28px rgba(15,23,42,.14); font-size: 16px; }
 .client strong { display: block; }
 .client small { color: #64748b; }
@@ -512,11 +522,28 @@ function FooterWatch() {
   );
 }
 
+function Header() {
+  return (
+    <header className="site-header">
+      <div className="container header-inner">
+        <a className="brand" href="#top">Shakil<span>.</span></a>
+        <nav className="site-nav">
+          <a href="#services">Services</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a className="btn header-cta" href={whatsappLink}>Get In Touch<span className="circle"><ArrowRight size={15} /></span></a>
+      </div>
+    </header>
+  );
+}
+
 function Hero() {
   const checklist = ['Google Ads Conversion Tracking', 'Facebook Pixel & Conversion API', 'First-Party Server-Side Tracking', 'Google Analytics 4 Funnel Track', 'Offline Conversion Setup for Ads'];
 
   return (
-    <section className="hero">
+    <section className="hero" id="top">
       <div className="top-strip">I help marketers & agencies scale campaigns with accurate tracking...</div>
       <div className="hero-copy">
         <h1>Wasting ad spend on broken tracking?<span>I fix it so your ads finally have the data to scale.</span></h1>
@@ -564,7 +591,7 @@ function SectionTitle({ eyebrow, title, copy }) {
 
 function Services() {
   return (
-    <section className="section dark">
+    <section className="section dark" id="services">
       <div className="container">
         <SectionTitle eyebrow="Full-stack tracking" title="Built like infrastructure, presented like a premium product." copy="Six services, one clean handoff: audit, rebuild, and QA for every conversion event your ads depend on." />
         <div className="service-grid">
@@ -590,7 +617,7 @@ function Reviews() {
   const visibleReviews = reviews.slice(0, 6);
 
   return (
-    <section className="section reviews">
+    <section className="section reviews" id="reviews">
       <div className="container">
         <SectionTitle eyebrow="Client proof" title={<span>Real clients. Real <span style={{ color: '#9aa3b2' }}>tracking fixes.</span></span>} copy="Proof from Upwork, Fiverr, and LinkedIn projects across GTM, GA4, Meta Pixel, CAPI, API, and conversion tracking." />
         <div className="review-proof-strip">{proofStrip.map((proof) => <span className="proof-chip" key={proof}>{proof}</span>)}</div>
@@ -666,5 +693,5 @@ function Footer() {
 }
 
 export default function App() {
-  return <main className="page"><CalendlyBadge /><style>{pageCss}</style><a className="whatsapp-fab" href={whatsappLink} aria-label="Chat on WhatsApp"><MessageCircle size={26} /></a><Hero /><Services /><Reviews /><Contact /><section className="section dark"><div className="container"><SectionTitle eyebrow="Decision clarity" title="Questions serious buyers ask before fixing tracking." /><div className="faq-list">{faqs.map(([q,a]) => <details key={q}><summary>{q}<ChevronDown size={18} /></summary><p>{a}</p></details>)}</div></div></section><Footer /></main>;
+  return <main className="page"><CalendlyBadge /><style>{pageCss}</style><Header /><a className="whatsapp-fab" href={whatsappLink} aria-label="Chat on WhatsApp"><MessageCircle size={26} /></a><Hero /><Services /><Reviews /><Contact /><section className="section dark" id="faq"><div className="container"><SectionTitle eyebrow="Decision clarity" title="Questions serious buyers ask before fixing tracking." /><div className="faq-list">{faqs.map(([q,a]) => <details key={q}><summary>{q}<ChevronDown size={18} /></summary><p>{a}</p></details>)}</div></div></section><Footer /></main>;
 }

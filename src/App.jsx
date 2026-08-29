@@ -6,7 +6,6 @@ import {
   ChevronDown,
   ExternalLink,
   Linkedin,
-  Mail,
   MessageCircle,
   Quote,
   Send,
@@ -289,6 +288,9 @@ details p { color: rgba(255,255,255,.62); line-height: 1.7; }
 .footer-links { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
 .icon-link { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05); }
 .calendly-badge-widget { z-index: 9997 !important; }
+.whatsapp-fab { position: fixed; left: 22px; bottom: 22px; z-index: 9996; display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; background: #25D366; color: white; box-shadow: 0 14px 34px rgba(37,211,102,.45); transition: transform .2s ease, box-shadow .2s ease; }
+.whatsapp-fab:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 18px 44px rgba(37,211,102,.55); }
+@media (max-width: 680px) { .whatsapp-fab { left: 16px; bottom: 16px; width: 52px; height: 52px; } }
 @keyframes videoGlow { from { opacity: .72; transform: scale(.98); } to { opacity: 1; transform: scale(1.02); } }
 @media (max-width: 980px) { .split, .contact-layout, .footer-grid, .review-showcase { grid-template-columns: 1fr; } .service-grid, .review-grid { grid-template-columns: 1fr 1fr; } .footer-copy { text-align: center; margin: 0 auto; } .footer .btn { margin: 0 auto; } }
 @media (max-width: 680px) { .hero h1 { font-size: 38px; } .section { padding: 72px 16px; } .service-grid, .review-grid, .review-stats, .stats { grid-template-columns: 1fr; } .review-feature, .review-score, .review-card { border-radius: 20px; padding: 22px; } .review-feature { min-height: auto; } .review-feature::after { font-size: 82px; } .review-proof-strip { margin-top: -6px; } .proof-chip { width: 100%; justify-content: center; } .check-card { transform: none; } .footer-clock-scene { min-height: 340px; } .clock-face { width: min(230px, 72vw); } .clock-tick { margin-top: -108px; transform-origin: 50% 108px; } .clock-numeral { font-size: 13px; transform: rotate(calc(var(--i) * 30deg)) translateY(-85px) rotate(calc(var(--i) * -30deg)); } .clock-hand.hour { height: 42px; } .clock-hand.minute { height: 60px; } .clock-hand.second { height: 69px; } }
@@ -419,8 +421,9 @@ function ContactForm() {
 }
 
 function FooterWatch() {
-  const [angles, setAngles] = useState(() => getClockAngles());
+  const [angles, setAngles] = useState({ hour: '0deg', minute: '0deg', second: '0deg' });
   useEffect(() => {
+    setAngles(getClockAngles());
     const timer = window.setInterval(() => setAngles(getClockAngles()), 1000);
     return () => window.clearInterval(timer);
   }, []);
@@ -577,5 +580,5 @@ function Footer() {
 }
 
 export default function App() {
-  return <main className="page"><CalendlyBadge /><style>{pageCss}</style><Hero /><section className="section dark"><div className="container"><SectionTitle eyebrow="Full-stack tracking" title="Built like infrastructure, presented like a premium product." copy="Clear tracking systems for serious campaigns: audit, rebuild, QA, and clean handoff." /><div className="service-grid">{services.map(([title, body]) => <article className="service-card" key={title}><h3>{title}</h3><p>{body}</p></article>)}</div></div></section><Reviews /><Contact /><section className="section dark"><div className="container"><SectionTitle eyebrow="Decision clarity" title="Questions serious buyers ask before fixing tracking." /><div className="faq-list">{faqs.map(([q,a]) => <details key={q}><summary>{q}<ChevronDown size={18} /></summary><p>{a}</p></details>)}</div></div></section><Footer /></main>;
+  return <main className="page"><CalendlyBadge /><style>{pageCss}</style><a className="whatsapp-fab" href={whatsappLink} aria-label="Chat on WhatsApp"><MessageCircle size={26} /></a><Hero /><section className="section dark"><div className="container"><SectionTitle eyebrow="Full-stack tracking" title="Built like infrastructure, presented like a premium product." copy="Clear tracking systems for serious campaigns: audit, rebuild, QA, and clean handoff." /><div className="service-grid">{services.map(([title, body]) => <article className="service-card" key={title}><h3>{title}</h3><p>{body}</p></article>)}</div></div></section><Reviews /><Contact /><section className="section dark"><div className="container"><SectionTitle eyebrow="Decision clarity" title="Questions serious buyers ask before fixing tracking." /><div className="faq-list">{faqs.map(([q,a]) => <details key={q}><summary>{q}<ChevronDown size={18} /></summary><p>{a}</p></details>)}</div></div></section><Footer /></main>;
 }

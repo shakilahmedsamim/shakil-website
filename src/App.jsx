@@ -24,7 +24,7 @@ const facebookLink = 'https://www.facebook.com/mdshakilahmedsamim';
 const upworkLink = 'https://www.upwork.com/freelancers/~012b2afe9f5b67e24f?mp_source=share';
 const calendlyLink = 'https://calendly.com/shakilahmedsamims/30min?hide_gdpr_banner=1';
 const web3formsAccessKey = 'fbbc127d-3482-4ca9-a1dc-6cf9feea76b0';
-const profileImage = './images/Shakil.jpg';
+const profileImage = './Shakil.webp';
 const pinImage = 'https://framerusercontent.com/images/wUciDkb7amyTwaAe0wqiFkjra0M.png?width=362&height=354';
 
 const avatarPalette = ['#0e6f3c', '#155e38', '#0f172a', '#3d4d6b', '#4a3a0f'];
@@ -41,13 +41,13 @@ function Avatar({ name }) {
 
 const partnerTools = [
   { name: 'SCALIXAI', text: 'SCALIXAI' },
-  { name: 'Shopify', src: './images/Shopify.png' },
-  { name: 'Stape', src: './images/stape.png' },
-  { name: 'Meta', src: './images/Meta.png' },
-  { name: 'Google Tag Manager', src: './images/Google Tag Manager.png' },
+  { name: 'Shopify', src: './images/Shopify.webp' },
+  { name: 'Stape', src: './images/stape.webp' },
+  { name: 'Meta', src: './images/Meta.webp' },
+  { name: 'Google Tag Manager', src: './images/Google Tag Manager.webp' },
   { name: 'Google Ads', src: './images/Google Ads.webp' },
-  { name: 'GA4', src: './images/GA4.png' },
-  { name: 'Microsoft Ads', src: './images/Microsoft ads.png' },
+  { name: 'GA4', src: './images/GA4.webp' },
+  { name: 'Microsoft Ads', src: './images/Microsoft ads.webp' },
   { name: 'AdRock', text: 'AdRock' },
 ];
 
@@ -133,7 +133,7 @@ const faqs = [
 ];
 
 const pageCss = `
-:root { --brand: #FEEC1E; --ink: #070a0f; --soft: #F3F4F8; --watch-green: #0e6f3c; }
+:root { --brand: #FEEC1E; --brand-red: #E11D2A; --brand-red-dark: #A5121D; --ink: #070a0f; --soft: #F3F4F8; --watch-green: #0e6f3c; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--soft); }
 a { color: inherit; text-decoration: none; }
@@ -159,9 +159,9 @@ a { color: inherit; text-decoration: none; }
 .video-mask { overflow: hidden; border-radius: 22px; background: #000; }
 .vidalytics-shell { width: 100%; background: #000; }
 .hero-cta { margin-top: 30px; text-align: center; }
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 0 30px; border-radius: 999px; border: 1px solid var(--brand); background: var(--brand); color: #050507; font-weight: 900; box-shadow: 0 18px 44px rgba(254, 236, 30, .34); transition: transform .22s ease, box-shadow .22s ease; }
-.btn:hover { transform: translateY(-2px); box-shadow: 0 24px 58px rgba(254, 236, 30, .42); }
-.btn .circle { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 999px; background: #070a0f; color: var(--brand); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 0 12px 0 30px; border-radius: 999px; border: 1px solid var(--brand-red-dark); background: linear-gradient(135deg, #FF4B3E 0%, var(--brand-red) 58%, var(--brand-red-dark) 100%); color: white; font-weight: 900; box-shadow: 0 18px 44px rgba(225, 29, 42, .38); transition: transform .22s ease, box-shadow .22s ease; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 24px 58px rgba(225, 29, 42, .46); }
+.btn .circle { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 999px; background: var(--brand); color: #1a0505; }
 .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, .9fr); gap: 68px; align-items: center; max-width: 1030px; margin: 98px auto 0; }
 .split h2 { margin: 0; font-size: clamp(38px, 4vw, 58px); line-height: 1.02; font-weight: 950; }
 .creator-row { display: flex; align-items: center; gap: 30px; margin-top: 26px; }
@@ -256,7 +256,9 @@ stats { display: grid; }
 .form input, .form textarea { width: 100%; border: 1px solid rgba(15,23,42,.12); border-radius: 15px; padding: 13px 15px; font: inherit; outline: none; }
 .form textarea { min-height: 124px; resize: vertical; }
 .form input:focus, .form textarea:focus { border-color: rgba(254,236,30,.9); box-shadow: 0 0 0 4px rgba(254,236,30,.18); }
-.form button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; border: 0; border-radius: 999px; background: var(--brand); color: #050507; font-weight: 950; cursor: pointer; }
+.form button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; border: 0; border-radius: 999px; background: linear-gradient(135deg, #FF4B3E 0%, var(--brand-red) 58%, var(--brand-red-dark) 100%); color: white; font-weight: 950; cursor: pointer; box-shadow: 0 14px 34px rgba(225, 29, 42, .3); }
+.form button:disabled { opacity: .7; cursor: not-allowed; }
+.form button svg { color: var(--brand); }
 .result { margin: 0; color: #334155; font-size: 13px; font-weight: 850; }
 .faq-list { max-width: 860px; margin: 0 auto; display: grid; gap: 12px; }
 details { border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.06); border-radius: 18px; padding: 20px; }
@@ -308,27 +310,35 @@ function CalendlyBadge() {
     if (window.__shakilCalendlyBadgeLoaded) return;
     window.__shakilCalendlyBadgeLoaded = true;
 
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://assets.calendly.com/assets/external/widget.css';
-    document.head.appendChild(link);
+    const load = () => {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://assets.calendly.com/assets/external/widget.css';
+      document.head.appendChild(link);
 
-    const init = () => {
-      if (!window.Calendly || document.querySelector('.calendly-badge-widget')) return;
-      window.Calendly.initBadgeWidget({
-        url: calendlyLink,
-        text: 'Schedule time with me',
-        color: '#414141',
-        textColor: '#ffffff',
-        branding: true,
-      });
+      const init = () => {
+        if (!window.Calendly || document.querySelector('.calendly-badge-widget')) return;
+        window.Calendly.initBadgeWidget({
+          url: calendlyLink,
+          text: 'Schedule time with me',
+          color: '#414141',
+          textColor: '#ffffff',
+          branding: true,
+        });
+      };
+
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      script.onload = init;
+      document.body.appendChild(script);
     };
 
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    script.onload = init;
-    document.body.appendChild(script);
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(load, { timeout: 4000 });
+    } else {
+      window.setTimeout(load, 2000);
+    }
   }, []);
 
   return null;
@@ -340,6 +350,7 @@ function VidalyticsEmbed() {
     if (window[flag]) return;
     window[flag] = true;
 
+    const inject = () => {
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.text = `(function (v, i, d, a, l, y, t, c, s) {
@@ -351,7 +362,10 @@ function VidalyticsEmbed() {
     };}
     vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
 })(window, document, 'Vidalytics', 'vidalytics_embed_SmDRjS4JjsHLVuwd', 'https://fast.vidalytics.com/embeds/i4lAbS7M/SmDRjS4JjsHLVuwd/');`;
-    document.body.appendChild(script);
+      document.body.appendChild(script);
+    };
+
+    window.requestAnimationFrame(() => window.requestAnimationFrame(inject));
   }, []);
 
   return <div className="vidalytics-shell"><div id="vidalytics_embed_SmDRjS4JjsHLVuwd" style={{ width: '100%', position: 'relative', paddingTop: '56.25%' }} /></div>;

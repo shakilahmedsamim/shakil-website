@@ -1,0 +1,5 @@
+# PLACEHOLDER DOMAIN: update the Sitemap line below once your real domain is live.
+User-agent: *
+Allow: /
+
+Sitemap: https://shakilahmedsamim.com/sitemap.xml
